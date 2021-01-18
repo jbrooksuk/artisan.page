@@ -10,11 +10,11 @@
                     </div>
 
                     <div class="flex-grow">
-                        <div class="flex justify-end items-center">
-                            <div>
+                        <div class="flex justify-end items-center flex-col sm:flex-row">
+                            <div class="hidden sm:block">
                                 <span class="font-semibold">Made by <a href="https://twitter.com/jbrooksuk" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@jbrooksuk</a></span>
                             </div>
-                            <div class="ml-3 mt-2">
+                            <div class="sm:ml-3 sm:mt-2">
                                 <a class="github-button" href="https://github.com/jbrooksuk/artisan.page" data-icon="octicon-star" aria-label="Star jbrooksuk/artisan.page on GitHub">Star</a>
                             </div>
                         </div>
