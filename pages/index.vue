@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <form class="w-full flex md:ml-0" action="#" method="GET">
+                    <form class="w-full flex md:ml-0">
                         <label for="search_field" class="sr-only">Search</label>
 
                         <div class="relative text-gray-400 focus-within:text-gray-600 min-w-full">
@@ -57,9 +57,16 @@ export default {
     },
     created() {
         this.data = data;
+
+        if (this.$route.query.search && this.$route.query.search.length) {
+            this.filter = this.$route.query.search;
+        }
     },
     computed: {
         commands () {
+            const query = this.$route.query;
+            this.$router.replace({ query: { search: this.filter } })
+
             if (! this.filter.length) {
                 return this.data;
             }

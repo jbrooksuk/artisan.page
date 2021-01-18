@@ -1,7 +1,7 @@
 <template>
     <div :id="slug">
         <div class="rounded-t-xl overflow-hidden bg-white p-10">
-            <h1 class="text-xl font-semilbold text-indigo-900">
+            <h1 class="text-xl font-semibold text-indigo-900">
                 <a :href="`#${slug}`">{{ command.name }}</a>
             </h1>
 
