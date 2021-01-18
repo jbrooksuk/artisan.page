@@ -57,16 +57,9 @@ export default {
     },
     created() {
         this.data = data;
-
-        if (this.$route.query.search && this.$route.query.search.length) {
-            this.filter = this.$route.query.search;
-        }
     },
     computed: {
         commands () {
-            const query = this.$route.query;
-            this.$router.replace({ query: { search: this.filter } })
-
             if (! this.filter.length) {
                 return this.data;
             }
