@@ -11,6 +11,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
     "core-js": "^3.8.2",
+    "mousetrap": "^1.6.5",
     "nuxt": "^2.14.12"
   },
   "devDependencies": {
