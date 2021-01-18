@@ -1,5 +1,5 @@
 <template>
-    <div :id="slug">
+    <div :id="slug" class="shadow-lg">
         <div class="rounded-t-xl overflow-hidden bg-white p-10">
             <h1 class="text-xl font-semibold text-indigo-900">
                 <a :href="`#${slug}`">{{ command.name }}</a>
