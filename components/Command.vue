@@ -45,7 +45,7 @@
         </div>
 
         <div class="overflow-hidden rounded-b-lg bg-gradient-to-r from-indigo-900 to-indigo-700">
-            <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 text-sm leading-snug text-white bg-black bg-opacity-40">php artisan {{ command.synopsis }}</pre>
+            <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 text-sm leading-snug text-white bg-black bg-opacity-40 whitespace-pre-wrap md:whitespace-pre">php artisan {{ command.synopsis }}</pre>
         </div>
     </div>
 </div>
