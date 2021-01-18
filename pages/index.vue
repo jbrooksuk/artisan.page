@@ -5,7 +5,7 @@
                 <div class="pb-5 border-b border-gray-200 flex flex-col md:flex-row justify-between items-center">
                     <div class="flex-grow">
                         <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
-                            Laravel Artisan Cheatsheet
+                            <a href="/">Laravel Artisan Cheatsheet</a>
                         </h3>
                     </div>
 
