@@ -2,19 +2,19 @@
     <div class="flex flex-col min-h-screen">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
             <main>
-                <div class="pb-5 border-b border-gray-200 flex justify-between items-center">
-                    <div>
-                        <h3 class="text-2xl leading-6 font-bold text-gray-900">
+                <div class="pb-5 border-b border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex-grow">
+                        <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
                             Laravel Artisan Cheatsheet
                         </h3>
                     </div>
 
                     <div class="flex-grow">
-                        <div class="flex justify-end items-center flex-col sm:flex-row">
-                            <div class="hidden sm:block">
+                        <div class="flex justify-end items-center flex-row">
+                            <div class="flex">
                                 <span class="font-semibold">Made by <a href="https://twitter.com/jbrooksuk" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@jbrooksuk</a></span>
                             </div>
-                            <div class="sm:ml-3 sm:mt-2">
+                            <div class="ml-3 mt-2">
                                 <a class="github-button" href="https://github.com/jbrooksuk/artisan.page" data-icon="octicon-star" aria-label="Star jbrooksuk/artisan.page on GitHub">Star</a>
                             </div>
                         </div>
