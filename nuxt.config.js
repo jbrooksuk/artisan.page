@@ -37,6 +37,13 @@ export default {
         defer: 'defer',
         once: true,
         skip: process.env.NODE_ENV !== 'production'
+      },
+      {
+        hid: 'github',
+        src: 'https://buttons.github.io/buttons.js',
+        defer: 'defer',
+        once: true,
+        async: true,
       }
     ]
   },

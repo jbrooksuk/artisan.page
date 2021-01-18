@@ -4,13 +4,20 @@
             <main>
                 <div class="pb-5 border-b border-gray-200 flex justify-between items-center">
                     <div>
-                        <h3 class="text-xl leading-6 font-bold text-gray-900">
+                        <h3 class="text-2xl leading-6 font-bold text-gray-900">
                             Laravel Artisan Cheatsheet
                         </h3>
                     </div>
 
-                    <div>
-                        <span class="font-semibold">Made by <a href="https://twitter.com/jbrooksuk" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@jbrooksuk</a></span>
+                    <div class="flex-grow">
+                        <div class="flex justify-end items-center">
+                            <div>
+                                <span class="font-semibold">Made by <a href="https://twitter.com/jbrooksuk" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">@jbrooksuk</a></span>
+                            </div>
+                            <div class="ml-3 mt-2">
+                                <a class="github-button" href="https://github.com/jbrooksuk/artisan.page" data-icon="octicon-star" aria-label="Star jbrooksuk/artisan.page on GitHub">Star</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
