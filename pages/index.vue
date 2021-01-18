@@ -82,8 +82,8 @@ export default {
             const keyword = this.filter.toLowerCase();
 
             return this.data.filter((command) => {
-                if (command.name.toLowerCase().includes(this.filter) ||
-                    command.description.toLowerCase().includes(this.filter)) {
+                if (command.name.toLowerCase().includes(keyword) ||
+                    command.description.toLowerCase().includes(keyword)) {
                     return command;
                 }
             });
