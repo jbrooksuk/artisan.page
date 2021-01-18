@@ -4,17 +4,29 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'artisan.page',
+    title: 'Laravel Artisan Cheatsheet',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
+
+      { hid: "twitter:card", name: 'twitter:card', content: "summary_large_image" },
+      { hid: "twitter:site", name: 'twitter:site', content: "@jbrooksuk" },
+      { hid: "og:site_name", name: 'og:site_name', content: "Laravel Artisan Cheatsheet" },
+      { hid: "og:type", name: 'og:type', content: "website" },
+      { hid: "og:title", name: 'og:title', content: "Laravel Artisan Cheatsheet" },
+      { hid: "og:locale", name: 'og:locale', content: "en" },
+      { hid: "og:url", name: 'og:url', content: "https://artisan.page" },
+      { hid: "description", name: 'description', content: "Laravel Artisan Cheatsheet" },
+      { hid: "og:description", name: 'og:description', content: "Laravel Artisan Cheatsheet" },
+      { hid: "og:image", name: 'og:image', content: "https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg" },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'canonical', href: 'https://artisan.page' }
     ],
     script: [
       {
