@@ -2,7 +2,7 @@
     <div class="flex flex-col min-h-screen">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
             <main>
-                <div class="pb-5 border-b border-gray-200 flex justify-between">
+                <div class="pb-5 border-b border-gray-200 flex justify-between items-center">
                     <div>
                         <h3 class="text-xl leading-6 font-bold text-gray-900">
                             Laravel Artisan Cheatsheet
@@ -30,8 +30,9 @@
 
                 <div class="space-y-8 my-8">
                     <div v-if="commands.length == 0">
-                        <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10">
-                            <h1 class="text-xl font-semilbold text-indigo-900">No Commands Found</h1>
+                        <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
+                            <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
+                            <p>Nothing found for <code class="font-mono">{{ filter }}</code></p>
                         </div>
                     </div>
 
