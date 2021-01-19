@@ -7,9 +7,9 @@
 
             <p class="text-gray-700">{{ command.description }}</p>
 
-            <div v-if="command.options.length" class="text-sm mt-2">
+            <div v-if="command.options.length" class="text-sm mt-2 text-gray-700">
                 <p class="font-semibold">Options:</p>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc list-inside space-y-1">
                     <li v-for="option in command.options" :key="option.name">
                         <code class="text-mono">{{ option.name }}</code> - {{ option.description }}
 
@@ -25,9 +25,9 @@
                 </ul>
             </div>
 
-            <div v-if="command.arguments.length" class="text-sm mt-2">
+            <div v-if="command.arguments.length" class="text-sm mt-2 text-gray-700">
                 <p class="font-semibold">Arguments:</p>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc list-inside space-y-1">
                     <li v-for="argument in command.arguments" :key="argument.name">
                         <code class="text-mono">{{ argument.name }}</code> - {{ argument.description }}
 
