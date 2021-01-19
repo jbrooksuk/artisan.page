@@ -58,7 +58,7 @@
 
 <script>
 const Mousetrap = require('mousetrap');
-import data from '../static/8.x.json'
+import data from '../assets/8.x.json'
 
 export default {
     data () {
