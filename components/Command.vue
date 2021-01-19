@@ -10,7 +10,7 @@
             <div v-if="command.options.length" class="text-sm mt-2">
                 <p class="font-semibold">Options:</p>
                 <ul class="list-disc list-inside">
-                    <li v-for="option in command.options">
+                    <li v-for="option in command.options" :key="option.name">
                         <code class="text-mono">{{ option.name }}</code> - {{ option.description }}
 
                         <span v-if="option.value_required"
@@ -28,7 +28,7 @@
             <div v-if="command.arguments.length" class="text-sm mt-2">
                 <p class="font-semibold">Arguments:</p>
                 <ul class="list-disc list-inside">
-                    <li v-for="argument in command.arguments">
+                    <li v-for="argument in command.arguments" :key="argument.name">
                         <code class="text-mono">{{ argument.name }}</code> - {{ argument.description }}
 
                         <span v-if="argument.required"
@@ -44,25 +44,66 @@
             </div>
         </div>
 
-        <div class="overflow-hidden rounded-b-lg bg-gradient-to-r from-indigo-900 to-indigo-700">
-            <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 text-sm leading-snug text-white bg-black bg-opacity-40 whitespace-pre-wrap md:whitespace-pre">php artisan {{ command.synopsis }}</pre>
+        <div class="show-copy-on-hover relative overflow-hidden rounded-b-lg bg-gradient-to-r from-indigo-900 to-indigo-700">
+            <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 pr-8 text-sm leading-snug text-white bg-black bg-opacity-40 whitespace-pre-wrap md:whitespace-pre">php artisan {{ command.synopsis }}</pre>
+            <button
+                type="button"
+                class="absolute m-2 right-0 top-0 text-white opacity-0 transition duration-200"
+                :class="{ 'focus:outline-none': !keyboardUsed }"
+                @click="copyCommand($event, `php artisan ${command.synopsis}`)">
+                <span class="sr-only">Press to copy</span>
+                <svg v-if="copied" style="width:25px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                <svg v-else style="width:25px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+            </button>
         </div>
     </div>
-</div>
 </template>
 
 <script>
 export default {
     props: ['command'],
+    data() {
+        return {
+            keyboardUsed: false,
+            copied: false,
+        }
+    },
+    mounted() {
+      window.addEventListener('keydown', e => {
+          if (e.keyCode === 9) this.keyboardUsed = true
+      })
+    },
     computed: {
         slug () {
             return this.command.name.replace(':', '');
         }
-    }
+    },
+    methods: {
+        async copyCommand(event, command) {
+            const textarea = document.createElement('textarea')
+            textarea.setAttribute('aria-hidden', 'true')
+            textarea.textContent = command.replace(/(\[.*\]|\<.*\>)/gi, '').trim() + ' '
+            document.body.appendChild(textarea)
+            textarea.select()
+            document.execCommand('copy')
+            document.body.removeChild(textarea)
+            event.target.closest('button').focus()
+            this.copied = true
+            await new Promise(resolve => setTimeout(resolve, 1500))
+            this.copied = false
+        },
+    },
 }
 </script>
 
 <style>
+    .show-copy-on-hover:hover > button {
+      opacity: 1 !important;
+    }
     .bg-opacity-40 {
         --bg-opacity: 0.4;
     }
