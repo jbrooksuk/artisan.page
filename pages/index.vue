@@ -33,6 +33,10 @@
                           <input id="text" @input="handleFilter" @keypress.enter.prevent type="search" class="py-3 px-4 bg-white placeholder-gray-400 text-gray-900 rounded-lg shadow-md appearance-none w-full block pl-12 focus:outline-none" placeholder="Search" tabindex="0" spellcheck="false" autocomplete="off" ref="search">
                         </div>
                     </form>
+
+                    <div class="w-full flex items-center justify-center my-8">
+                        <a href="https://www.producthunt.com/posts/laravel-artisan-cheatsheet?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-laravel-artisan-cheatsheet" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=281381&theme=light" alt="Laravel Artisan Cheatsheet - Shareable, bookmarkable cheatsheet for Laravel Artisan. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+                    </div>
                 </div>
 
                 <div class="space-y-8 my-8">
