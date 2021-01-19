@@ -101,6 +101,7 @@ export default {
 </script>
 
 <style>
+    .show-copy-on-hover:focus-within > button,
     .show-copy-on-hover:hover > button {
       opacity: 1 !important;
     }
