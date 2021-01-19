@@ -49,7 +49,7 @@
                 <div class="flex-initial">
                     <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 pr-8 text-sm leading-snug text-white whitespace-pre-wrap">php artisan {{ command.synopsis }}</pre>
                 </div>
-                <div class="pr-8 flex-1">
+                <div class="pr-8 flex-1 text-right">
                     <button
                         type="button"
                         class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-white transition duration-200"
