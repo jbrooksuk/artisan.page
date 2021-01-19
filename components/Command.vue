@@ -48,7 +48,6 @@
             <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 text-sm leading-snug text-white bg-black bg-opacity-40 whitespace-pre-wrap md:whitespace-pre">php artisan {{ command.synopsis }}</pre>
         </div>
     </div>
-</div>
 </template>
 
 <script>
