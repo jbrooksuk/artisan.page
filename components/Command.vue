@@ -46,16 +46,16 @@
 
         <div class="group relative overflow-hidden rounded-b-lg bg-gradient-to-r from-indigo-900 to-indigo-700">
             <div class="flex items-center bg-black bg-opacity-40">
-                <div class="flex-1">
-                    <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 pr-8 text-sm leading-snug text-white whitespace-pre-wrap md:whitespace-pre">php artisan {{ command.synopsis }}</pre>
+                <div class="flex-initial">
+                    <pre class="scrollbar-none overflow-hidden overflow-x-auto p-6 pr-8 text-sm leading-snug text-white whitespace-pre-wrap">php artisan {{ command.synopsis }}</pre>
                 </div>
-                <div class="pr-8">
+                <div class="pr-8 flex-1">
                     <button
                         type="button"
                         class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-white transition duration-200"
                         :class="{ 'focus:outline-none': ! keyboardUsed }"
                         @click="copyCommand($event, `php artisan ${command.name}`)">
-                        <span class="sr-only">Press to copy</span>
+                        <span class="sr-only">Click to copy</span>
                         <svg v-if="copied" class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                         </svg>
