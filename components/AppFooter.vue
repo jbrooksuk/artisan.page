@@ -6,7 +6,7 @@
                 <br>
                 Proudly powered by <a href="https://usefathom.com/james" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Fathom Analytics</a>.
                 <br>
-                Lovingly hosted on <a href="https://vercel.com" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Vercel</a>.
+                Lovingly hosted on <a href="https://netlify.com" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">Netlify</a>.
             </p>
         </div>
     </footer>
