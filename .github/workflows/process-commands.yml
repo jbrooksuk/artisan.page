@@ -1,0 +1,38 @@
+name: Process Artisan Commands
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+jobs:
+  plugin:
+    name: Laravel Version ${{ matrix.laravel }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        laravel: [7.x, 8.x]
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          extensions: mbstring, dom, fileinfo
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Install Laravel
+        run: composer create-project laravel/laravel="${{ matrix.laravel }}" laravel
+      - name: Prepare the application
+        run: |
+          cd laravel
+          php -r "file_exists('.env') || copy('.env.example', '.env');"
+          php artisan key:generate
+      - name: Clear Config
+        run: php artisan config:clear
+      - name: Test with phpunit
+        run: php -f ${{ github.workspace }}/build.php > ${{ github.workspace }}/static/${{ matrix.laravel }}.json
