@@ -50,11 +50,11 @@
                             <li v-for="p in availablePackages" :key="p" class="p-1">
                                 <button type="button" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium"
                                 :class="{
-                                  'bg-gradient-to-r from-indigo-900 to-indigo-700 text-white' : p === filter,
-                                  'bg-gray-300 hover:bg-gray-400 text-gray-800': p !== filter,
+                                  'bg-gradient-to-r from-indigo-900 to-indigo-700 text-white' : p.toLowerCase() === filter.toLowerCase(),
+                                  'bg-gray-300 hover:bg-gray-400 text-gray-800': p.toLowerCase() !== filter.toLowerCase(),
                                   'focus:outline-none': ! keyboardUsed,
                                 }"
-                                @click="filter = filter === p ? '' : p">
+                                @click="filter = filter.toLowerCase() === p.toLowerCase() ? '' : p">
                                     {{ p }}
                                 </button>
                             </li>
