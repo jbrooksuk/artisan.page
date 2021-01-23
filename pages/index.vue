@@ -105,6 +105,7 @@ export default {
     watch: {
         currentVersion(value) {
             this.filter = '';
+            window.location.hash = ''
             this.loadData(value);
         },
         filter() {
