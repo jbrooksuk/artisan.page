@@ -67,7 +67,12 @@
                 </div>
 
                 <div class="space-y-8 my-8">
-                    <div v-if="commands.length == 0">
+                    <div v-if="!data.length">
+                        <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
+                            <p class="text-xl font-bold text-indigo-900">Loading...</p>
+                        </div>
+                    </div>
+                    <div v-else-if="commands.length == 0">
                         <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
                             <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
                             <p>Nothing found for <code class="font-mono">{{ filter }}</code></p>
@@ -101,6 +106,16 @@ export default {
         currentVersion(value) {
             this.filter = '';
             this.loadData(value);
+        },
+        filter() {
+            window.location.hash = ''
+        },
+        data() {
+            window.location.hash && this.$nextTick(() => {
+                document.querySelector(window.location.hash).scrollIntoView({
+                    behavior: 'auto' // change to smooth if you want smooth scrolling
+                });
+            })
         }
     },
     created() {
