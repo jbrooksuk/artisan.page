@@ -69,11 +69,10 @@ export default {
     },
     created() {
         this.data = data;
-        const { query } = this.$route;
-        this.filter = query.search || '';
     },
     mounted() {
-      this.$refs.search.value = this.filter;
+      const { query } = this.$route;
+      this.$refs.search.value = this.filter = query.search || '';
         Mousetrap.bind(['command+k', 'ctrl+k'], (event) => {
             this.$refs.search.focus();
 
