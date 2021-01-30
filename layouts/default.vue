@@ -119,6 +119,13 @@ export default {
           path: version == this.supportedVersions[0] ? '/' : version
       })
     })
+    this.$nextTick(() => {
+      window.location.hash && this.$nextTick(() => {
+          document.querySelector(window.location.hash).scrollIntoView({
+              behavior: 'auto'
+          });
+      })
+    })
   },
   methods: {
     handleFilter (event) {
