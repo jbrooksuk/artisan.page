@@ -1,4 +1,3 @@
 {
-  "latest": "8.x",
-  "laravel": ["8.x", "7.x"]
+  "laravel": ["8.x", "7x"]
 }

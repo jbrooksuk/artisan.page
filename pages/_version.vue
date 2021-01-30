@@ -1,14 +1,22 @@
 <template>
   <div>
-    <h1>{{ this.slug }}</h1>
-    <p>Path: {{ $route.path }}</p>
+    <commands v-if="data" :data="data" />
   </div>
 </template>
+
 <script>
-  export default {
-    async asyncData({ params }) {
-      const slug = params.version
-      return { slug }
-    },
+import Commands from '../components/Commands.vue'
+export default {
+  components: { Commands },
+  async asyncData ({ params }) {
+    try {
+      const data = await import(`../assets/${params.version}.json`)
+      return {
+        data: data.default
+      }
+    } catch (error) {
+      return null
+    }
   }
+}
 </script>

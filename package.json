@@ -10,15 +10,14 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
-    "core-js": "^3.8.2",
+    "core-js": "^3.8.3",
     "mousetrap": "^1.6.5",
     "nuxt": "^2.14.12"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.4.2",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9",
-    "postcss": "^7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.35",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
   }
 }
