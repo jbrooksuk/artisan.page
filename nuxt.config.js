@@ -75,11 +75,5 @@ export default {
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
-  devServer: {
-    historyApiFallback: {
-      disableDotRule: true
-    }
-  }
+  build: {},
 }

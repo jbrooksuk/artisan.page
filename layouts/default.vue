@@ -50,7 +50,8 @@
                 class="py-3 px-4 bg-white placeholder-gray-400 text-gray-900 rounded-lg shadow-md appearance-none w-full block pl-12 focus:outline-none"
                 placeholder="Search"
                 tabindex="0"
-                @input="handleFilter"
+                v-model="filter"
+                @input="$nuxt.$emit('filter', $event.target.value)"
                 spellcheck="false"
                 autocomplete="off"
                 ref="search"
@@ -73,41 +74,20 @@
 </template>
 
 <script>
-import data from '../assets/8.x.json'
 const Mousetrap = require('mousetrap')
 import supported from '../supported.json'
 
 export default {
   data () {
     return {
-      data: [],
       supportedVersions: supported['laravel'],
       currentVersion: '',
       filter: ''
     }
   },
-  computed: {
-    commands () {
-      if (!this.filter.length) {
-        return this.data
-      }
-
-      const keyword = this.filter.toLowerCase()
-
-      return this.data.filter((command) => {
-        if (command.name.toLowerCase().includes(keyword) ||
-                    command.synopsis.toLowerCase().includes(keyword) ||
-                    command.description.toLowerCase().includes(keyword)) {
-          return command
-        }
-      })
-    }
-  },
-  created () {
-    this.data = data
-  },
   mounted () {
     this.currentVersion = $nuxt.$route.params.version ?? this.supportedVersions[0]
+
     Mousetrap.bind(['command+k', 'ctrl+k'], (event) => {
       this.$refs.search.focus()
 
@@ -117,13 +97,6 @@ export default {
       if (version == $nuxt.$route.params?.version) return
       this.$router.push({
           path: version == this.supportedVersions[0] ? '/' : version
-      })
-    })
-    this.$nextTick(() => {
-      window.location.hash && this.$nextTick(() => {
-          document.querySelector(window.location.hash).scrollIntoView({
-              behavior: 'auto'
-          });
       })
     })
   },

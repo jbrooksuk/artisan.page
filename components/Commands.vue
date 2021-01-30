@@ -1,9 +1,15 @@
 <template>
 <div class="space-y-8 my-8">
-      <div v-if="commands.length == 0">
+      <div v-if="commands.length === 0 && filter.length">
           <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
               <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
               <p>Nothing found for <code class="font-mono">{{ filter }}</code></p>
+          </div>
+      </div>
+      <div v-else-if="commands.length === 0">
+          <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
+              <h1 class="text-xl font-bold text-indigo-900">Loading...</h1>
+              <p>Please wait a moment while the commands are loaded.</p>
           </div>
       </div>
 
@@ -21,38 +27,38 @@ export default {
           filter: '',
       }
   },
-  mounted() {
-      Mousetrap.bind(['command+k', 'ctrl+k'], (event) => {
-          this.$refs.search.focus();
-
-          return false;
-      });
+  watch: {
+    data() {
+      this.$nextTick(() => {
+        window.location.hash && this.$nextTick(() => {
+          let cmdElement = document.querySelector(window.location.hash)
+          cmdElement && cmdElement.scrollIntoView({
+            behavior: 'auto'
+          })
+        })
+      })
+    }
   },
   computed: {
-      commands () {
-        if (! this.data) {
-            return [];
+    commands () {
+      if (!this.data) {
+        return []
+      }
+      const keyword = this.filter.toLowerCase()
+
+      return this.data.filter((command) => {
+        if (command.name.toLowerCase().includes(keyword) ||
+          command.synopsis.toLowerCase().includes(keyword) ||
+          command.description.toLowerCase().includes(keyword)) {
+          return command
         }
-
-          if (! this.filter.length) {
-              return this.data;
-          }
-
-          const keyword = this.filter.toLowerCase();
-
-          return this.data.filter((command) => {
-              if (command.name.toLowerCase().includes(keyword) ||
-                  command.synopsis.toLowerCase().includes(keyword) ||
-                  command.description.toLowerCase().includes(keyword)) {
-                  return command;
-              }
-          });
-      }
+      })
+    }
   },
-  methods:{
-      handleFilter(event) {
-          this.filter = event.target.value;
-      }
-  }
+  mounted() {
+    $nuxt.$on('filter', (filter) => {
+      this.filter = filter
+    })
+  },
 }
 </script>

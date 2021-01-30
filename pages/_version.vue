@@ -8,6 +8,11 @@
 import Commands from '../components/Commands.vue'
 export default {
   components: { Commands },
+  data() {
+    return {
+      data: null
+    }
+  },
   async asyncData ({ params }) {
     try {
       const data = await import(`../assets/${params.version}.json`)
