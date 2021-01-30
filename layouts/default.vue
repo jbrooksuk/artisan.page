@@ -86,14 +86,6 @@ export default {
       filter: ''
     }
   },
-  watch: {
-    currentVersion(version) {
-      if (version == $nuxt.$route.params?.version) return
-      this.$router.push({
-          path: version == this.supportedVersions[0] ? '/' : version
-      })
-    }
-  },
   computed: {
     commands () {
       if (!this.filter.length) {
@@ -120,6 +112,12 @@ export default {
       this.$refs.search.focus()
 
       return false
+    })
+    this.$watch('currentVersion', (version) => {
+      if (version == $nuxt.$route.params?.version) return
+      this.$router.push({
+          path: version == this.supportedVersions[0] ? '/' : version
+      })
     })
   },
   methods: {
