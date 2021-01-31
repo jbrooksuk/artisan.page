@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style lang="postcss">
 body {
   @apply bg-gray-100 antialiased;
 }

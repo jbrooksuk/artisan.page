@@ -15,9 +15,11 @@
     "nuxt": "^2.14.12"
   },
   "devDependencies": {
+    "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9",
+    "eslint": "^7.18.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }

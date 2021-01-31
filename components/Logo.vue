@@ -15,7 +15,7 @@
   </svg>
 </template>
 
-<style>
+<style lang="postcss">
 .NuxtLogo {
   animation: 1s appear;
   margin: auto;

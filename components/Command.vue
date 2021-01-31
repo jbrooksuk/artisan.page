@@ -106,7 +106,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
     .bg-opacity-40 {
         --bg-opacity: 0.4;
     }
