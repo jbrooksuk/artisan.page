@@ -105,7 +105,7 @@ export default {
         cmdElement && cmdElement.scrollIntoView({
           behavior: 'auto'
         })
-      }, 50)
+      }, 0)
     })
   },
   methods: {
