@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'Laravel Artisan Cheatsheet',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
@@ -22,11 +22,11 @@ export default {
       { hid: 'og:url', name: 'og:url', content: 'https://artisan.page' },
       { hid: 'description', name: 'description', content: 'Laravel Artisan Cheatsheet' },
       { hid: 'og:description', name: 'og:description', content: 'Laravel Artisan Cheatsheet' },
-      { hid: 'og:image', name: 'og:image', content: 'https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg' }
+      { hid: 'og:image', name: 'og:image', content: 'https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'canonical', href: 'https://artisan.page' }
+      { rel: 'canonical', href: 'https://artisan.page' },
     ],
     script: [
       {
@@ -36,16 +36,16 @@ export default {
         spa: 'auto',
         defer: 'defer',
         once: true,
-        skip: process.env.NODE_ENV !== 'production'
+        skip: process.env.NODE_ENV !== 'production',
       },
       {
         hid: 'github',
         src: 'https://buttons.github.io/buttons.js',
         defer: 'defer',
         once: true,
-        async: true
-      }
-    ]
+        async: true,
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -62,13 +62,13 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -76,5 +76,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
 }
