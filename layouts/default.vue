@@ -100,10 +100,12 @@ export default {
       })
     })
     window.location.hash && this.$nextTick(() => {
-      let cmdElement = document.querySelector(window.location.hash)
-      cmdElement && cmdElement.scrollIntoView({
-        behavior: 'auto'
-      })
+      setTimeout(() => {
+        let cmdElement = document.querySelector(window.location.hash)
+        cmdElement && cmdElement.scrollIntoView({
+          behavior: 'auto'
+        })
+      }, 50)
     })
   },
   methods: {
