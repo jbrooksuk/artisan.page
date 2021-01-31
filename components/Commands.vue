@@ -27,16 +27,6 @@ export default {
           filter: '',
       }
   },
-  watch: {
-    data() {
-      window.location.hash && this.$nextTick(() => {
-        let cmdElement = document.querySelector(window.location.hash)
-        cmdElement && cmdElement.scrollIntoView({
-          behavior: 'auto'
-        })
-      })
-    }
-  },
   computed: {
     commands () {
       if (!this.data) {

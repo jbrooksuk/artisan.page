@@ -99,6 +99,12 @@ export default {
           path: version == this.supportedVersions[0] ? '/' : version
       })
     })
+    window.location.hash && this.$nextTick(() => {
+      let cmdElement = document.querySelector(window.location.hash)
+      cmdElement && cmdElement.scrollIntoView({
+        behavior: 'auto'
+      })
+    })
   },
   methods: {
     handleFilter (event) {

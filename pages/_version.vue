@@ -16,7 +16,6 @@ export default {
   async asyncData ({ params }) {
     try {
       const data = await import(`../assets/${params.version}.json`)
-      await new Promise(resolve => setTimeout(resolve, 1500))
       return {
         data: data.default
       }
