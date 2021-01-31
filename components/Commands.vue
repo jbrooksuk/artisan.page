@@ -29,12 +29,10 @@ export default {
   },
   watch: {
     data() {
-      this.$nextTick(() => {
-        window.location.hash && this.$nextTick(() => {
-          let cmdElement = document.querySelector(window.location.hash)
-          cmdElement && cmdElement.scrollIntoView({
-            behavior: 'auto'
-          })
+      window.location.hash && this.$nextTick(() => {
+        let cmdElement = document.querySelector(window.location.hash)
+        cmdElement && cmdElement.scrollIntoView({
+          behavior: 'auto'
         })
       })
     }
