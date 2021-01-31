@@ -105,19 +105,19 @@ export default {
   props: {
     command: {
       type: [Object],
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data () {
     return {
       keyboardUsed: false,
-      copied: false
+      copied: false,
     }
   },
   computed: {
     slug () {
       return this.command.name.replace(':', '')
-    }
+    },
   },
   mounted () {
     window.addEventListener('keydown', (e) => {
@@ -137,8 +137,8 @@ export default {
       this.copied = true
       await new Promise(resolve => setTimeout(resolve, 1500))
       this.copied = false
-    }
-  }
+    },
+  },
 }
 </script>
 

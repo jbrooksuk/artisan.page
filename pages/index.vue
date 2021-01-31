@@ -77,7 +77,7 @@ export default {
   data () {
     return {
       data: [],
-      filter: ''
+      filter: '',
     }
   },
   computed: {
@@ -96,7 +96,7 @@ export default {
         }
         return []
       })
-    }
+    },
   },
   created () {
     this.data = data
@@ -111,7 +111,7 @@ export default {
   methods: {
     handleFilter (event) {
       this.filter = event.target.value
-    }
-  }
+    },
+  },
 }
 </script>
