@@ -9,16 +9,7 @@ vue:
     bracket-spacing: true
     finder:
         exclude:
-            - src/Console/asset-stubs/resources/js
-            - src/Console/card-stubs/resources/js
-            - src/Console/field-stubs/resources/js
-            - src/Console/filter-stubs/resources/js
-            - src/Console/resource-tool-stubs/resources/js
-            - src/Console/tool-stubs/resources/js
-            - modules
             - node_modules
-            - storage
-            - vendor
         name: '*.vue'
 
 js:
@@ -32,13 +23,8 @@ js:
     bracket-spacing: true
     finder:
         exclude:
-            - public
-            - modules
             - node_modules
-            - storage
-            - vendor
         name:
             - '*.js'
-            - '*.jsx'
         not-name:
             - '*.min.js'
