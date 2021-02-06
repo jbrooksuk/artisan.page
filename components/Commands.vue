@@ -18,7 +18,6 @@
 </template>
 
 <script>
-const Mousetrap = require('mousetrap');
 
 export default {
   props: ['data'],
@@ -44,6 +43,7 @@ export default {
     }
   },
   mounted() {
+    this.filter = $nuxt.context.query.search ?? ''
     $nuxt.$on('filter', (filter) => {
       this.filter = filter
     })

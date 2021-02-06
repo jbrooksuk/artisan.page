@@ -85,6 +85,20 @@ export default {
       filter: ''
     }
   },
+  watch: {
+    currentVersion(version) {
+      if (version == $nuxt.$route.params?.version) return
+        $nuxt.$router.push({
+          path: version == this.supportedVersions[0] ? '/' : version,
+          query: this.filter ? { search: this.filter } : undefined
+        })
+      },
+      filter(value) {
+        $nuxt.$router.replace({
+          query: value ? { search: value } : undefined
+        })
+      }
+  },
   mounted () {
     this.currentVersion = $nuxt.$route.params.version ?? this.supportedVersions[0]
 
@@ -92,12 +106,6 @@ export default {
       this.$refs.search.focus()
 
       return false
-    })
-    this.$watch('currentVersion', (version) => {
-      if (version == $nuxt.$route.params?.version) return
-      this.$router.push({
-          path: version == this.supportedVersions[0] ? '/' : version
-      })
     })
     window.location.hash && this.$nextTick(() => {
       setTimeout(() => {
