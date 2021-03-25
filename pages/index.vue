@@ -133,6 +133,8 @@ export default {
     this.data = data
   },
   mounted() {
+    const { query } = this.$route
+    this.$refs.search.value = this.filter = query.search || ''
     Mousetrap.bind(['command+k', 'ctrl+k'], event => {
       this.$refs.search.focus()
 
