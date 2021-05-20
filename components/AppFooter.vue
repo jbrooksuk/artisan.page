@@ -6,7 +6,14 @@
         <a
           href="https://twitter.com/jbrooksuk"
           target="_blank"
-          class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+          class="
+            font-bold
+            bg-clip-text
+            text-transparent
+            bg-gradient-to-r
+            from-blue-400
+            to-purple-600
+          "
           >@jbrooksuk</a
         >.
         <br />
@@ -14,7 +21,14 @@
         <a
           href="https://usefathom.com/james"
           target="_blank"
-          class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+          class="
+            font-bold
+            bg-clip-text
+            text-transparent
+            bg-gradient-to-r
+            from-blue-400
+            to-purple-600
+          "
           >Fathom Analytics</a
         >.
         <br />
@@ -22,7 +36,14 @@
         <a
           href="https://netlify.com"
           target="_blank"
-          class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+          class="
+            font-bold
+            bg-clip-text
+            text-transparent
+            bg-gradient-to-r
+            from-blue-400
+            to-purple-600
+          "
           >Netlify</a
         >.
       </p>
