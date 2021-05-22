@@ -91,7 +91,7 @@
 
               <input
                 id="text"
-                @input="handleFilter"
+                v-model.trim="filter"
                 @keypress.enter.prevent
                 type="search"
                 class="
@@ -205,11 +205,6 @@ export default {
           return command
         }
       })
-    },
-  },
-  methods: {
-    handleFilter(event) {
-      this.filter = event.target.value
     },
   },
 }
