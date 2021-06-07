@@ -11,7 +11,7 @@
           "
         >
           <div class="flex-grow">
-            <h3 class="text-lg sm:text-2xl leading-6 font-black text-gray-900 font-heading">
+            <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900 font-heading">
               <a href="/">Laravel Artisan Cheatsheet</a>
             </h3>
           </div>
