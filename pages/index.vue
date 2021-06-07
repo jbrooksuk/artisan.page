@@ -4,8 +4,6 @@
       <main>
         <div
           class="
-            pb-5
-            border-b border-gray-200
             flex flex-col
             md:flex-row
             justify-between
@@ -13,7 +11,7 @@
           "
         >
           <div class="flex-grow">
-            <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
+            <h3 class="text-lg sm:text-2xl leading-6 font-black text-gray-900 font-heading">
               <a href="/">Laravel Artisan Cheatsheet</a>
             </h3>
           </div>
@@ -21,7 +19,7 @@
           <div class="flex-grow">
             <div class="flex justify-end items-center flex-row">
               <div class="flex">
-                <span class="font-semibold"
+                <span class="font-semibold font-heading"
                   >Made by
                   <a
                     href="https://twitter.com/jbrooksuk"
@@ -40,7 +38,6 @@
               </div>
               <div class="ml-3">
                 <a
-                  class="github-button"
                   href="https://github.com/jbrooksuk/artisan.page"
                   >
                   <img src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social">
@@ -113,6 +110,7 @@
                 spellcheck="false"
                 autocomplete="off"
                 ref="search"
+                autofocus="true"
               />
             </div>
           </form>

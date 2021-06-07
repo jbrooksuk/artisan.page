@@ -67,6 +67,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'canonical', href: 'https://artisan.page' },
+      { rel: 'style', href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,400,700,900&display=swap' },
     ],
     script: [
       {
