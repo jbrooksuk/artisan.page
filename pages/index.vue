@@ -2,16 +2,18 @@
   <div class="flex flex-col min-h-screen">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
       <main>
-        <div
-          class="
-            flex flex-col
-            md:flex-row
-            justify-between
-            items-center
-          "
-        >
+        <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="flex-grow">
-            <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900 font-heading">
+            <h3
+              class="
+                text-lg
+                sm:text-2xl
+                leading-6
+                font-bold
+                text-gray-900
+                font-heading
+              "
+            >
               <a href="/">Laravel Artisan Cheatsheet</a>
             </h3>
           </div>
@@ -37,10 +39,10 @@
                 >
               </div>
               <div class="ml-3">
-                <a
-                  href="https://github.com/jbrooksuk/artisan.page"
-                  >
-                  <img src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social">
+                <a href="https://github.com/jbrooksuk/artisan.page">
+                  <img
+                    src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social"
+                  />
                   <span class="sr-only">Star on GitHub</span>
                 </a>
               </div>
