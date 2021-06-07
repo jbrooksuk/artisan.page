@@ -12,13 +12,28 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-
       {
         hid: 'twitter:card',
         name: 'twitter:card',
         content: 'summary_large_image',
       },
       { hid: 'twitter:site', name: 'twitter:site', content: '@jbrooksuk' },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'Laravel Artisan Cheatsheet',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: 'Laravel Artisan Cheatsheet',
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content:
+          'https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg',
+      },
       {
         hid: 'og:site_name',
         name: 'og:site_name',
