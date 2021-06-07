@@ -38,14 +38,13 @@
                   ></span
                 >
               </div>
-              <div class="ml-3 mt-2">
+              <div class="ml-3">
                 <a
                   class="github-button"
                   href="https://github.com/jbrooksuk/artisan.page"
-                  data-icon="octicon-star"
-                  aria-label="Star jbrooksuk/artisan.page on GitHub"
-                  >Star</a
-                >
+                  >
+                  <img src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social">
+                </a>
               </div>
             </div>
           </div>
