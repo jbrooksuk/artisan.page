@@ -1,7 +1,6 @@
 const laravelRoutes = require('./manifest').laravel
 
 export default {
-
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -121,5 +120,5 @@ export default {
 
   router: {
     trailingSlash: false,
-  }
+  },
 }
