@@ -7,11 +7,11 @@
 </template>
 
 <script>
-  export default {
-    async asyncData({ params }) {
-      const version = params.version
+export default {
+  async asyncData({ params }) {
+    const version = params.version
 
-      return { version }
-    }
-  }
+    return { version }
+  },
+}
 </script>
