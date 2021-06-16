@@ -1,11 +1,6 @@
 const laravelRoutes = require('./manifest').laravel
 
 export default {
-  /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  mode: 'universal',
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
