@@ -207,8 +207,11 @@ export default {
   },
   watch: {
     currentVersion(newVersion, oldVersion) {
-      if (newVersion && ! manifest.laravel.includes(newVersion)) {
-        this.$nuxt.error({statusCode: 404, message: `Laravel version ${newVersion} not found.`})
+      if (newVersion && !manifest.laravel.includes(newVersion)) {
+        this.$nuxt.error({
+          statusCode: 404,
+          message: `Laravel version ${newVersion} not found.`,
+        })
       }
 
       if (oldVersion === null) {
