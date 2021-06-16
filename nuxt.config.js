@@ -1,7 +1,7 @@
 const laravelManifest = require('./manifest').laravel
 
 const dynamicRoutes = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     resolve(laravelManifest.map(el => `laravel/${el}`))
   })
 }
