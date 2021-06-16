@@ -1,4 +1,10 @@
-const laravelRoutes = require('./manifest').laravel
+const laravelManifest = require('./manifest').laravel
+
+const dynamicRoutes = () => {
+  return new Promise((resolve) => {
+    resolve(laravelManifest.map(el => `laravel/${el}`))
+  })
+}
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -115,10 +121,6 @@ export default {
   build: {},
 
   generate: {
-    routes: laravelRoutes,
-  },
-
-  router: {
-    trailingSlash: true,
+    routes: dynamicRoutes,
   },
 }

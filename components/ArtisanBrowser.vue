@@ -220,7 +220,7 @@ export default {
 
       if (newVersion !== oldVersion) {
         this.$router.push({
-          path: `/${newVersion}`,
+          path: `/laravel/${newVersion}`,
           hash: window.location.hash,
         })
       }
