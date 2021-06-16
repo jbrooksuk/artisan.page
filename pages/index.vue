@@ -119,7 +119,21 @@
         </div>
 
         <div class="space-y-8 my-8">
-          <div v-if="commands.length == 0">
+          <div v-if="!data.length">
+            <div
+              class="
+                rounded-xl
+                shadow-lg
+                overflow-hidden
+                bg-white
+                p-10
+                text-center
+              "
+            >
+              <p class="text-xl font-bold text-indigo-900">Loading...</p>
+            </div>
+          </div>
+          <div v-else-if="commands.length == 0">
             <div
               class="
                 rounded-xl
@@ -154,17 +168,19 @@
 
 <script>
 const Mousetrap = require('mousetrap')
-import data from '../assets/8.x.json'
+import manifest from '../manifest.json'
 
 export default {
   data() {
     return {
+      manifest: manifest,
+      currentVersion: manifest['laravel'][0],
       data: [],
       filter: '',
     }
   },
   created() {
-    this.data = data
+    this.loadData(this.currentVersion)
   },
   mounted() {
     const { query } = this.$route
@@ -177,12 +193,13 @@ export default {
   },
   computed: {
     commands() {
-      if (!this.filter.length) {
-        return this.data
-      }
-
       const keyword = this.filter.toLowerCase()
 
+      return this.getCommands(keyword)
+    },
+  },
+  methods: {
+    getCommands(keyword) {
       return this.data.filter(command => {
         if (
           command.name.toLowerCase().includes(keyword) ||
@@ -192,6 +209,10 @@ export default {
           return command
         }
       })
+    },
+    async loadData(version) {
+      const data = await import(`../assets/${version}.json`)
+      this.data = data.default
     },
   },
 }
