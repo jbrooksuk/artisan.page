@@ -1,3 +1,5 @@
+const laravelRoutes = require('./manifest').laravel
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -117,4 +119,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  generate: {
+    routes: laravelRoutes,
+  }
 }
