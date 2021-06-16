@@ -1,0 +1,83 @@
+name: Process Artisan Commands
+on: [push, pull_request]
+jobs:
+  prepare:
+    name: Prepage manifest file
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      packages: ${{ steps.set-packages.outputs.packages }}
+    steps:
+    - name: Check out source code
+      uses: actions/checkout@v2
+
+    - name: Import manifest
+      id: set-matrix
+      run: |
+        sudo apt-get install jq
+        manifest=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {laravel: .laravel}'`
+        echo "::set-output name=matrix::$manifest"
+    - name: Import packages
+      id: set-packages
+      run: |
+        packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+        echo $packages
+        echo "::set-output name=packages::$packages"
+  commands:
+    needs: prepare
+    name: Laravel Version ${{ matrix.laravel }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version:  
+          extensions: dom, curl, libxml, mbstring, zip
+          tools: composer:v2
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Install Laravel
+        run: composer create-project --no-progress laravel/laravel="${{ matrix.laravel }}" /tmp/laravel
+
+      - name: Install Laravel packages
+        run: |
+          cd /tmp/laravel
+          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
+        continue-on-error: true
+
+      - name: Build command file
+        run: |
+          cd /tmp/laravel
+          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.json | true
+      - name: Set up git user
+        run: git config --global user.name ${GITHUB_ACTOR}
+
+      - name: Set up git email
+        run: git config --global user.name ${GITHUB_ACTOR}@users.noreply.github.com
+
+      - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
+        run: |
+          n=0
+          until [ "$n" -ge 10 ]
+          do
+            git fetch --all
+            git reset --hard HEAD
+            git clean -f -d
+            git pull || true
+            cp /tmp/${{ matrix.laravel }}.json ./assets/
+            git add -A || true
+            git commit -am 'Build commands' || true
+            git push --force && break
+            n=$((n+1))
+            sleep 15
+          done
+        continue-on-error: true
