@@ -120,7 +120,16 @@
 
         <div class="space-y-8 my-8">
           <div v-if="!data.length">
-            <div class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center">
+            <div
+              class="
+                rounded-xl
+                shadow-lg
+                overflow-hidden
+                bg-white
+                p-10
+                text-center
+              "
+            >
               <p class="text-xl font-bold text-indigo-900">Loading...</p>
             </div>
           </div>
@@ -186,12 +195,12 @@ export default {
     commands() {
       const keyword = this.filter.toLowerCase()
 
-      return this.getCommands(keyword);
+      return this.getCommands(keyword)
     },
   },
   methods: {
     getCommands(keyword) {
-      return this.data.filter((command) => {
+      return this.data.filter(command => {
         if (
           command.name.toLowerCase().includes(keyword) ||
           command.synopsis.toLowerCase().includes(keyword) ||
@@ -204,7 +213,7 @@ export default {
     async loadData(version) {
       const data = await import(`../assets/${version}.json`)
       this.data = data.default
-    }
-  }
+    },
+  },
 }
 </script>
