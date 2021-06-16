@@ -5,7 +5,7 @@ const dynamicRoutes = () => {
     resolve(
       laravelManifest.map(version => {
         return {
-          route: `/laravel/${version}`,
+          route: `/${version}`,
           payload: {
             version: version,
           },
