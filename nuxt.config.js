@@ -118,4 +118,8 @@ export default {
   generate: {
     routes: laravelRoutes,
   },
+
+  router: {
+    trailingSlash: false,
+  }
 }
