@@ -93,9 +93,9 @@ export default {
       {
         hid: 'fathom',
         src: 'https://cdn.usefathom.com/script.js',
-        site: 'FMUFNTYW',
+        'data-site': 'FMUFNTYW',
+        'data-canonical': false,
         spa: 'auto',
-        canonical: false,
         defer: 'defer',
         once: true,
         skip: process.env.NODE_ENV !== 'production',
