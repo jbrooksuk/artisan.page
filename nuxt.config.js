@@ -98,7 +98,6 @@ export default {
         src: 'https://cdn.usefathom.com/script.js',
         'data-site': 'FMUFNTYW',
         'data-canonical': false,
-        spa: 'auto',
         defer: 'defer',
         once: true,
         skip: process.env.NODE_ENV !== 'production',
