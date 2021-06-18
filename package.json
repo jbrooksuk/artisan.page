@@ -9,14 +9,14 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.12.5",
-    "core-js": "^3.8.2",
+    "@nuxtjs/axios": "^5.13.6",
+    "core-js": "^3.14.0",
     "mousetrap": "^1.6.5",
-    "nuxt": "^2.14.12"
+    "nuxt": "^2.15.7"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.4.3",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@tailwindcss/postcss7-compat": "^2.2.0",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.0"
