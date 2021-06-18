@@ -118,6 +118,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    'nuxt-trailingslash-module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -134,5 +135,9 @@ export default {
 
   generate: {
     routes: dynamicRoutes,
+  },
+
+  router: {
+    trailingSlash: false,
   },
 }
