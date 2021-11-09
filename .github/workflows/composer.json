@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/workflows",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "james",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  }
+}

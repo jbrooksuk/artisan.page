@@ -10,7 +10,7 @@ on:
     - cron: '0 0 * * 3'
 jobs:
   prepare:
-    name: Prepage manifest file
+    name: Prepare manifest file
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -24,13 +24,14 @@ jobs:
       run: |
         sudo apt-get install jq
         manifest=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {laravel: .laravel}'`
+        echo $manifest
         echo "::set-output name=matrix::$manifest"
-    - name: Import packages
-      id: set-packages
-      run: |
-        packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
-        echo $packages
-        echo "::set-output name=packages::$packages"
+#    - name: Import packages
+#      id: set-packages
+#      run: |
+#        packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+#        echo $packages
+#        echo "::set-output name=packages::$packages"
   commands:
     needs: prepare
     name: Laravel Version ${{ matrix.laravel }}
@@ -42,7 +43,7 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v2
 
-      - name: Setup PHP, with composer and extensions
+      - name: Setup PHP, with Composer and extensions
         uses: shivammathur/setup-php@v2
         with:
           php-version: 7.4
@@ -56,21 +57,20 @@ jobs:
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="${{ matrix.laravel }}" /tmp/laravel
 
-      - name: Install Laravel packages
-        run: |
-          cd /tmp/laravel
-          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
-        continue-on-error: true
+#      - name: Install Laravel packages
+#        run: |
+#          cd /tmp/laravel
+#          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
+#        continue-on-error: true
 
-      - name: Build command file
+      - name: Build Generator Command
         run: |
           cd /tmp/laravel
           cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.json | true
-      - name: Set up git user
-        run: git config --global user.name ${GITHUB_ACTOR}
-
-      - name: Set up git email
-        run: git config --global user.name ${GITHUB_ACTOR}@users.noreply.github.com
+      - name: Configure Git
+        run: |
+          git config --global user.name ${{ GITHUB_ACTOR }}
+          git config --global user.name ${{ GITHUB_ACTOR }}@users.noreply.github.com
 
       - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
         run: |
