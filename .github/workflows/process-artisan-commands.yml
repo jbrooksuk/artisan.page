@@ -69,8 +69,8 @@ jobs:
           cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.json | true
       - name: Configure Git
         run: |
-          git config --global user.name ${{ GITHUB_ACTOR }}
-          git config --global user.name ${{ GITHUB_ACTOR }}@users.noreply.github.com
+          git config --global user.name ${GITHUB_ACTOR}
+          git config --global user.name ${GITHUB_ACTOR}@users.noreply.github.com
 
       - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
         run: |
