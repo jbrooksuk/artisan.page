@@ -84,7 +84,7 @@ jobs:
             git pull || true
             cp /tmp/${{ matrix.laravel }}.json ./assets/
             git add -A || true
-            git commit -am 'Build commands' || true
+            git commit -am 'Build Laravel version v${{ matrix.laravel }}' || true
             git push --force && break
             n=$((n+1))
             sleep 15
