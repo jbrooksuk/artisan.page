@@ -18,7 +18,8 @@
     "nuxt-trailingslash-module": "^1.2.0",
     "postcss": "^8.3.5",
     "vue": "^2.6.14",
-    "vue-server-renderer": "^2.6.14"
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.2.0"
