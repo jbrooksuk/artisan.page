@@ -133,9 +133,7 @@
 
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4">
-          <h3 class="text-xl font-bold text-indigo-900">
-            Available commands:
-          </h3>
+          <h3 class="text-xl font-bold text-indigo-900">Available commands:</h3>
 
           <div v-for="(group, groupName) in commandLinks">
             <h3 class="text-lg font-bold text-indigo-900">
@@ -177,7 +175,9 @@
                   text-center
                 "
               >
-                <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
+                <h1 class="text-xl font-bold text-indigo-900">
+                  No Commands Found
+                </h1>
                 <p>
                   Nothing found for <code class="font-mono">{{ filter }}</code>
                 </p>
@@ -264,7 +264,7 @@ export default {
     },
     commandLinks() {
       return this.getCommandLinks()
-    }
+    },
   },
   methods: {
     getCommands(keyword) {
@@ -301,8 +301,8 @@ export default {
       // display the 'ungrouped' commands at the top of the list.
       return Object.fromEntries(
         Object.entries(commandLinks).sort((a, b) => a[0] > b[0])
-      );
-    }
+      )
+    },
   },
 }
 </script>
