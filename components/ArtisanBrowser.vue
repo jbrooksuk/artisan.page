@@ -131,44 +131,56 @@
         </form>
       </div>
 
-      <div class="space-y-8 my-8">
-        <div v-if="!data.length">
-          <div
-            class="
-              rounded-xl
-              shadow-lg
-              overflow-hidden
-              bg-white
-              p-10
-              text-center
-            "
-          >
-            <p class="text-xl font-bold text-indigo-900">Loading...</p>
-          </div>
-        </div>
-        <div v-else-if="commands.length == 0">
-          <div
-            class="
-              rounded-xl
-              shadow-lg
-              overflow-hidden
-              bg-white
-              p-10
-              text-center
-            "
-          >
-            <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
-            <p>
-              Nothing found for <code class="font-mono">{{ filter }}</code>
-            </p>
-          </div>
+      <div class="flex my-8">
+        <div class="hidden md:block md:w-1/4 space-y-2">
+          <command-link
+            v-for="command in data"
+            :key="command.name"
+            :command="command"
+          />
         </div>
 
-        <command
-          v-for="command in commands"
-          :key="command.name"
-          :command="command"
-        />
+        <div class="w-full md:w-3/4">
+          <div class="space-y-8">
+            <div v-if="!data.length">
+              <div
+                class="
+                  rounded-xl
+                  shadow-lg
+                  overflow-hidden
+                  bg-white
+                  p-10
+                  text-center
+                "
+              >
+                <p class="text-xl font-bold text-indigo-900">Loading...</p>
+              </div>
+            </div>
+            <div v-else-if="commands.length == 0">
+              <div
+                class="
+                  rounded-xl
+                  shadow-lg
+                  overflow-hidden
+                  bg-white
+                  p-10
+                  text-center
+                "
+              >
+                <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
+                <p>
+                  Nothing found for <code class="font-mono">{{ filter }}</code>
+                </p>
+              </div>
+            </div>
+
+            <command
+              v-for="command in commands"
+              :key="command.name"
+              :command="command"
+            />
+          </div>
+        </div>
       </div>
     </main>
   </div>
