@@ -132,12 +132,22 @@
       </div>
 
       <div class="flex my-8">
-        <div class="hidden md:block md:w-1/4 space-y-2">
-          <command-link
-            v-for="command in data"
-            :key="command.name"
-            :command="command"
-          />
+        <div class="hidden md:block md:w-1/4">
+          <h3 class="text-xl font-bold text-indigo-900">
+            Available commands:
+          </h3>
+
+          <div v-for="(group, groupName) in commandLinks">
+            <h3 class="text-lg font-bold text-indigo-900">
+              {{ groupName }}
+            </h3>
+
+            <command-link
+              v-for="command in group"
+              :key="command.name"
+              :command="command"
+            />
+          </div>
         </div>
 
         <div class="w-full md:w-3/4">
@@ -252,6 +262,9 @@ export default {
 
       return this.getCommands(keyword)
     },
+    commandLinks() {
+      return this.getCommandLinks()
+    }
   },
   methods: {
     getCommands(keyword) {
@@ -269,6 +282,27 @@ export default {
       const data = await import(`../assets/${version}.json`)
       this.data = data.default
     },
+    getCommandLinks() {
+      let commandLinks = {}
+
+      this.data.forEach(command => {
+        const groupName = command.name.includes(':')
+          ? command.name.split(':')[0]
+          : ''
+
+        if (commandLinks[groupName] === undefined) {
+          commandLinks[groupName] = []
+        }
+
+        commandLinks[groupName].push(command)
+      })
+
+      // Sort the commands into alphabetical order so that we can
+      // display the 'ungrouped' commands at the top of the list.
+      return Object.fromEntries(
+        Object.entries(commandLinks).sort((a, b) => a[0] > b[0])
+      );
+    }
   },
 }
 </script>
