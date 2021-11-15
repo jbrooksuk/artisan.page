@@ -4,8 +4,7 @@
       class="
         ml-5
         text-gray-700
-        hover:text-indigo-900
-        hover:underline
+        hover:text-indigo-900 hover:underline
         inline-block
         mb-1
       "
