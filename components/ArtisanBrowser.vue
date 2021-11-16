@@ -202,6 +202,10 @@
         </div>
       </div>
     </main>
+
+    <div class="fixed right-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md" title="Back to top" @click="backToTop" v-show="showBackToTop">
+      👆
+    </div>
   </div>
 </template>
 
@@ -217,6 +221,7 @@ export default {
   },
   data() {
     return {
+      showBackToTop: false,
       manifest: manifest,
       currentVersion: null,
       data: [],
@@ -235,6 +240,7 @@ export default {
 
       return false
     })
+    document.addEventListener('scroll', this.handleScroll)
   },
   watch: {
     currentVersion(newVersion, oldVersion) {
@@ -310,6 +316,15 @@ export default {
       const data = await import(`../assets/${version}.json`)
       this.data = data.default
     },
+    handleScroll() {
+      const rootElement = document.documentElement
+      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
+
+      this.showBackToTop = (rootElement.scrollTop / scrollTotal) > 0.05
+    },
+    backToTop() {
+      document.documentElement.scroll({ top: 0, behavior: 'smooth' })
+    }
   },
 }
 </script>
