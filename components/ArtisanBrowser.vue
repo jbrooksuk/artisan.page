@@ -270,14 +270,10 @@ export default {
     commands() {
       const keyword = this.filter.toLowerCase()
 
-      return this.getCommands(keyword)
-    },
-    commandLinks() {
-      return this.getCommandLinks()
-    },
-  },
-  methods: {
-    getCommands(keyword) {
+      if (! keyword) {
+        return Object.values(this.commandLinks).flat()
+      }
+
       return this.data.filter(command => {
         if (
           command.name.toLowerCase().includes(keyword) ||
@@ -288,11 +284,7 @@ export default {
         }
       })
     },
-    async loadData(version) {
-      const data = await import(`../assets/${version}.json`)
-      this.data = data.default
-    },
-    getCommandLinks() {
+    commandLinks() {
       let commandLinks = {}
 
       this.data.forEach(command => {
@@ -312,6 +304,12 @@ export default {
       return Object.fromEntries(
         Object.entries(commandLinks).sort((a, b) => a[0] > b[0])
       )
+    },
+  },
+  methods: {
+    async loadData(version) {
+      const data = await import(`../assets/${version}.json`)
+      this.data = data.default
     },
   },
 }
