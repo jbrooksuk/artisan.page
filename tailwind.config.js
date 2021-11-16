@@ -1,8 +1,18 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  purge: [],
+  purge: [
+    './components/*.vue',
+    './layouts/*.vue',
+    './pages/*.vue',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
+      }
+    },
   },
   variants: {
     extend: {},

@@ -1,11 +1,11 @@
 <template>
   <div :id="slug" class="shadow-lg rounded-lg overflow-hidden">
     <div class="rounded-t-lg overflow-hidden bg-white p-10">
-      <h1 class="text-lg font-bold text-indigo-900 font-heading">
+      <h2 class="text-lg font-bold text-indigo-900">
         <a :href="`#${slug}`">{{ command.name }}</a>
-      </h1>
+      </h2>
 
-      <p class="text-gray-700">{{ command.description }}</p>
+      <p class="text-gray-700 text-normal">{{ command.description }}</p>
 
       <div v-if="command.options.length" class="text-sm mt-2 text-gray-700">
         <p class="font-semibold">Options:</p>

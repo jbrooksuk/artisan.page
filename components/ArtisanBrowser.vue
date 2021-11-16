@@ -3,9 +3,9 @@
     <main>
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-grow flex space-x-4 items-center">
-          <h3 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
+          <h1 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
             <a href="/">Laravel Artisan Cheatsheet</a>
-          </h3>
+          </h1>
           <div>
             <label for="current-version" class="sr-only">Laravel Version</label>
             <select
