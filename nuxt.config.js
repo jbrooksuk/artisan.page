@@ -28,7 +28,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.' },
       {
         hid: 'twitter:card',
         name: 'twitter:card',
@@ -43,7 +43,7 @@ export default {
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: 'Laravel Artisan Cheatsheet',
+        content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.',
       },
       {
         hid: 'twitter:image',
@@ -65,14 +65,9 @@ export default {
       { hid: 'og:locale', name: 'og:locale', content: 'en' },
       { hid: 'og:url', name: 'og:url', content: 'https://artisan.page' },
       {
-        hid: 'description',
-        name: 'description',
-        content: 'Laravel Artisan Cheatsheet',
-      },
-      {
         hid: 'og:description',
         name: 'og:description',
-        content: 'Laravel Artisan Cheatsheet',
+        content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.',
       },
       {
         hid: 'og:image',
