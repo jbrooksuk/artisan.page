@@ -3,5 +3,7 @@
     <artisan-browser></artisan-browser>
 
     <app-footer />
+
+    <back-to-top></back-to-top>
   </div>
 </template>
