@@ -131,44 +131,67 @@
         </form>
       </div>
 
-      <div class="space-y-8 my-8">
-        <div v-if="!data.length">
-          <div
-            class="
-              rounded-xl
-              shadow-lg
-              overflow-hidden
-              bg-white
-              p-10
-              text-center
-            "
-          >
-            <p class="text-xl font-bold text-indigo-900">Loading...</p>
-          </div>
-        </div>
-        <div v-else-if="commands.length == 0">
-          <div
-            class="
-              rounded-xl
-              shadow-lg
-              overflow-hidden
-              bg-white
-              p-10
-              text-center
-            "
-          >
-            <h1 class="text-xl font-bold text-indigo-900">No Commands Found</h1>
-            <p>
-              Nothing found for <code class="font-mono">{{ filter }}</code>
-            </p>
+      <div class="flex my-8">
+        <div class="hidden md:block md:w-1/4">
+          <h2 class="text-xl font-bold text-indigo-900">Available Commands</h2>
+
+          <div v-for="(group, groupName) in commandLinks" class="mb-2">
+            <h3 class="text-lg font-semibold text-indigo-900">
+              {{ groupName }}
+            </h3>
+
+            <command-link
+              v-for="command in group"
+              :key="command.name"
+              :command="command"
+              class="text-sm"
+            />
           </div>
         </div>
 
-        <command
-          v-for="command in commands"
-          :key="command.name"
-          :command="command"
-        />
+        <div class="w-full md:w-3/4">
+          <div class="space-y-8">
+            <div v-if="!data.length">
+              <div
+                class="
+                  rounded-xl
+                  shadow-lg
+                  overflow-hidden
+                  bg-white
+                  p-10
+                  text-center
+                "
+              >
+                <p class="text-xl font-bold text-indigo-900">Loading...</p>
+              </div>
+            </div>
+            <div v-else-if="commands.length == 0">
+              <div
+                class="
+                  rounded-xl
+                  shadow-lg
+                  overflow-hidden
+                  bg-white
+                  p-10
+                  text-center
+                "
+              >
+                <h1 class="text-xl font-bold text-indigo-900">
+                  No Commands Found
+                </h1>
+                <p>
+                  Nothing found for <code class="font-mono">{{ filter }}</code>
+                </p>
+              </div>
+            </div>
+
+            <command
+              v-for="command in commands"
+              :key="command.name"
+              :command="command"
+            />
+          </div>
+        </div>
       </div>
     </main>
   </div>
@@ -240,6 +263,9 @@ export default {
 
       return this.getCommands(keyword)
     },
+    commandLinks() {
+      return this.getCommandLinks()
+    },
   },
   methods: {
     getCommands(keyword) {
@@ -256,6 +282,27 @@ export default {
     async loadData(version) {
       const data = await import(`../assets/${version}.json`)
       this.data = data.default
+    },
+    getCommandLinks() {
+      let commandLinks = {}
+
+      this.data.forEach(command => {
+        const groupName = command.name.includes(':')
+          ? command.name.split(':')[0]
+          : ''
+
+        if (commandLinks[groupName] === undefined) {
+          commandLinks[groupName] = []
+        }
+
+        commandLinks[groupName].push(command)
+      })
+
+      // Sort the commands into alphabetical order so that we can
+      // display the 'ungrouped' commands at the top of the list.
+      return Object.fromEntries(
+        Object.entries(commandLinks).sort((a, b) => a[0] > b[0])
+      )
     },
   },
 }
