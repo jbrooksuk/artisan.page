@@ -24,12 +24,12 @@
               class="
                 block
                 w-full
-                pl-2
+                pl-3
                 pr-10
-                py-1
+                py-2
                 text-base
-                border border-gray-400
-                focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
+                border border-gray-300
+                focus:outline-none focus:ring-purple-500 focus:border-purple-500
                 sm:text-sm
                 rounded-md
               "
@@ -116,18 +116,17 @@
               @keypress.enter.prevent
               type="search"
               class="
-                py-3
-                px-4
-                bg-white
                 placeholder-gray-400
-                text-gray-900
-                rounded-lg
-                shadow-md
-                appearance-none
-                w-full
                 block
-                pl-12
-                focus:outline-none
+                w-full
+                pl-10
+                pr-3
+                py-3
+                text-base
+                border border-gray-300
+                focus:outline-none focus:ring-purple-500 focus:border-purple-500
+                sm:text-sm
+                rounded-md
               "
               placeholder="Search"
               tabindex="0"
