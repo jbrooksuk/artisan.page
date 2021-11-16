@@ -133,10 +133,10 @@
 
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4">
-          <h3 class="text-xl font-bold text-indigo-900">Available commands:</h3>
+          <h2 class="text-xl font-bold text-indigo-900">Available Commands</h2>
 
-          <div v-for="(group, groupName) in commandLinks">
-            <h3 class="text-lg font-bold text-indigo-900">
+          <div v-for="(group, groupName) in commandLinks" class="mb-2">
+            <h3 class="text-lg font-semibold text-indigo-900">
               {{ groupName }}
             </h3>
 
@@ -144,6 +144,7 @@
               v-for="command in group"
               :key="command.name"
               :command="command"
+              class="text-sm"
             />
           </div>
         </div>
