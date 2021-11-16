@@ -203,7 +203,21 @@
       </div>
     </main>
 
-    <div class="fixed right-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md" title="Back to top" @click="backToTop" v-show="showBackToTop">
+    <div
+      class="
+        fixed
+        right-5
+        bottom-5
+        bg-gray-900
+        text-white text-center
+        p-5
+        cursor-pointer
+        rounded-md
+      "
+      title="Back to top"
+      @click="backToTop"
+      v-show="showBackToTop"
+    >
       👆
     </div>
   </div>
@@ -320,11 +334,11 @@ export default {
       const rootElement = document.documentElement
       const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
 
-      this.showBackToTop = (rootElement.scrollTop / scrollTotal) > 0.05
+      this.showBackToTop = rootElement.scrollTop / scrollTotal > 0.05
     },
     backToTop() {
       document.documentElement.scroll({ top: 0, behavior: 'smooth' })
-    }
+    },
   },
 }
 </script>
