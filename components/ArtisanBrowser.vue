@@ -270,7 +270,7 @@ export default {
     commands() {
       const keyword = this.filter.toLowerCase()
 
-      if (! keyword) {
+      if (!keyword) {
         return Object.values(this.commandLinks).flat()
       }
 
