@@ -3,7 +3,7 @@
     <main>
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-grow flex space-x-4 items-center">
-          <h1 class="text-lg sm:text-2xl leading-6 font-bold text-gray-900">
+          <h1 class="text-lg sm:text-4xl leading-6 font-extrabold text-indigo-900 tracking-tighter">
             <a href="/">Laravel Artisan Cheatsheet</a>
           </h1>
           <div>
@@ -39,7 +39,7 @@
         <div class="flex-grow">
           <div class="flex justify-end items-center flex-row">
             <div class="flex">
-              <span class="font-semibold font-heading"
+              <span class="font-semibold font-heading text-indigo-900"
                 >Made by
                 <a
                   href="https://twitter.com/jbrooksuk"
