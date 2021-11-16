@@ -1,94 +1,37 @@
 <template>
-  <div :id="slug" class="shadow-lg rounded-lg overflow-hidden">
-    <div class="rounded-t-lg overflow-hidden bg-white p-10">
-      <h2 class="text-lg font-bold text-indigo-900">
-        <a :href="`#${slug}`">{{ command.name }}</a>
-      </h2>
+  <div :id="slug" class="shadow-lg rounded-lg overflow-hidden bg-white">
+    <div class="rounded-t-lg bg-indigo-900">
+      <div class="bg-black bg-opacity-40 p-4 px-8">
+        <h2 class="text-lg font-bold text-white">
+          <a :href="`#${slug}`">{{ command.name }}</a>
+        </h2>
+        <h3 class="text-sm font-normal text-white -mt-1">
+          {{ command.description }}
+        </h3>
+      </div>
+    </div>
 
-      <p class="text-gray-700 text-normal">{{ command.description }}</p>
-
-      <div v-if="command.options.length" class="text-sm mt-2 text-gray-700">
-        <p class="font-semibold">Options:</p>
-        <ul class="list-disc list-inside space-y-1">
+    <div class="px-8 py-4 space-y-2" v-if="hasParams(command)">
+      <div v-if="command.options.length" class="text-sm text-gray-700">
+        <p class="font-bold text-lg">Options</p>
+        <ul class="list-none list-inside space-y-1">
           <li v-for="option in command.options" :key="option.name">
             <code class="text-mono">{{ option.name }}</code> -
             {{ option.description }}
 
-            <span
-              v-if="option.value_required"
-              class="
-                inline-flex
-                items-center
-                px-2.5
-                py-0.5
-                rounded-md
-                text-sm
-                font-medium
-                bg-red-100
-                text-red-800
-              "
-            >
-              Required
-            </span>
-            <span
-              v-else
-              class="
-                inline-flex
-                items-center
-                px-2.5
-                py-0.5
-                rounded-md
-                text-sm
-                font-medium
-                bg-green-100
-                text-green-800
-              "
-            >
-              Optional
-            </span>
+            <badge :required="option.value_required" />
           </li>
         </ul>
       </div>
 
-      <div v-if="command.arguments.length" class="text-sm mt-2 text-gray-700">
-        <p class="font-semibold">Arguments:</p>
-        <ul class="list-disc list-inside space-y-1">
+      <div v-if="command.arguments.length" class="text-sm text-gray-700">
+        <p class="font-bold text-lg">Arguments</p>
+        <ul class="list-none list-inside space-y-1">
           <li v-for="argument in command.arguments" :key="argument.name">
             <code class="text-mono">{{ argument.name }}</code> -
             {{ argument.description }}
 
-            <span
-              v-if="argument.required"
-              class="
-                inline-flex
-                items-center
-                px-2.5
-                py-0.5
-                rounded-md
-                text-sm
-                font-medium
-                bg-red-100
-                text-red-800
-              "
-            >
-              Required
-            </span>
-            <span
-              v-else
-              class="
-                inline-flex
-                items-center
-                px-2.5
-                py-0.5
-                rounded-md
-                text-sm
-                font-medium
-                bg-green-100
-                text-green-800
-              "
-            >
-              Optional
-            </span>
+            <badge :required="argument.required" />
           </li>
         </ul>
       </div>
@@ -100,27 +43,25 @@
         relative
         overflow-hidden
         rounded-b-lg
-        bg-gradient-to-r
-        from-indigo-900
-        to-indigo-700
+        bg-indigo-700
+        bg-opacity-10
       "
     >
-      <div class="flex items-center bg-black bg-opacity-40">
+      <div class="flex items-center">
         <div class="flex-initial">
           <pre
             class="
               scrollbar-none
               overflow-hidden overflow-x-auto
               p-6
-              pr-8
+              px-8
               text-sm
               leading-snug
-              text-white
+              text-indigo-900
               whitespace-pre-wrap
             "
           >
-php artisan {{ command.synopsis }}</pre
-          >
+php artisan {{ command.synopsis }}</pre>
         </div>
         <div class="pr-8 flex-1 text-right">
           <button
@@ -129,7 +70,7 @@ php artisan {{ command.synopsis }}</pre
               group-hover:opacity-100
               focus:opacity-100
               opacity-0
-              text-white
+              text-indigo-900
               transition
               duration-200
             "
@@ -196,6 +137,9 @@ export default {
     },
   },
   methods: {
+    hasParams(command) {
+      return command.options.length || command.arguments.length
+    },
     async copyCommand(event, command) {
       const textarea = document.createElement('textarea')
       textarea.setAttribute('aria-hidden', 'true')
