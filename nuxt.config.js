@@ -28,7 +28,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
+      },
       { hid: 'theme-color', name: 'theme-color', content: '#312e81' },
       {
         hid: 'twitter:card',
@@ -44,7 +49,8 @@ export default {
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.',
+        content:
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
       },
       {
         hid: 'twitter:image',
@@ -68,7 +74,8 @@ export default {
       {
         hid: 'og:description',
         name: 'og:description',
-        content: 'A bookmarkable, searchable cheatsheet for all of Laravel\'s default Artisan commands.',
+        content:
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
       },
       {
         hid: 'og:image',

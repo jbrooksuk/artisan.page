@@ -43,8 +43,7 @@
         relative
         overflow-hidden
         rounded-b-lg
-        bg-indigo-700
-        bg-opacity-10
+        bg-indigo-700 bg-opacity-10
       "
     >
       <div class="flex items-center">
@@ -61,7 +60,8 @@
               whitespace-pre-wrap
             "
           >
-php artisan {{ command.synopsis }}</pre>
+php artisan {{ command.synopsis }}</pre
+          >
         </div>
         <div class="pr-8 flex-1 text-right">
           <button

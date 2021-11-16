@@ -3,7 +3,16 @@
     <main>
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-grow flex space-x-4 items-center">
-          <h1 class="text-lg sm:text-4xl leading-6 font-extrabold text-indigo-900 tracking-tighter">
+          <h1
+            class="
+              text-lg
+              sm:text-4xl
+              leading-6
+              font-extrabold
+              text-indigo-900
+              tracking-tighter
+            "
+          >
             <a href="/">Laravel Artisan Cheatsheet</a>
           </h1>
           <div>
