@@ -1,52 +1,43 @@
 <template>
-  <footer class="bg-white">
+  <footer class="bg-gray-900">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <p class="text-center text-base text-gray-600 font-semibold">
-        Made by
-        <a
-          href="https://twitter.com/jbrooksuk"
-          target="_blank"
-          class="
-            font-bold
-            bg-clip-text
-            text-transparent
-            bg-gradient-to-r
-            from-blue-400
-            to-purple-600
-          "
-          >@jbrooksuk</a
-        >.
-        <br />
-        Proudly powered by
-        <a
-          href="https://usefathom.com/james"
-          target="_blank"
-          class="
-            font-bold
-            bg-clip-text
-            text-transparent
-            bg-gradient-to-r
-            from-blue-400
-            to-purple-600
-          "
-          >Fathom Analytics</a
-        >.
-        <br />
-        Lovingly hosted on
-        <a
-          href="https://netlify.com"
-          target="_blank"
-          class="
-            font-bold
-            bg-clip-text
-            text-transparent
-            bg-gradient-to-r
-            from-blue-400
-            to-purple-600
-          "
-          >Netlify</a
-        >.
-      </p>
+      <div class="flex flex-col justify-center items-center text-base text-gray-100 font-normal space-x-2">
+        <div>
+          Made by
+          <a
+            href="https://twitter.com/jbrooksuk"
+            target="_blank"
+            class="
+              font-semibold
+              text-blue-400
+            "
+            >@jbrooksuk</a
+          >
+        </div>
+        <div>
+          Analytics with
+          <a
+            href="https://usefathom.com/james"
+            target="_blank"
+            class="
+              font-semibold
+              text-blue-400
+            "
+            >Fathom Analytics</a
+          >
+        </div>
+        <div>
+          Hosted at
+          <a
+            href="https://netlify.com"
+            target="_blank"
+            class="
+              font-semibold
+              text-blue-400
+            "
+            >Netlify</a>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
