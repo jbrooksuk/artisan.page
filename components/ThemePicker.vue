@@ -1,6 +1,7 @@
 <template>
   <div @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
        class="
+         my-3
          ml-5
          h-12
          w-12

@@ -11,6 +11,7 @@
               font-extrabold
               text-indigo-900
               tracking-tighter
+              dark:text-indigo-500
             "
           >
             <a href="/">Laravel Artisan Cheatsheet</a>
@@ -32,6 +33,8 @@
                 focus:outline-none focus:ring-purple-500 focus:border-purple-500
                 sm:text-sm
                 rounded-md
+                dark:bg-gray-800
+                dark:text-gray-300
               "
             >
               <option
@@ -48,7 +51,7 @@
         <div class="flex-grow">
           <div class="flex justify-end items-center flex-row">
             <div class="flex">
-              <span class="font-semibold font-heading text-indigo-900"
+              <span class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
                 >Made by
                 <a
                   href="https://twitter.com/jbrooksuk"
@@ -128,6 +131,8 @@
                 focus:outline-none focus:ring-purple-500 focus:border-purple-500
                 sm:text-sm
                 rounded-md
+                dark:bg-gray-800
+                dark:text-gray-300
               "
               placeholder="Search"
               tabindex="0"
@@ -142,10 +147,10 @@
 
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4">
-          <h2 class="text-xl font-bold text-indigo-900">Available Commands</h2>
+          <h2 class="text-xl font-bold text-indigo-900 dark:text-indigo-500">Available Commands</h2>
 
           <div v-for="(group, groupName) in commandLinks" class="mb-2">
-            <h3 class="text-lg font-semibold text-indigo-900">
+            <h3 class="text-lg font-semibold text-indigo-900 dark:text-indigo-500">
               {{ groupName }}
             </h3>
 
@@ -169,9 +174,10 @@
                   bg-white
                   p-10
                   text-center
+                  dark:bg-gray-800
                 "
               >
-                <p class="text-xl font-bold text-indigo-900">Loading...</p>
+                <p class="text-xl font-bold text-indigo-900 dark:text-gray-300">Loading...</p>
               </div>
             </div>
             <div v-else-if="commands.length == 0">
@@ -183,12 +189,13 @@
                   bg-white
                   p-10
                   text-center
+                  dark:bg-gray-800
                 "
               >
-                <h1 class="text-xl font-bold text-indigo-900">
+                <h1 class="text-xl font-bold text-indigo-900 dark:text-gray-300">
                   No Commands Found
                 </h1>
-                <p>
+                <p class="dark:text-gray-300">
                   Nothing found for <code class="font-mono">{{ filter }}</code>
                 </p>
               </div>
@@ -214,6 +221,10 @@
         p-5
         cursor-pointer
         rounded-md
+        border-2
+        dark:border
+        dark:border-indigo-400
+        dark:hover:border-indigo-500
       "
       title="Back to top"
       @click="backToTop"
