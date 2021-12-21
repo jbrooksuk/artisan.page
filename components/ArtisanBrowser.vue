@@ -73,6 +73,7 @@
                 <span class="sr-only">Star on GitHub</span>
               </a>
             </div>
+            <theme-picker/>
           </div>
         </div>
       </div>

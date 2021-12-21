@@ -116,6 +116,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/color-mode',
     '@nuxtjs/tailwindcss',
     'nuxt-trailingslash-module',
   ],
@@ -139,4 +140,15 @@ export default {
   router: {
     trailingSlash: false,
   },
+
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode'
+  }
 }
