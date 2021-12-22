@@ -150,5 +150,5 @@ export default {
     classPrefix: '',
     classSuffix: '',
     storageKey: 'nuxt-color-mode',
-  }
+  },
 }

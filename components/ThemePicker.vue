@@ -6,7 +6,6 @@
     "
     class="my-3 ml-5 h-12 w-12 cursor-pointer border-2 rounded-md flex justify-center items-center text-indigo-900 bg-gray-100 hover:bg-gray-200 hover:border-indigo-400 hover:text-indigo-400 dark:bg-gray-800 dark:border-indigo-400 dark:text-yellow-200 dark:hover:bg-gray-900 dark:hover:text-indigo-400"
   >
-
     <!-- sun -->
     <svg
       v-if="$colorMode.preference === 'dark'"
