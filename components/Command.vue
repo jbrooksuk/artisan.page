@@ -1,18 +1,24 @@
 <template>
-  <div :id="slug" class="shadow-lg rounded-lg overflow-hidden bg-white">
+  <div
+    :id="slug"
+    class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
+  >
     <div class="rounded-t-lg bg-indigo-900">
       <div class="bg-black bg-opacity-40 p-4 px-8">
-        <h2 class="text-lg font-bold text-white">
+        <h2 class="text-lg font-bold text-white dark:text-gray-300">
           <a :href="`#${slug}`">{{ command.name }}</a>
         </h2>
-        <h3 class="text-sm font-normal text-white -mt-1">
+        <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
           {{ command.description }}
         </h3>
       </div>
     </div>
 
     <div class="px-8 py-4 space-y-2" v-if="hasParams(command)">
-      <div v-if="command.options.length" class="text-sm text-gray-700">
+      <div
+        v-if="command.options.length"
+        class="text-sm text-gray-700 dark:text-gray-300"
+      >
         <p class="font-bold text-lg">Options</p>
         <ul class="list-none list-inside space-y-1">
           <li v-for="option in command.options" :key="option.name">
@@ -24,7 +30,10 @@
         </ul>
       </div>
 
-      <div v-if="command.arguments.length" class="text-sm text-gray-700">
+      <div
+        v-if="command.arguments.length"
+        class="text-sm text-gray-700 dark:text-gray-300"
+      >
         <p class="font-bold text-lg">Arguments</p>
         <ul class="list-none list-inside space-y-1">
           <li v-for="argument in command.arguments" :key="argument.name">
@@ -38,27 +47,12 @@
     </div>
 
     <div
-      class="
-        group
-        relative
-        overflow-hidden
-        rounded-b-lg
-        bg-indigo-700 bg-opacity-10
-      "
+      class="group relative overflow-hidden rounded-b-lg bg-indigo-700 bg-opacity-10 dark:bg-indigo-400 dark:bg-opacity-40"
     >
       <div class="flex items-center">
         <div class="flex-initial">
           <pre
-            class="
-              scrollbar-none
-              overflow-hidden overflow-x-auto
-              p-6
-              px-8
-              text-sm
-              leading-snug
-              text-indigo-900
-              whitespace-pre-wrap
-            "
+            class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-indigo-900 whitespace-pre-wrap dark:text-gray-300"
           >
 php artisan {{ command.synopsis }}</pre
           >
@@ -66,14 +60,7 @@ php artisan {{ command.synopsis }}</pre
         <div class="pr-8 flex-1 text-right">
           <button
             type="button"
-            class="
-              group-hover:opacity-100
-              focus:opacity-100
-              opacity-0
-              text-indigo-900
-              transition
-              duration-200
-            "
+            class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-indigo-900 transition duration-200"
             :class="{ 'focus:outline-none': !keyboardUsed }"
             @click="copyCommand($event, `php artisan ${command.name}`)"
           >

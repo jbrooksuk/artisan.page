@@ -4,14 +4,7 @@
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-grow flex space-x-4 items-center">
           <h1
-            class="
-              text-lg
-              sm:text-4xl
-              leading-6
-              font-extrabold
-              text-indigo-900
-              tracking-tighter
-            "
+            class="text-lg sm:text-4xl leading-6 font-extrabold text-indigo-900 tracking-tighter dark:text-indigo-500"
           >
             <a href="/">Laravel Artisan Cheatsheet</a>
           </h1>
@@ -21,18 +14,7 @@
               name="current-version"
               id="current-version"
               v-model="currentVersion"
-              class="
-                block
-                w-full
-                pl-3
-                pr-10
-                py-2
-                text-base
-                border border-gray-300
-                focus:outline-none focus:ring-purple-500 focus:border-purple-500
-                sm:text-sm
-                rounded-md
-              "
+              class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md dark:bg-gray-800 dark:text-gray-300"
             >
               <option
                 v-for="version in manifest.laravel"
@@ -48,19 +30,13 @@
         <div class="flex-grow">
           <div class="flex justify-end items-center flex-row">
             <div class="flex">
-              <span class="font-semibold font-heading text-indigo-900"
+              <span
+                class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
                 >Made by
                 <a
                   href="https://twitter.com/jbrooksuk"
                   target="_blank"
-                  class="
-                    font-bold
-                    bg-clip-text
-                    text-transparent
-                    bg-gradient-to-r
-                    from-blue-400
-                    to-purple-600
-                  "
+                  class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
                   >@jbrooksuk</a
                 ></span
               >
@@ -73,6 +49,7 @@
                 <span class="sr-only">Star on GitHub</span>
               </a>
             </div>
+            <theme-picker />
           </div>
         </div>
       </div>
@@ -85,15 +62,7 @@
             class="relative text-gray-400 focus-within:text-gray-600 min-w-full"
           >
             <div
-              class="
-                absolute
-                inset-y-0
-                left-0
-                pl-3
-                flex
-                items-center
-                pointer-events-none
-              "
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
             >
               <svg
                 class="h-5 w-5"
@@ -115,19 +84,7 @@
               v-model.trim="filter"
               @keypress.enter.prevent
               type="search"
-              class="
-                placeholder-gray-400
-                block
-                w-full
-                pl-10
-                pr-3
-                py-3
-                text-base
-                border border-gray-300
-                focus:outline-none focus:ring-purple-500 focus:border-purple-500
-                sm:text-sm
-                rounded-md
-              "
+              class="placeholder-gray-400 block w-full pl-10 pr-3 py-3 text-base border border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md dark:bg-gray-800 dark:text-gray-300"
               placeholder="Search"
               tabindex="0"
               spellcheck="false"
@@ -141,10 +98,14 @@
 
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4">
-          <h2 class="text-xl font-bold text-indigo-900">Available Commands</h2>
+          <h2 class="text-xl font-bold text-indigo-900 dark:text-indigo-500">
+            Available Commands
+          </h2>
 
           <div v-for="(group, groupName) in commandLinks" class="mb-2">
-            <h3 class="text-lg font-semibold text-indigo-900">
+            <h3
+              class="text-lg font-semibold text-indigo-900 dark:text-indigo-500"
+            >
               {{ groupName }}
             </h3>
 
@@ -161,33 +122,23 @@
           <div class="space-y-8">
             <div v-if="!data.length">
               <div
-                class="
-                  rounded-xl
-                  shadow-lg
-                  overflow-hidden
-                  bg-white
-                  p-10
-                  text-center
-                "
+                class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center dark:bg-gray-800"
               >
-                <p class="text-xl font-bold text-indigo-900">Loading...</p>
+                <p class="text-xl font-bold text-indigo-900 dark:text-gray-300">
+                  Loading...
+                </p>
               </div>
             </div>
             <div v-else-if="commands.length == 0">
               <div
-                class="
-                  rounded-xl
-                  shadow-lg
-                  overflow-hidden
-                  bg-white
-                  p-10
-                  text-center
-                "
+                class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center dark:bg-gray-800"
               >
-                <h1 class="text-xl font-bold text-indigo-900">
+                <h1
+                  class="text-xl font-bold text-indigo-900 dark:text-gray-300"
+                >
                   No Commands Found
                 </h1>
-                <p>
+                <p class="dark:text-gray-300">
                   Nothing found for <code class="font-mono">{{ filter }}</code>
                 </p>
               </div>
@@ -204,16 +155,7 @@
     </main>
 
     <div
-      class="
-        fixed
-        right-5
-        bottom-5
-        bg-gray-900
-        text-white text-center
-        p-5
-        cursor-pointer
-        rounded-md
-      "
+      class="fixed right-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md border-2 dark:border dark:border-indigo-400 dark:hover:border-indigo-500"
       title="Back to top"
       @click="backToTop"
       v-show="showBackToTop"
