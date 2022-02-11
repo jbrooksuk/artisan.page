@@ -78,7 +78,7 @@ jobs:
       - name: Build Generator Command
         run: |
           cd /tmp/laravel
-          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/v${{ matrix.laravel }}.x.json | true
+          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.x.json | true
       - name: Configure Git Name
         run: git config --global user.name ${GITHUB_ACTOR}
 
