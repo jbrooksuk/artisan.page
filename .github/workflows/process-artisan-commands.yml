@@ -24,14 +24,6 @@ jobs:
     - name: Check out source code
       uses: actions/checkout@v2
 
-    - name: Import manifest
-      id: set-matrix
-      run: |
-        sudo apt-get install jq
-        manifest=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {laravel: ^${{ matrix.laravel }}.x}'`
-        echo $manifest
-        echo "::set-output name=matrix::$manifest"
-
 #    - name: Import packages
 #      id: set-packages
 #      run: |
