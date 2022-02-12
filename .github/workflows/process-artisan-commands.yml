@@ -1,4 +1,5 @@
 name: Process Artisan Commands
+
 on:
   push:
     branches:
@@ -8,13 +9,17 @@ on:
       - master
   schedule:
     - cron: '0 0 * * 3'
+
 jobs:
   prepare:
     name: Prepare manifest file
+
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-      packages: ${{ steps.set-packages.outputs.packages }}
+    
+    strategy:
+      matrix:
+        laravel: [6, 7, 8, 9]
+
     steps:
     - name: Check out source code
       uses: actions/checkout@v2
@@ -23,22 +28,33 @@ jobs:
       id: set-matrix
       run: |
         sudo apt-get install jq
-        manifest=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {laravel: .laravel}'`
+        manifest=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {laravel: ^${{ matrix.laravel }}.x}'`
         echo $manifest
         echo "::set-output name=matrix::$manifest"
+
 #    - name: Import packages
 #      id: set-packages
 #      run: |
 #        packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
 #        echo $packages
 #        echo "::set-output name=packages::$packages"
+
   commands:
     needs: prepare
+
     name: Laravel Version ${{ matrix.laravel }}
+
     runs-on: ubuntu-latest
+    
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.prepare.outputs.matrix)}}
+      matrix: 
+        php: [7.4]
+        laravel: [6, 7, 8]
+        include:
+          - php: '8.0'
+            laravel: 9
+
     steps:
       - name: Check out source code
         uses: actions/checkout@v2
@@ -46,12 +62,12 @@ jobs:
       - name: Setup PHP, with Composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip
           tools: composer:v2
 
       - name: Install Laravel
-        run: composer create-project --no-progress laravel/laravel="${{ matrix.laravel }}" /tmp/laravel
+        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel }}" /tmp/laravel
 
 #      - name: Install Laravel packages
 #        run: |
@@ -62,7 +78,7 @@ jobs:
       - name: Build Generator Command
         run: |
           cd /tmp/laravel
-          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.json | true
+          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel }}.x.json | true
       - name: Configure Git Name
         run: git config --global user.name ${GITHUB_ACTOR}
 
@@ -78,7 +94,7 @@ jobs:
             git reset --hard HEAD
             git clean -f -d
             git pull || true
-            cp /tmp/${{ matrix.laravel }}.json ./assets/
+            cp /tmp/${{ matrix.laravel }}.x.json ./assets/
             git add -A || true
             git commit -am 'Build Laravel version v${{ matrix.laravel }}' || true
             git push --force && break
