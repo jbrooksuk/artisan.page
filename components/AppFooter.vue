@@ -25,10 +25,10 @@
         <div>
           Hosted at
           <a
-            href="https://netlify.com"
+            href="https://vercel.com?ref=artisan-page"
             target="_blank"
             class="font-semibold text-blue-400"
-            >Netlify</a
+            >Vercel</a
           >
         </div>
       </div>
