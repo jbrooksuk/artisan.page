@@ -8,6 +8,6 @@ Shout out to our top contributors!
 - [driesvints](https://api.github.com/users/driesvints)
 - [gabbanaesteban](https://api.github.com/users/gabbanaesteban)
 - [KevinBatdorf](https://api.github.com/users/KevinBatdorf)
+- [github-actions[bot]](https://api.github.com/users/github-actions%5Bbot%5D)
 - [clemblanco](https://api.github.com/users/clemblanco)
 - [izshreyansh](https://api.github.com/users/izshreyansh)
-- [github-actions[bot]](https://api.github.com/users/github-actions%5Bbot%5D)
