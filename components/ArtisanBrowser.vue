@@ -42,7 +42,16 @@
               >
             </div>
             <div class="flex ml-3">
-              <span class="font-semibold font-heading text-indigo-900 dark:text-indigo-500">Sponsored by <a href="https://snapshooter.com/?via=james&utm_source=artisancheatsheet&utm_medium=sponsor&utm_campaign=general" target="_blank" class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">SnapShooter Backups</a></span>
+              <span
+                class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
+                >Sponsored by
+                <a
+                  href="https://snapshooter.com/?via=james&utm_source=artisancheatsheet&utm_medium=sponsor&utm_campaign=general"
+                  target="_blank"
+                  class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+                  >SnapShooter Backups</a
+                ></span
+              >
             </div>
             <div class="ml-3">
               <a href="https://github.com/jbrooksuk/artisan.page">
