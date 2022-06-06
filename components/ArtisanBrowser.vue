@@ -225,7 +225,7 @@ export default {
 
       if (newVersion !== oldVersion) {
         if (typeof window.fathom) {
-          window.fathom.trackGoal('QUL7QUJP', 0);
+          window.fathom.trackGoal('QUL7QUJP', 0)
         }
 
         this.$router.push({
