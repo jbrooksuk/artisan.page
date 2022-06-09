@@ -4,13 +4,25 @@
     class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
   >
     <div class="rounded-t-lg bg-indigo-900">
-      <div class="bg-black bg-opacity-40 p-4 px-8">
-        <h2 class="text-lg font-bold text-white dark:text-gray-300">
-          <a :href="`#${slug}`">{{ command.name }}</a>
-        </h2>
-        <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
-          {{ command.description }}
-        </h3>
+      <div class="bg-black bg-opacity-40 p-4 px-8 flex justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-white dark:text-gray-300">
+            <a :href="`#${slug}`">{{ command.name }}</a>
+          </h2>
+          <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
+            {{ command.description }}
+          </h3>
+        </div>
+        <div>
+          <button
+            v-if="command.arguments.length > 0 || command.options.length > 0"
+            @click="collapsed = !collapsed"
+            class="p-2 bg-transparent border-2 text-sm text-gray-200 border-indigo-500 rounded hover:bg-indigo-500 hover:text-gray-100 focus:border-indigo-300"
+            :class="{ 'bg-indigo-500': collapsed}"
+          >
+            GENERATE
+          </button>
+        </div>
       </div>
     </div>
 
@@ -44,6 +56,7 @@
           </li>
         </ul>
       </div>
+      <command-generator v-if="collapsed" :command="command" />
     </div>
 
     <div
@@ -111,6 +124,7 @@ export default {
     return {
       keyboardUsed: false,
       copied: false,
+      collapsed: false,
     }
   },
   mounted() {
