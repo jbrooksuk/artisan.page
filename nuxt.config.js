@@ -136,8 +136,19 @@ export default defineNuxtConfig({
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
-
+  build: {
+    extend(config) {
+      config.module?.rules.push({
+        test: /\.(c|m)js$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      })
+    },
+  },
   generate: {
     routes: dynamicRoutes,
   },
