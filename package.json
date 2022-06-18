@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "dev": "nuxi dev",
+    "build": "nuxi generate",
+    "start": "nuxi preview"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -15,8 +14,10 @@
     "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.2.6",
     "core-js": "^3.14.0",
+    "cors": "^2.8.5",
+    "fuse.js": "^6.6.2",
     "mousetrap": "^1.6.5",
-    "nuxt": "^2.15.7",
+    "nuxt-edge": "latest",
     "nuxt-trailingslash-module": "^1.2.0",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2.19",
@@ -25,6 +26,8 @@
     "vue-template-compiler": "^2.6.14"
   },
   "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.2.0"
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27566698.2b0045e",
+    "@tailwindcss/postcss7-compat": "^2.2.0",
+    "std-env": "^3.1.1"
   }
 }

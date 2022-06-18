@@ -23,6 +23,20 @@ $ npm run start
 $ npm run generate
 ```
 
+## API
+List all commands:
+```
+GET /api
+```
+Search for a command:
+```
+GET /api?s=database
+```
+Specify a version:
+```
+GET /api?v=8.x
+```
+
 ## Credits
 
 - [James Brooks](https://github.com/jbrooksuk)

@@ -1,9 +1,11 @@
-const laravelManifest = require('./manifest').laravel
+import manifest from './manifest.json'
+import { defineNuxtConfig } from '@nuxt/bridge'
 
+const versions = manifest.laravel
 const dynamicRoutes = () => {
   return new Promise(resolve => {
     resolve(
-      laravelManifest.map(version => {
+      versions.map(version => {
         return {
           route: `/${version}`,
           payload: {
@@ -15,10 +17,9 @@ const dynamicRoutes = () => {
   })
 }
 
-export default {
+export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Laravel Artisan Cheatsheet',
@@ -127,6 +128,12 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  nitro: {
+    plugins: [
+      '~/server/plugins/cors'
+    ]
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
@@ -151,4 +158,4 @@ export default {
     classSuffix: '',
     storageKey: 'nuxt-color-mode',
   },
-}
+})

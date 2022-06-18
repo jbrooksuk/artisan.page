@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Exclude built Nitro folder from git
+.output
