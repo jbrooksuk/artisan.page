@@ -139,7 +139,7 @@ export default defineNuxtConfig({
   build: {
     extend(config) {
       config.module?.rules.push({
-        test: /\.(c|m)js$/,
+        test: /\.[cm]?js$/,
         use: {
           loader: 'babel-loader',
           options: {
