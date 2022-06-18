@@ -141,9 +141,9 @@ export default defineNuxtConfig({
       config.module?.rules.push({
         test: /\.(c|m)js$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["@babel/preset-env"],
+            presets: ['@babel/preset-env'],
           },
         },
       })
