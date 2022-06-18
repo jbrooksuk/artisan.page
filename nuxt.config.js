@@ -129,7 +129,7 @@ export default defineNuxtConfig({
   ],
 
   nitro: {
-    plugins: ['~/server/plugins/cors']
+    plugins: ['~/server/plugins/cors'],
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

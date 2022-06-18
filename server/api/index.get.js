@@ -27,7 +27,7 @@ export default defineEventHandler(event => {
   if (search) {
     const fuse = new Fuse(json, { keys: ['name', 'description', 'aliases'] })
     results = fuse.search(search).map(result => result.item)
-}
+  }
 
   // Return results or the entire list
   return results ?? json
