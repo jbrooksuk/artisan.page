@@ -115,7 +115,7 @@ export default defineNuxtConfig({
   nitro: {
     plugins: ['~/server/plugins/cors'],
     prerender: {
-      routes: ['/']
+      routes: []
     }
   },
 
