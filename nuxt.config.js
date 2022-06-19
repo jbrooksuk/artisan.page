@@ -1,21 +1,5 @@
-import manifest from './manifest.json'
+import {laravel as versions} from './manifest.json'
 import { defineNuxtConfig } from '@nuxt/bridge'
-
-const versions = manifest.laravel
-const dynamicRoutes = () => {
-  return new Promise(resolve => {
-    resolve(
-      versions.map(version => {
-        return {
-          route: `/${version}`,
-          payload: {
-            version: version,
-          },
-        }
-      })
-    )
-  })
-}
 
 export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
@@ -130,6 +114,9 @@ export default defineNuxtConfig({
 
   nitro: {
     plugins: ['~/server/plugins/cors'],
+    prerender: {
+      routes: ['/']
+    }
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -137,6 +124,9 @@ export default defineNuxtConfig({
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel: {
+      plugins: ['@babel/plugin-transform-runtime'],
+    },
     extend(config) {
       config.module?.rules.push({
         test: /\.[cm]?js$/,
@@ -149,9 +139,15 @@ export default defineNuxtConfig({
       })
     },
   },
-  generate: {
-    routes: dynamicRoutes,
-  },
+
+  routes: versions.map(version => {
+    return {
+      route: `/${version}`,
+      payload: {
+        version: version,
+      },
+    }
+  }),
 
   router: {
     trailingSlash: false,
