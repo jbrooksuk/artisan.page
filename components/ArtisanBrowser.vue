@@ -237,7 +237,7 @@ export default {
     data() {
       // Wait until mounted to access the window object
       this.mounted &&
-      window.location.hash &&
+        window.location.hash &&
         this.$nextTick(() => {
           document.querySelector(window.location.hash).scrollIntoView({
             behavior: 'auto',

@@ -116,7 +116,7 @@ export default defineNuxtConfig({
     plugins: ['~/server/plugins/cors'],
     prerender: {
       routes: [],
-    }
+    },
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -143,14 +143,16 @@ export default defineNuxtConfig({
   generate: {
     routes() {
       return new Promise(resolve => {
-        resolve(versions.map(version => ({
-          route: `/${version}`,
-          payload: {
-            version: version,
-          },
-        })))
+        resolve(
+          versions.map(version => ({
+            route: `/${version}`,
+            payload: {
+              version: version,
+            },
+          }))
+        )
       })
-    }
+    },
   },
 
   router: {

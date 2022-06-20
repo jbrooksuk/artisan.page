@@ -19,6 +19,6 @@ export default defineEventHandler(event => {
   // Return results or the entire list
   return {
     version: version,
-    commands: results ?? json
+    commands: results ?? json,
   }
 })
