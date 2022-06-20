@@ -15,9 +15,10 @@ jobs:
     name: Prepare manifest file
 
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
+        # When updating versions, update them here, ~/manifest.json and ~/assets/index.js
         laravel: [6, 7, 8, 9]
 
     steps:
@@ -37,10 +38,10 @@ jobs:
     name: Laravel Version ${{ matrix.laravel }}
 
     runs-on: ubuntu-latest
-    
+
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         php: [7.4]
         laravel: [6, 7, 8]
         include:

@@ -190,6 +190,7 @@ export default {
   data() {
     return {
       showBackToTop: false,
+      mounted: false,
       manifest: manifest,
       currentVersion: null,
       data: [],
@@ -201,6 +202,7 @@ export default {
     this.loadData(this.currentVersion)
   },
   mounted() {
+    this.mounted = true
     const { query } = this.$route
     this.$refs.search.value = this.filter = query.search || ''
     Mousetrap.bind(['command+k', 'ctrl+k', '/'], event => {
@@ -224,9 +226,7 @@ export default {
       }
 
       if (newVersion !== oldVersion) {
-        if (typeof window.fathom) {
-          window.fathom.trackGoal('QUL7QUJP', 0)
-        }
+        window?.fathom?.trackGoal('QUL7QUJP', 0)
 
         this.$router.push({
           path: `/${newVersion}/`,
@@ -235,6 +235,8 @@ export default {
       }
     },
     data() {
+      // Wait until mounted to access the window object
+      this.mounted &&
       window.location.hash &&
         this.$nextTick(() => {
           document.querySelector(window.location.hash).scrollIntoView({

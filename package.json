@@ -2,7 +2,7 @@
   "name": "artisan.page",
   "version": "1.0.0",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=16.15.0"
   },
   "private": true,
   "scripts": {

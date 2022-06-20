@@ -1,4 +1,4 @@
-import {laravel as versions} from './manifest.json'
+import { laravel as versions } from './manifest.json'
 import { defineNuxtConfig } from '@nuxt/bridge'
 
 export default defineNuxtConfig({
@@ -115,7 +115,7 @@ export default defineNuxtConfig({
   nitro: {
     plugins: ['~/server/plugins/cors'],
     prerender: {
-      routes: []
+      routes: [],
     }
   },
 
@@ -140,14 +140,18 @@ export default defineNuxtConfig({
     },
   },
 
-  routes: versions.map(version => {
-    return {
-      route: `/${version}`,
-      payload: {
-        version: version,
-      },
+  generate: {
+    routes() {
+      return new Promise(resolve => {
+        resolve(versions.map(version => ({
+          route: `/${version}`,
+          payload: {
+            version: version,
+          },
+        })))
+      })
     }
-  }),
+  },
 
   router: {
     trailingSlash: false,
