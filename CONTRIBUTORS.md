@@ -9,6 +9,6 @@ Shout out to our top contributors!
 - [driesvints](https://api.github.com/users/driesvints)
 - [gabbanaesteban](https://api.github.com/users/gabbanaesteban)
 - [KevinBatdorf](https://api.github.com/users/KevinBatdorf)
+- [StyleCIBot](https://api.github.com/users/StyleCIBot)
 - [clemblanco](https://api.github.com/users/clemblanco)
 - [izshreyansh](https://api.github.com/users/izshreyansh)
-- [StyleCIBot](https://api.github.com/users/StyleCIBot)
