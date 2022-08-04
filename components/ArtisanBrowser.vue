@@ -112,7 +112,12 @@
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4 pr-4">
           <div class="carbon-ads mb-4">
-            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAIP27N&placement=artisanpage" id="_carbonads_js"></script>
+            <script
+              async
+              type="text/javascript"
+              src="//cdn.carbonads.com/carbon.js?serve=CEAIP27N&placement=artisanpage"
+              id="_carbonads_js"
+            ></script>
           </div>
 
           <h2 class="text-xl font-bold text-indigo-900 dark:text-indigo-500">

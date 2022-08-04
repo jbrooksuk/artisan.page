@@ -21,11 +21,11 @@ html.dark body {
 
 #carbonads {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-  Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-  sans-serif;
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
   display: inline-block;
   font-size: 14px;
-  text-shadow: 0 1px hsla(0, 0%, 100%, .8);
+  text-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
 }
 
 #carbonads a,
@@ -41,13 +41,9 @@ html.dark body {
   padding: 1em;
   box-sizing: border-box;
   border-radius: 4px;
-  box-shadow:
-      0 0 1px hsl(0deg 0% 0% / 0.075),
-      0 0 2px hsl(0deg 0% 0% / 0.075),
-      0 0 4px hsl(0deg 0% 0% / 0.075),
-      0 0 8px hsl(0deg 0% 0% / 0.075),
-      0 0 16px hsl(0deg 0% 0% / 0.075)
-    ;
+  box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075),
+    0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075),
+    0 0 16px hsl(0deg 0% 0% / 0.075);
 }
 
 #carbonads .carbon-wrap {
@@ -56,14 +52,14 @@ html.dark body {
 }
 #carbonads .carbon-text {
   font-size: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 #carbonads .carbon-poweredby {
-  opacity: .5;
-  font-size: .725em;
+  opacity: 0.5;
+  font-size: 0.725em;
   text-transform: uppercase;
   font-weight: 600;
-  letter-spacing: .05ch
+  letter-spacing: 0.05ch;
 }
 </style>
