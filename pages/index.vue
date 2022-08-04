@@ -4,9 +4,9 @@
       <Header />
 
       <artisan-browser></artisan-browser>
-
-      <app-footer />
     </div>
+
+    <app-footer />
   </div>
 </template>
 

@@ -4,9 +4,9 @@
       <Header />
 
       <artisan-browser :version="this.version" />
-
-      <app-footer />
     </div>
+
+    <app-footer />
   </div>
 </template>
 
