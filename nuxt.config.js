@@ -108,6 +108,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/redirect-module',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -130,6 +131,13 @@ export default {
   router: {
     trailingSlash: false,
   },
+
+  redirect: [
+    {
+      from: '^.*(?<!\/)$',
+      to: (from, req) => req.url + '/'
+    },
+  ],
 
   colorMode: {
     preference: 'system',
