@@ -134,8 +134,8 @@ export default {
 
   redirect: [
     {
-      from: '^.*(?<!\/)$',
-      to: (from, req) => req.url + '/'
+      from: '^.*(?<!/)$',
+      to: (from, req) => req.url + '/',
     },
   ],
 
