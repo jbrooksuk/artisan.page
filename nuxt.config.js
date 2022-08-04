@@ -32,7 +32,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default PHP Artisan commands.",
       },
       { hid: 'theme-color', name: 'theme-color', content: '#312e81' },
       {
@@ -50,7 +50,7 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default PHP Artisan commands.",
       },
       {
         hid: 'twitter:image',
@@ -75,7 +75,7 @@ export default {
         hid: 'og:description',
         name: 'og:description',
         content:
-          "A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.",
+          "A bookmarkable, searchable cheatsheet for all of Laravel's default PHP Artisan commands.",
       },
       {
         hid: 'og:image',
