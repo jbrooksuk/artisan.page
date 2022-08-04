@@ -225,7 +225,7 @@ export default {
       }
 
       if (newVersion !== oldVersion) {
-        if (typeof window.fathom !== "undefined") {
+        if (typeof window.fathom !== 'undefined') {
           window.fathom.trackGoal('QUL7QUJP', 0)
         }
 

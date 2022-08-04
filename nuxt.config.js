@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Laravel v\%s - Laravel Artisan Cheatsheet',
+    titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
     htmlAttrs: {
       lang: 'en',
     },
@@ -118,11 +118,11 @@ export default {
 
   generate: {
     async routes() {
-      return laravelManifest.map((version) => ({
+      return laravelManifest.map(version => ({
         route: `/${version}`,
         payload: {
           version: version,
-        }
+        },
       }))
     },
   },

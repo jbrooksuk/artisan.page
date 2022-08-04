@@ -14,9 +14,21 @@ export default {
     return {
       title: `${manifest['laravel'][0]}`,
       meta: [
-        { hid: 'description', name: 'description', content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}` },
-        { hid: 'twitter:description', name: 'twitter:description', content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}` },
-        { hid: 'og:description', name: 'og:description', content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}` },
+        {
+          hid: 'description',
+          name: 'description',
+          content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}`,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}`,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands in v${manifest['laravel'][0]}`,
+        },
       ],
     }
   },
