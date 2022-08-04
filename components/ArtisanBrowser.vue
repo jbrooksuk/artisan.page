@@ -1,10 +1,10 @@
 <template>
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
-    <main>
+    <nav>
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-grow flex space-x-4 items-center">
           <h1
-            class="text-lg sm:text-4xl leading-6 font-extrabold text-indigo-900 tracking-tighter dark:text-indigo-500"
+            class="text-lg sm:text-4xl leading-6 font-bold text-indigo-900 tracking-tighter dark:text-indigo-500"
           >
             <a href="/">Laravel Artisan Cheatsheet</a>
           </h1>
@@ -65,7 +65,8 @@
           </div>
         </div>
       </div>
-
+    </nav>
+    <main>
       <div class="mt-2">
         <form class="w-full flex md:ml-0">
           <label for="search_field" class="sr-only">Search</label>
@@ -224,7 +225,7 @@ export default {
       }
 
       if (newVersion !== oldVersion) {
-        if (typeof window.fathom) {
+        if (typeof window.fathom !== "undefined") {
           window.fathom.trackGoal('QUL7QUJP', 0)
         }
 

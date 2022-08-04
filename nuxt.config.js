@@ -1,27 +1,12 @@
 const laravelManifest = require('./manifest').laravel
 
-const dynamicRoutes = () => {
-  return new Promise(resolve => {
-    resolve(
-      laravelManifest.map(version => {
-        return {
-          route: `/${version}`,
-          payload: {
-            version: version,
-          },
-        }
-      })
-    )
-  })
-}
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Laravel Artisan Cheatsheet',
+    titleTemplate: 'Laravel v\%s - Laravel Artisan Cheatsheet',
     htmlAttrs: {
       lang: 'en',
     },
@@ -132,7 +117,14 @@ export default {
   build: {},
 
   generate: {
-    routes: dynamicRoutes,
+    async routes() {
+      return laravelManifest.map((version) => ({
+        route: `/${version}`,
+        payload: {
+          version: version,
+        }
+      }))
+    },
   },
 
   router: {
