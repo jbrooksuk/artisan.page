@@ -5,7 +5,13 @@
         class="flex flex-col justify-center items-center text-base text-gray-100 font-normal space-x-2"
       >
         <div class="text-sm mb-2">
-          A cheatsheet for <a href="https://laravel.com/docs/artisan?ref=artisan.page" class="font-bold">Laravel's <code class="font-mono">php artisan</code></a> commands.
+          A cheatsheet for
+          <a
+            href="https://laravel.com/docs/artisan?ref=artisan.page"
+            class="font-bold"
+            >Laravel's <code class="font-mono">php artisan</code></a
+          >
+          commands.
         </div>
         <div>
           Made by

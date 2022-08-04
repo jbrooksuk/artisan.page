@@ -55,8 +55,7 @@ export default {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content:
-          '/og.png',
+        content: '/og.png',
       },
       {
         hid: 'og:site_name',
@@ -80,8 +79,7 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content:
-          '/og.png',
+        content: '/og.png',
       },
     ],
     link: [
