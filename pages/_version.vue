@@ -1,8 +1,12 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <artisan-browser :version="this.version" />
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
+      <Header />
 
-    <app-footer />
+      <artisan-browser :version="this.version" />
+
+      <app-footer />
+    </div>
   </div>
 </template>
 
