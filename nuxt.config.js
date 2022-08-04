@@ -56,7 +56,7 @@ export default {
         hid: 'twitter:image',
         name: 'twitter:image',
         content:
-          'https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg',
+          '/og.png',
       },
       {
         hid: 'og:site_name',
@@ -81,7 +81,7 @@ export default {
         hid: 'og:image',
         name: 'og:image',
         content:
-          'https://banners.beyondco.de/artisan.page.png?theme=light&packageManager=composer+require&packageName=laravel%2Flaravel&pattern=cage&style=style_1&description=Laravel+Artisan+Cheatsheet&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg',
+          '/og.png',
       },
     ],
     link: [
