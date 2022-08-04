@@ -53,14 +53,14 @@
                 ></span
               >
             </div>
-            <div class="ml-3">
+            <!-- <div class="ml-3">
               <a href="https://github.com/jbrooksuk/artisan.page">
                 <img
                   src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social"
                 />
                 <span class="sr-only">Star on GitHub</span>
               </a>
-            </div>
+            </div> -->
             <theme-picker />
           </div>
         </div>
