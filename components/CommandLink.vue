@@ -1,6 +1,7 @@
 <template>
   <a
     class="ml-5 text-gray-600 hover:text-gray-900 dark:text-gray-300 hover:underline block mb-1"
+    @click.prevent="refreshCarbon"
     :href="`#${slug}`"
     :title="command.description"
     v-bind="$attrs"
@@ -16,6 +17,11 @@ export default {
     slug() {
       return this.command.name.replace(':', '')
     },
+  },
+  methods: {
+    refreshCarbon() {
+      if (typeof _carbonads !== 'undefined') _carbonads.refresh()
+    }
   },
 }
 </script>

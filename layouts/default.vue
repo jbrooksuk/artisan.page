@@ -20,46 +20,78 @@ html.dark body {
 }
 
 #carbonads {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-    sans-serif;
-  display: inline-block;
-  font-size: 14px;
-  text-shadow: 0 1px hsla(0, 0%, 100%, 0.8);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#carbonads a,
-#carbonads a:hover {
-  color: #444;
-  text-decoration: none;
+#carbonads {
+  @apply block font-normal w-96 relative h-24 overflow-hidden border border-gray-300;
+  background-color: hsl(0, 0%, 99%);
+  box-sizing: content-box;
 }
 
 #carbonads > span {
-  display: grid;
-  background-color: hsl(240, 4%, 98%);
-  max-width: 250px;
-  padding: 1em;
-  box-sizing: border-box;
-  border-radius: 4px;
-  box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075),
-    0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075),
-    0 0 16px hsl(0deg 0% 0% / 0.075);
+  display: block;
 }
 
-#carbonads .carbon-wrap {
-  display: grid;
-  row-gap: 1em;
-}
-#carbonads .carbon-text {
-  font-size: 1em;
-  margin-bottom: 0.5em;
+#carbonads a {
+  color: inherit;
+  text-decoration: none;
 }
 
-#carbonads .carbon-poweredby {
-  opacity: 0.5;
-  font-size: 0.725em;
+#carbonads a:hover {
+  color: inherit;
+}
+
+.carbon-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.carbon-img {
+  display: block;
+  margin: 0;
+  line-height: 1;
+}
+
+.carbon-img img {
+  display: block;
+  height: 100px;
+  width: auto;
+}
+
+.carbon-text {
+  display: block;
+  padding: 0 1em;
+  line-height: 1;
+  text-align: left;
+}
+
+.carbon-poweredby {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 6px 10px;
+  background: repeating-linear-gradient(
+                  -45deg,
+                  transparent,
+                  transparent 5px,
+                  hsla(0, 0%, 0%, 0.025) 5px,
+                  hsla(0, 0%, 0%, 0.025) 10px
+  )
+  hsla(203, 11%, 95%, 0.8);
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   font-weight: 600;
-  letter-spacing: 0.05ch;
+  font-size: 8px;
+  border-top-left-radius: 4px;
+  line-height: 1;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 759px) {
+  .carbon-text {
+    font-size: 14px;
+  }
 }
 </style>
