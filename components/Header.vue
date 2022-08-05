@@ -1,9 +1,15 @@
 <template>
-  <div class="md:flex md:items-center md:justify-between md:space-x-5 sticky top-0 bg-gray-900 dark:bg-gray-800 z-50 py-2 px-3 shadow-md h-36">
+  <div
+    class="md:flex md:items-center md:justify-between md:space-x-5 sticky top-0 bg-gray-900 dark:bg-gray-800 z-50 py-2 px-3 shadow-md h-36"
+  >
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">
         <div class="relative">
-          <img class="h-16 w-16" src="/favicon.ico" alt="Laravel Artisan Cheatsheet" />
+          <img
+            class="h-16 w-16"
+            src="/favicon.ico"
+            alt="Laravel Artisan Cheatsheet"
+          />
         </div>
       </div>
       <div class="pt-1.5">

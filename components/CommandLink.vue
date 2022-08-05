@@ -21,7 +21,7 @@ export default {
   methods: {
     refreshCarbon() {
       if (typeof _carbonads !== 'undefined') _carbonads.refresh()
-    }
+    },
   },
 }
 </script>
