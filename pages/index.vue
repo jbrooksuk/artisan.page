@@ -6,6 +6,8 @@
       <artisan-browser></artisan-browser>
     </div>
 
+    <carbon />
+
     <app-footer />
   </div>
 </template>

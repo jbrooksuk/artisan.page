@@ -6,6 +6,8 @@
       <artisan-browser :version="this.version" />
     </div>
 
+    <carbon />
+
     <app-footer />
   </div>
 </template>

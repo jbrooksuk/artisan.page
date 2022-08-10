@@ -165,7 +165,7 @@
     </main>
 
     <div
-      class="fixed right-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md border-2 dark:border dark:border-indigo-400 dark:hover:border-indigo-500"
+      class="fixed left-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md border-2 dark:border dark:border-indigo-400 dark:hover:border-indigo-500"
       title="Back to top"
       @click="backToTop"
       v-show="showBackToTop"
