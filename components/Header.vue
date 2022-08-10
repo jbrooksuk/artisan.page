@@ -1,6 +1,6 @@
 <template>
   <div
-    class="md:flex md:items-center md:justify-between md:space-x-5 bg-gray-900 dark:bg-gray-800 z-50 py-4 px-12 shadow-md"
+    class="md:flex md:items-center md:justify-between md:space-x-5 bg-gray-900 dark:bg-gray-800 py-4 px-12 shadow-md"
   >
     <div class="flex items-center space-x-5">
       <div class="flex-shrink-0">

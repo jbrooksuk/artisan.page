@@ -1,8 +1,8 @@
 <template>
   <div>
     <nav>
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="flex-grow flex space-x-4 items-center">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-2">
+        <div class="flex space-x-4 items-center">
           <div>
             <label for="current-version" class="sr-only">Laravel Version</label>
             <select
@@ -25,41 +25,35 @@
           </div>
         </div>
 
-        <div class="flex-grow">
-          <div class="flex justify-end items-center flex-row">
-            <div class="flex">
-              <span
-                class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
-                >Made by
-                <a
-                  href="https://twitter.com/jbrooksuk"
-                  target="_blank"
-                  class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-                  >@jbrooksuk</a
-                ></span
-              >
-            </div>
-            <div class="flex ml-3">
-              <span
-                class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
-                >Sponsored by
-                <a
-                  href="https://snapshooter.com/?via=james&utm_source=artisancheatsheet&utm_medium=sponsor&utm_campaign=general"
-                  target="_blank"
-                  class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-                  >SnapShooter Backups</a
-                ></span
-              >
-            </div>
-            <!-- <div class="ml-3">
-              <a href="https://github.com/jbrooksuk/artisan.page">
-                <img
-                  src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social"
-                />
-                <span class="sr-only">Star on GitHub</span>
-              </a>
-            </div> -->
-          </div>
+        <div class="flex items-center flex-row space-x-4">
+          <span
+            class="font-semibold font-heading text-indigo-900 dark:text-indigo-500 hidden sm:block"
+            >Made by
+            <a
+              href="https://twitter.com/jbrooksuk"
+              target="_blank"
+              class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+              >@jbrooksuk</a
+            ></span
+          >
+          <span
+            class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
+            >Sponsored by
+            <a
+              href="https://snapshooter.com/?via=james&utm_source=artisancheatsheet&utm_medium=sponsor&utm_campaign=general"
+              target="_blank"
+              class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
+              >SnapShooter Backups</a
+            ></span
+          >
+          <!-- <div class="ml-3">
+            <a href="https://github.com/jbrooksuk/artisan.page">
+              <img
+                src="https://img.shields.io/github/stars/jbrooksuk/artisan.page?style=social"
+              />
+              <span class="sr-only">Star on GitHub</span>
+            </a>
+          </div> -->
         </div>
       </div>
     </nav>
