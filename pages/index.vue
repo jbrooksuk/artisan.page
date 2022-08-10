@@ -4,9 +4,8 @@
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
       <artisan-browser></artisan-browser>
+      <carbon />
     </div>
-
-    <carbon />
 
     <app-footer />
   </div>
