@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav>
-      <div class="flex flex-col md:flex-row justify-between items-center space-y-2">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center space-y-2"
+      >
         <div class="flex space-x-4 items-center">
           <div>
             <label for="current-version" class="sr-only">Laravel Version</label>
