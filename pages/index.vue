@@ -22,7 +22,7 @@ export default {
         {
           rel: 'canonical',
           href: 'https://artisan.page' + this.$route.path,
-        }
+        },
       ],
       meta: [
         {
