@@ -18,6 +18,12 @@ export default {
   head() {
     return {
       title: `${manifest['laravel'][0]}`,
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://artisan.page' + this.$route.path,
+        }
+      ],
       meta: [
         {
           hid: 'description',

@@ -16,6 +16,12 @@ export default {
   head() {
     return {
       title: `${this.version}`,
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://artisan.page' + this.$route.path,
+        }
+      ],
       meta: [
         {
           hid: 'description',
