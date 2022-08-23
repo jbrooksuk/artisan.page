@@ -107,8 +107,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     '@nuxtjs/redirect-module',
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -138,6 +139,17 @@ export default {
       to: (from, req) => req.url + '/',
     },
   ],
+
+  sitemap: {
+    hostname: 'https://artisan.page',
+    gzip: true,
+    // routes: [
+    //   '/6.x',
+    //   '/7.x',
+    //   '/8.x',
+    //   '/9.x',
+    // ],
+  },
 
   colorMode: {
     preference: 'system',
