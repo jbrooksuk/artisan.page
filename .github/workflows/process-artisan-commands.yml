@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Check out source code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
 #    - name: Import packages
 #      id: set-packages
@@ -49,7 +49,7 @@ jobs:
 
     steps:
       - name: Check out source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP, with Composer and extensions
         uses: shivammathur/setup-php@v2
