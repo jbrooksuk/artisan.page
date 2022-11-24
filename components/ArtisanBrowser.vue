@@ -105,14 +105,14 @@
       <div class="flex my-8">
         <div class="hidden md:block md:w-1/4 pr-4 space-y-4">
           <h2 class="text-xl font-bold text-indigo-900 dark:text-indigo-500">
-            Available Commands
+            Available Commands <span class="text-xs text-indigo-500 dark:text-indigo-200">({{ this.data.length }})</span>
           </h2>
 
           <div v-for="(group, groupName) in commandLinks">
             <h3
               class="text-lg font-semibold text-indigo-900 dark:text-indigo-500"
             >
-              {{ groupName }}
+              {{ groupName }} <span v-if="groupName !== ''" class="text-xs text-indigo-500 dark:text-indigo-200">({{ group.length }})</span>
             </h3>
 
             <command-link
