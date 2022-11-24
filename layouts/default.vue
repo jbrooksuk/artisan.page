@@ -5,6 +5,10 @@
 </template>
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-gray-100 antialiased;
 }
