@@ -19,7 +19,7 @@ export default {
         content:
           "A bookmarkable, searchable cheatsheet for Laravel's default PHP Artisan commands.",
       },
-      { hid: 'theme-color', name: 'theme-color', content: '#312e81' },
+      { hid: 'theme-color', name: 'theme-color', content: '#111827' },
       {
         hid: 'twitter:card',
         name: 'twitter:card',
