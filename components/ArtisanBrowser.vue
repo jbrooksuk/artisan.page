@@ -38,7 +38,7 @@
               >@jbrooksuk</a
             ></span
           >
-          <span
+          <!-- <span
             class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
             >Sponsored by
             <a
@@ -47,7 +47,7 @@
               class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
               >SnapShooter Backups</a
             ></span
-          >
+          > -->
           <!-- <div class="ml-3">
             <a href="https://github.com/jbrooksuk/artisan.page">
               <img
