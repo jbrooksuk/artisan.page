@@ -38,16 +38,16 @@
               >@jbrooksuk</a
             ></span
           >
-          <!-- <span
+          <span
             class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
             >Sponsored by
             <a
-              href="https://snapshooter.com/?via=james&utm_source=artisancheatsheet&utm_medium=sponsor&utm_campaign=general"
+              href="https://https://learn.christoph-rumpel.com/products/pest-driven-laravel/?ref=artisan.page"
               target="_blank"
               class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-              >SnapShooter Backups</a
+              >Pest Driven Laravel</a
             ></span
-          > -->
+          >
           <!-- <div class="ml-3">
             <a href="https://github.com/jbrooksuk/artisan.page">
               <img
