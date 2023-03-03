@@ -45,9 +45,9 @@
               href="https://https://learn.christoph-rumpel.com/products/pest-driven-laravel/?ref=artisan.page"
               target="_blank"
               class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-              >Pest Driven Laravel</a
-            ></span
-          >
+              >Pest Driven Laravel
+            </a>
+          </span>
           <!-- <div class="ml-3">
             <a href="https://github.com/jbrooksuk/artisan.page">
               <img
