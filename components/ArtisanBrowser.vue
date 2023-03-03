@@ -111,7 +111,7 @@
             </span>
           </h2>
 
-          <div v-for="(group, groupName) in commandLinks">
+          <div v-for="(group, groupName) in commandLinks" :key="groupName">
             <h3
               class="text-lg font-semibold text-indigo-900 dark:text-indigo-500"
             >
@@ -124,7 +124,7 @@
               </span>
             </h3>
 
-            <command-link
+            <CommandLink
               v-for="command in group"
               :key="command.name"
               :command="command"
@@ -159,7 +159,7 @@
               </div>
             </div>
 
-            <command
+            <Command
               v-for="command in commands"
               :key="command.name"
               :command="command"

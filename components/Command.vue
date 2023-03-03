@@ -26,7 +26,7 @@
               <code class="text-mono">{{ option.name }}</code> -
               {{ option.description }}
 
-              <badge :required="option.value_required" />
+              <Badge :required="option.value_required" />
             </li>
           </ul>
         </div>
@@ -41,7 +41,7 @@
               <code class="text-mono">{{ argument.name }}</code> -
               {{ argument.description }}
 
-              <badge :required="argument.required" />
+              <Badge :required="argument.required" />
             </li>
           </ul>
         </div>

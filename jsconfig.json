@@ -1,0 +1,17 @@
+{
+    "include": [
+      "./components/*"
+      "./layouts/*"
+      "./pages/*"
+      "./plugins/*"
+    ],
+    "compilerOptions": {
+      "module": "es2020",
+      "moduleResolution": "node",
+      "target": "es6",
+      "jsx": "preserve",
+      "sourceMap": true,
+      "allowJs": true,
+      "baseUrl": "."
+    }
+  }
