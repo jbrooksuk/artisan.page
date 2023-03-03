@@ -23,7 +23,7 @@
             </select>
           </div>
           <div>
-            <theme-picker />
+            <ThemePicker />
           </div>
         </div>
 
