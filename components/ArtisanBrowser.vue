@@ -42,10 +42,10 @@
             class="font-semibold font-heading text-indigo-900 dark:text-indigo-500"
             >Sponsored by
             <a
-              href="https://pestdrivenlaravel.com/?ref=artisan.page"
+              href="https://tinkerwell.app//?ref=artisan.page"
               target="_blank"
               class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-              >Pest Driven Laravel
+              >Tinkerwell
             </a>
           </span>
           <!-- <div class="ml-3">
