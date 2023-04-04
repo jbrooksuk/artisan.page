@@ -16,7 +16,7 @@
     <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
       <kbd
         class="inline-flex items-center rounded border border-gray-200 dark:border-gray-700 px-1 font-sans text-xs text-gray-400"
-        >⌘K</kbd
+        >{{ shortcutModifier }}K</kbd
       >
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
   },
   emits: ['update:modelValue'],
   mounted() {
-    Mousetrap.bind(['command+k', 'ctrl+k', '/'], event => {
+    Mousetrap.bind(['meta+k', 'ctrl+k', '/'], event => {
       this.$refs.search.focus()
 
       return false
@@ -41,6 +41,17 @@ export default {
   methods: {
     focus() {
       this.$refs.search.focus()
+    },
+  },
+  computed: {
+    isMacOs() {
+      return typeof window !== 'undefined' && window.navigator.appVersion.indexOf('Mac') !== -1
+    },
+    shortcutModifier() {
+      return this.isMacOs ? '⌘' : 'Ctrl'
+    },
+    fullShortcutModifier() {
+      return this.isMacOs ? 'Command' : 'Control'
     },
   },
 }
