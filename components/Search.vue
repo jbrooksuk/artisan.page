@@ -45,7 +45,10 @@ export default {
   },
   computed: {
     isMacOs() {
-      return typeof window !== 'undefined' && window.navigator.appVersion.indexOf('Mac') !== -1
+      return (
+        typeof window !== 'undefined' &&
+        window.navigator.appVersion.indexOf('Mac') !== -1
+      )
     },
     shortcutModifier() {
       return this.isMacOs ? '⌘' : 'Ctrl'
