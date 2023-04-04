@@ -26,7 +26,11 @@ export default {
         content: 'summary_large_image',
       },
       { hid: 'twitter:site', name: 'twitter:site', content: '@jbrooksuk' },
-      { hid: 'twitter:creator', name: 'twitter:creator', content: '@jbrooksuk' },
+      {
+        hid: 'twitter:creator',
+        name: 'twitter:creator',
+        content: '@jbrooksuk',
+      },
       {
         hid: 'twitter:title',
         name: 'twitter:title',

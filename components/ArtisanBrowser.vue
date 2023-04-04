@@ -1,9 +1,7 @@
 <template>
   <div>
     <nav>
-      <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4"
-      >
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex gap-x-2 items-center">
           <div>
             <label for="current-version" class="sr-only">Laravel Version</label>
@@ -55,9 +53,7 @@
           </h2>
 
           <div v-for="(group, groupName) in commandLinks" :key="groupName">
-            <h3
-              class="text-lg font-semibold text-gray-900 dark:text-gray-500"
-            >
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-500">
               {{ groupName }}
               <span
                 v-if="groupName !== ''"
@@ -98,7 +94,8 @@
                     No Commands Found
                   </h1>
                   <p class="dark:text-gray-300">
-                    Nothing found for <code class="font-mono font-bold">{{ filter }}</code>
+                    Nothing found for
+                    <code class="font-mono font-bold">{{ filter }}</code>
                   </p>
                 </div>
               </div>
@@ -242,7 +239,7 @@ export default {
     },
     filterResults(value) {
       this.filter = value.trim()
-    }
+    },
   },
 }
 </script>
