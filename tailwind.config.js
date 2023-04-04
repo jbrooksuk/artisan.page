@@ -6,7 +6,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Nunito Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        artisan: '#BB2926',
+        'artisan-light': '#F26763',
       },
     },
   },
