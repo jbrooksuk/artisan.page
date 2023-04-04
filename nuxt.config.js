@@ -19,13 +19,14 @@ export default {
         content:
           "A bookmarkable, searchable cheatsheet for Laravel's default PHP Artisan commands.",
       },
-      { hid: 'theme-color', name: 'theme-color', content: '#111827' },
+      // { hid: 'theme-color', name: 'theme-color', content: '#111827' },
       {
         hid: 'twitter:card',
         name: 'twitter:card',
         content: 'summary_large_image',
       },
       { hid: 'twitter:site', name: 'twitter:site', content: '@jbrooksuk' },
+      { hid: 'twitter:creator', name: 'twitter:creator', content: '@jbrooksuk' },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
@@ -71,7 +72,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'style',
-        href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,400,700,900&display=swap',
+        href: 'https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700;800&display=swap',
       },
     ],
     script: [

@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen">
     <Header />
 
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 mt-8 flex-grow">
       <ArtisanBrowser :version="this.version" />
       <Carbon />
     </div>

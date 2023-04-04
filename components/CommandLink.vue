@@ -1,6 +1,6 @@
 <template>
   <a
-    class="ml-5 text-gray-600 hover:text-gray-900 dark:text-gray-300 hover:underline block mb-1"
+    class="ml-5 text-gray-600 hover:text-artisan-light hover:underline block mb-1"
     @click="refreshCarbon"
     :href="`#${slug}`"
     :title="command.description"

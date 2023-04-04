@@ -4,7 +4,7 @@
     <div
       class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
     >
-      <div class="rounded-t-lg bg-indigo-900">
+      <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
         <div class="bg-black bg-opacity-40 p-4 px-8">
           <h2 class="text-lg font-bold text-white dark:text-gray-300">
             <a :href="`#${slug}`">{{ command.name }}</a>
@@ -48,12 +48,12 @@
       </div>
 
       <div
-        class="group relative overflow-hidden rounded-b-lg bg-indigo-700 bg-opacity-10 dark:bg-indigo-400 dark:bg-opacity-40"
+        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-400 dark:bg-opacity-40"
       >
         <div class="flex items-center">
           <div class="flex-initial">
             <pre
-              class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-indigo-900 whitespace-pre-wrap dark:text-gray-300"
+              class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-gray-900 whitespace-pre-wrap dark:text-gray-300"
             >
   php artisan {{ command.synopsis }}</pre
             >
@@ -61,7 +61,7 @@
           <div class="pr-8 flex-1 text-right">
             <button
               type="button"
-              class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-indigo-900 transition duration-200"
+              class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-gray-900 transition duration-200"
               :class="{ 'focus:outline-none': !keyboardUsed }"
               @click="copyCommand($event, `php artisan ${command.name}`)"
             >
