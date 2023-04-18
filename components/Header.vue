@@ -8,14 +8,14 @@
         <span class="sr-only">Laravel Artisan Cheatsheet</span>
       </div>
       <div>
-        <h2 class="tracking-tight font-semibold hidden md:block">
-          A bookmarkable, searchable cheatsheet for
+        <h2 class="tracking-tight font-medium hidden md:block">
+          A searchable, bookmarkable cheatsheet for
           <a
             href="https://laravel.com"
             class="text-artisan hover:text-artisan-light"
             >Laravel's</a
           >
-          default PHP Artisan commands.
+          Artisan commands.
         </h2>
       </div>
     </div>

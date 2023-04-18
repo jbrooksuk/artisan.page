@@ -11,7 +11,7 @@
           <a
             href="https://twitter.com/jbrooksuk"
             target="_blank"
-            class="font-semibold text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
+            class="font-medium text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
             >James Brooks</a
           >
         </div>
@@ -20,7 +20,7 @@
           <a
             href="https://usefathom.com/james"
             target="_blank"
-            class="font-semibold text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
+            class="font-medium text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
             >Fathom Analytics</a
           >
         </div>
@@ -29,7 +29,7 @@
           <a
             href="https://vercel.com?ref=artisan-page"
             target="_blank"
-            class="font-semibold text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
+            class="font-medium text-gray-600 hover:text-artisan dark:text-gray-400 dark:hover:text-artisan"
             >Vercel</a
           >
         </div>

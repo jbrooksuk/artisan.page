@@ -17,7 +17,7 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          "A bookmarkable, searchable cheatsheet for Laravel's default PHP Artisan commands.",
+          "A searchable, bookmarkable cheatsheet for Laravel's Artisan commands.",
       },
       // { hid: 'theme-color', name: 'theme-color', content: '#111827' },
       {
@@ -40,7 +40,7 @@ export default {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          "A bookmarkable, searchable cheatsheet for Laravel's default PHP Artisan commands.",
+          "A searchable, bookmarkable cheatsheet for Laravel's Artisan commands.",
       },
       {
         hid: 'twitter:image',
@@ -64,7 +64,7 @@ export default {
         hid: 'og:description',
         name: 'og:description',
         content:
-          "A bookmarkable, searchable cheatsheet for Laravel's default PHP Artisan commands.",
+          "A searchable, bookmarkable cheatsheet for Laravel's Artisan commands.",
       },
       {
         hid: 'og:image',
@@ -76,7 +76,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'style',
-        href: 'https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700;800&display=swap',
+        href: 'https://fonts.bunny.net/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap',
       },
     ],
     script: [
