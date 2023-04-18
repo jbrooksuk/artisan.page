@@ -41,11 +41,19 @@
         </span>
 
         <div class="space-x-2 hidden md:flex">
-          <a href="https://twitter.com/jbrooksuk" class="text-artisan hover:text-artisan-light" title="Follow @jbrooksuk on Twitter">
+          <a
+            href="https://twitter.com/jbrooksuk"
+            class="text-artisan hover:text-artisan-light"
+            title="Follow @jbrooksuk on Twitter"
+          >
             <TwitterIcon class="h-6 w-6 fill-current" />
           </a>
 
-          <a href="https://github.com/jbrooksuk/artisan.page" class="text-artisan hover:text-artisan-light" title="GitHub Project">
+          <a
+            href="https://github.com/jbrooksuk/artisan.page"
+            class="text-artisan hover:text-artisan-light"
+            title="GitHub Project"
+          >
             <GitHubIcon class="h-6 w-6 fill-current" />
           </a>
         </div>
@@ -134,11 +142,11 @@
 
 <script>
 import manifest from '../manifest.json'
-import TwitterIcon from "~/components/Icons/TwitterIcon.vue";
-import GitHubIcon from "~/components/Icons/GitHubIcon.vue";
+import TwitterIcon from '~/components/Icons/TwitterIcon.vue'
+import GitHubIcon from '~/components/Icons/GitHubIcon.vue'
 
 export default {
-  components: {GitHubIcon, TwitterIcon},
+  components: { GitHubIcon, TwitterIcon },
   props: {
     version: {
       type: String,
