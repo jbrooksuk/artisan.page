@@ -50,14 +50,17 @@ jobs:
       - name: Setup PHP, with Composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: ${{ matrix.laravel.php }}
           extensions: dom, curl, libxml, mbstring, zip
           tools: composer:v2
+
+      - name: Install Laravel
+        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
       - name: Run Generator Command
         run: |
           cd /tmp/laravel
-          cat ${{ github.workspace }}/scripts/generate | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
+          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
 
       - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
         run: |
