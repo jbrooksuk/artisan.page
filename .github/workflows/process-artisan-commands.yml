@@ -1,6 +1,7 @@
 name: Process Artisan Commands
 on:
   workflow_dispatch:
+  push:
   schedule:
     - cron: '0 0 * * 3'
 
