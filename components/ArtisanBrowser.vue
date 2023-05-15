@@ -33,10 +33,10 @@
           class="font-semibold font-heading text-gray-900 dark:text-gray-500"
           >Sponsored by
           <a
-            href="https://tinkerwell.app/?ref=artisan.page"
+            href="https://checkmango.com/?ref=artisan.page"
             target="_blank"
             class="font-bold text-artisan hover:text-artisan-light"
-            >Tinkerwell
+            >Checkmango
           </a>
         </span>
 
