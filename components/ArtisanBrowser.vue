@@ -33,10 +33,10 @@
           class="font-semibold font-heading text-gray-900 dark:text-gray-500"
           >Sponsored by
           <a
-            href="https://codingwisely.com/?ref=artisan.page"
+            href="https://workzone.io/?ref=artisan.page"
             target="_blank"
             class="font-bold text-artisan hover:text-artisan-light"
-            >Coding Wisely
+            >WorkZone.io
           </a>
         </span>
 
