@@ -51,7 +51,7 @@ export default {
       )
     },
     shortcutModifier() {
-      return this.isMacOs ? '⌘' : 'Ctrl'
+      return this.isMacOs ? '⌘' : 'Ctrl+'
     },
     fullShortcutModifier() {
       return this.isMacOs ? 'Command' : 'Control'
