@@ -266,7 +266,7 @@ export default {
       if (typeof window.fathom !== 'undefined') {
         window.fathom.trackGoal('L3DZXKHP', 0)
       }
-    }
+    },
   },
 }
 </script>
