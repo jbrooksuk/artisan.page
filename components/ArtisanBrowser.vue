@@ -34,6 +34,7 @@
           >Sponsored by
           <a
             href="https://workzone.io/?ref=artisan.page"
+            @click="sponsorClick"
             target="_blank"
             class="font-bold text-artisan hover:text-artisan-light"
             >WorkZone.io
@@ -261,6 +262,11 @@ export default {
     filterResults(value) {
       this.filter = value.trim()
     },
+    sponsorClick() {
+      if (typeof window.fathom !== 'undefined') {
+        window.fathom.trackGoal('L3DZXKHP', 0)
+      }
+    }
   },
 }
 </script>
