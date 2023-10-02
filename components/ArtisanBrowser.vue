@@ -33,11 +33,11 @@
           class="font-semibold font-heading text-gray-900 dark:text-gray-500"
           >Sponsored by
           <a
-            href="https://workzone.io/?ref=artisan.page"
+            href="https://cachethq.io/?ref=artisan.page"
             @click="sponsorClick"
             target="_blank"
             class="font-bold text-artisan hover:text-artisan-light"
-            >WorkZone.io
+            >Cachet
           </a>
         </span>
 
