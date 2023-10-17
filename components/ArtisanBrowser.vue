@@ -29,21 +29,9 @@
           <Search :model-value="filter" @update:modelValue="filterResults" />
         </div>
 
-        <span
-          class="font-semibold font-heading text-gray-900 dark:text-gray-500"
-          >Sponsored by
-          <a
-            href="https://cachethq.io/?ref=artisan.page"
-            @click="sponsorClick"
-            target="_blank"
-            class="font-bold text-artisan hover:text-artisan-light"
-            >Cachet
-          </a>
-        </span>
-
         <div class="space-x-2 hidden md:flex">
           <a
-            href="https://twitter.com/jbrooksuk"
+            href="https://x.com/jbrooksuk"
             class="text-artisan hover:text-artisan-light"
             title="Follow @jbrooksuk on Twitter"
           >
@@ -53,7 +41,7 @@
           <a
             href="https://github.com/jbrooksuk/artisan.page"
             class="text-artisan hover:text-artisan-light"
-            title="GitHub Project"
+            title="See on GitHub"
           >
             <GitHubIcon class="h-6 w-6 fill-current" />
           </a>
@@ -61,8 +49,10 @@
       </div>
     </nav>
 
+    <Sponsors />
+
     <main>
-      <div class="flex my-8">
+      <div class="flex my-4">
         <div class="hidden md:block md:w-1/4 pr-4 space-y-4">
           <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500">
             Available Commands
@@ -261,11 +251,6 @@ export default {
     },
     filterResults(value) {
       this.filter = value.trim()
-    },
-    sponsorClick() {
-      if (typeof window.fathom !== 'undefined') {
-        window.fathom.trackGoal('L3DZXKHP', 0)
-      }
     },
   },
 }

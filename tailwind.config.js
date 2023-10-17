@@ -15,7 +15,11 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      'hidden': ['dark'],
+      'block': ['dark'],
+      'display': ['dark'],
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }
