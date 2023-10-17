@@ -16,9 +16,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      'hidden': ['dark'],
-      'block': ['dark'],
-      'display': ['dark'],
+      hidden: ['dark'],
+      block: ['dark'],
+      display: ['dark'],
     },
   },
   plugins: [require('@tailwindcss/forms')],

@@ -7,11 +7,11 @@
     </div>
     <div class="flex items-center justify-center gap-8">
       <a
-      href="https://cachethq.io/?ref=artisan.page"
-      title="Cachet — The Open-Source Status Page System"
-      @click="sponsorClick"
-      target="_blank"
-      class="font-bold text-artisan hover:text-artisan-light"
+        href="https://cachethq.io/?ref=artisan.page"
+        title="Cachet — The Open-Source Status Page System"
+        @click="sponsorClick"
+        target="_blank"
+        class="font-bold text-artisan hover:text-artisan-light"
       >
         <img src="../static/cachet.svg" class="h-8 dark:hidden" />
         <img src="../static/cachet-dark.svg" class="h-8 hidden dark:block" />
@@ -22,9 +22,12 @@
         @click="sponsorClick"
         target="_blank"
         class="font-bold text-artisan hover:text-artisan-light"
-        >
+      >
         <img src="../static/checkmango.svg" class="h-8 dark:hidden" />
-        <img src="../static/checkmango-dark.svg" class="h-8 hidden dark:block" />
+        <img
+          src="../static/checkmango-dark.svg"
+          class="h-8 hidden dark:block"
+        />
       </a>
     </div>
   </article>
@@ -38,6 +41,6 @@ export default {
         window.fathom.trackGoal('L3DZXKHP', 0)
       }
     },
-  }
+  },
 }
 </script>
