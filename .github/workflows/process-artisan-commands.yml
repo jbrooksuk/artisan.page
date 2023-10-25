@@ -38,10 +38,14 @@ jobs:
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
       - name: Import packages
         id: set-packages
         run: |
-          packages=`cat manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+          packages=`cat $GITHUB_WORKSPACE/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
           echo $packages
           echo "packages=$packages" >> $GITHUB_OUTPUT
   generate:
@@ -53,7 +57,7 @@ jobs:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PHP, with Composer and extensions
         uses: shivammathur/setup-php@v2
