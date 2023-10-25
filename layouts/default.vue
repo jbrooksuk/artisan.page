@@ -7,15 +7,18 @@ useHead({
 
 useSeoMeta({
   title: 'Laravel Artisan Cheatsheet',
-  description: () => `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
+  description: () =>
+    `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
 
-  ogDescription: () => `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
+  ogDescription: () =>
+    `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
   ogImage: 'https://artisan.page/og.png',
   ogTitle: 'Laravel Artisan Cheatsheet',
   ogType: 'website',
 
   twitterCreator: '@jbrooksuk',
-  twitterDescription: () => `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
+  twitterDescription: () =>
+    `A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.`,
   twitterSite: '@jbrooksuk',
   twitterImage: 'https://artisan.page/og.png',
   twitterTitle: 'Laravel Artisan Cheatsheet',

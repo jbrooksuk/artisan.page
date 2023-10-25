@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   target: 'static',
 
   site: {
-    url: 'https://artisan.page'
+    url: 'https://artisan.page',
   },
 
   app: {
@@ -14,28 +14,32 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: 'https://artisan.page/favicon.ico' },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: 'https://artisan.page/favicon.ico',
+        },
         {
           rel: 'style',
           href: 'https://fonts.bunny.net/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap',
-        }
+        },
       ],
       script: [
         process.env.NODE_ENV === 'production' && {
           src: 'https://cdn.usefathom.com/script.js',
           'data-site': 'FMUFNTYW',
           'data-canonical': false,
-          defer: 'defer'
-        }
-      ]
-    }
+          defer: 'defer',
+        },
+      ],
+    },
   },
 
   postcss: {
     plugins: {
       tailwindcss: {},
-      autoprefixer: {}
-    }
+      autoprefixer: {},
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -51,7 +55,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/redirect-module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    'nuxt-simple-sitemap'
+    'nuxt-simple-sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -65,14 +69,14 @@ export default defineNuxtConfig({
       return laravelManifest.map(version => ({
         route: `/${version}/`,
         payload: {
-          version: version
-        }
+          version: version,
+        },
       }))
-    }
+    },
   },
 
   router: {
-    trailingSlash: true
+    trailingSlash: true,
   },
 
   sitemap: {
@@ -81,9 +85,9 @@ export default defineNuxtConfig({
         url: `/${version}/`,
         changefreq: 'weekly',
         priority: 1,
-        lastmodISO: new Date().toISOString()
+        lastmodISO: new Date().toISOString(),
       }))
-    }
+    },
   },
 
   colorMode: {
@@ -94,6 +98,6 @@ export default defineNuxtConfig({
     componentName: 'ColorScheme',
     classPrefix: '',
     classSuffix: '',
-    storageKey: 'nuxt-color-mode'
-  }
+    storageKey: 'nuxt-color-mode',
+  },
 })

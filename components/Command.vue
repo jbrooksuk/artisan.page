@@ -55,7 +55,8 @@
             <pre
               class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-gray-900 whitespace-pre-wrap dark:text-gray-300"
             >
-php artisan {{ command.synopsis }}</pre>
+php artisan {{ command.synopsis }}</pre
+            >
           </div>
           <div class="pr-8 flex-1 text-right">
             <button

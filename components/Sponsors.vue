@@ -14,7 +14,10 @@
         class="font-bold text-artisan hover:text-artisan-light"
       >
         <img src="~/assets/sponsors/cachet.svg" class="h-8 dark:hidden" />
-        <img src="~/assets/sponsors/cachet-dark.svg" class="h-8 hidden dark:block" />
+        <img
+          src="~/assets/sponsors/cachet-dark.svg"
+          class="h-8 hidden dark:block"
+        />
       </a>
       <a
         href="https://checkmango.com/?ref=artisan.page"
