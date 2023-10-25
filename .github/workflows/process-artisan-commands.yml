@@ -48,6 +48,7 @@ jobs:
           packages=`cat $GITHUB_WORKSPACE/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
           echo $packages
           echo "packages=$packages" >> $GITHUB_OUTPUT
+
   generate:
     needs: fetch_laravel_versions
     name: Laravel v${{ matrix.laravel.v }} - PHP ${{ matrix.laravel.php }}
@@ -72,7 +73,7 @@ jobs:
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
-          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
+          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.fetch_laravel_versions.outputs.packages).packages}}
         continue-on-error: true
 
       - name: Run Generator Command
