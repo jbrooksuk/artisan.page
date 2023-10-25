@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   target: 'static',
 
   site: {
-    url: 'https://artisan.page'
+    url: 'https://artisan.page',
   },
 
   app: {
