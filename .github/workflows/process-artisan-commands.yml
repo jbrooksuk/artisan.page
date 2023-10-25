@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.fetch_versions.outputs.matrix }}
+      packages: ${{ steps.set-packages.outputs.packages }}
     steps:
       - name: Get versions from Packagist
         id: fetch_versions
@@ -37,6 +38,17 @@ jobs:
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Import packages
+        id: set-packages
+        run: |
+          packages=`cat $GITHUB_WORKSPACE/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+          echo $packages
+          echo "packages=$packages" >> $GITHUB_OUTPUT
+
   generate:
     needs: fetch_laravel_versions
     name: Laravel v${{ matrix.laravel.v }} - PHP ${{ matrix.laravel.php }}
@@ -46,14 +58,9 @@ jobs:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up git user
-        run: |
-          git config --global user.name ${GITHUB_ACTOR}
-          git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-
-      - name: Setup PHP, with Composer and extensions
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.laravel.php }}
@@ -63,27 +70,20 @@ jobs:
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
+      - name: Install Laravel Packages
+        run: |
+          cd /tmp/laravel
+          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.fetch_laravel_versions.outputs.packages).packages}}
+        continue-on-error: true
+
       - name: Run Generator Command
         run: |
           cd /tmp/laravel
           cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
+          cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
-      - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
-        run: |
-          n=0
-          until [ "$n" -ge 10 ]
-          do
-            git fetch --all
-            git reset --hard HEAD
-            git clean -f -d
-            git pull || true
-            cp /tmp/${{ matrix.laravel.v }}.x.json ./assets/
-            git add -A || true
-            git commit -am 'Build Laravel version v${{ matrix.laravel.v }}' || true
-            git push --force && break
-            n=$((n+1))
-            sleep 15
-          done
-        env:
-          matrix: ${{ needs.fetch_laravel_versions.outputs.matrix }}
-        continue-on-error: true
+      - name: Commit Laravel Version
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Build Laravel version v${{ matrix.laravel.v }}
+          file_pattern: assets/${{ matrix.laravel.v }}.x.json
