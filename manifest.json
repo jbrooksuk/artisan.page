@@ -9,7 +9,6 @@
     "laravel/fortify",
     "laravel/horizon",
     "laravel/jetstream",
-    "laravel/pail",
     "laravel/passport",
     "laravel/sail",
     "laravel/sanctum",
