@@ -1,8 +1,9 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./components/*.vue', './layouts/*.vue', './pages/*.vue'],
   darkMode: 'class',
+  content: ['./components/*.vue', './layouts/*.vue', './pages/*.vue'],
   theme: {
     extend: {
       fontFamily: {
@@ -12,13 +13,6 @@ module.exports = {
         artisan: '#BB2926',
         'artisan-light': '#F26763',
       },
-    },
-  },
-  variants: {
-    extend: {
-      hidden: ['dark'],
-      block: ['dark'],
-      display: ['dark'],
     },
   },
   plugins: [require('@tailwindcss/forms')],

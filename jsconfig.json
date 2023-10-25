@@ -1,8 +1,8 @@
 {
     "include": [
-      "./components/*"
-      "./layouts/*"
-      "./pages/*"
+      "./components/*",
+      "./layouts/*",
+      "./pages/*",
       "./plugins/*"
     ],
     "compilerOptions": {

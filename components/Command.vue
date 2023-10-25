@@ -5,7 +5,7 @@
       class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
     >
       <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
-        <div class="bg-black bg-opacity-40 p-4 px-8">
+        <div class="bg-red-700 bg-opacity-40 p-4 px-8">
           <h2 class="text-lg font-bold text-white dark:text-gray-300">
             <a :href="`#${slug}`">{{ command.name }}</a>
           </h2>
@@ -55,7 +55,7 @@
             <pre
               class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-gray-900 whitespace-pre-wrap dark:text-gray-300"
             >
-  php artisan {{ command.synopsis }}</pre
+php artisan {{ command.synopsis }}</pre
             >
           </div>
           <div class="pr-8 flex-1 text-right">
@@ -108,7 +108,7 @@
 
 <script>
 export default {
-  props: ['command'],
+  props: ['version', 'command'],
   data() {
     return {
       keyboardUsed: false,
@@ -147,19 +147,6 @@ export default {
 </script>
 
 <style>
-.bg-opacity-40 {
-  --bg-opacity: 0.4;
-}
-
-.py-0\.5 {
-  padding: 0.125rem;
-}
-
-.px-2\.5 {
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
-}
-
 a[id].anchor {
   position: relative;
   display: block;
