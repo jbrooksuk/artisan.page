@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  site: {
+    url: 'https://artisan.page'
+  },
+
   app: {
     head: {
       charset: 'utf-8',
@@ -46,8 +50,8 @@ export default defineNuxtConfig({
     // '@nuxtjs/axios',
     // '@nuxtjs/redirect-module',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode'
-    // '@nuxtjs/sitemap'
+    '@nuxtjs/color-mode',
+    'nuxt-simple-sitemap'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -72,14 +76,14 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    hostname: 'https://artisan.page',
-    gzip: true,
-    routes: [
-      '/6.x',
-      '/7.x',
-      '/8.x',
-      '/9.x'
-    ]
+    urls: async () => {
+      return laravelManifest.map(version => ({
+        url: `/${version}/`,
+        changefreq: 'weekly',
+        priority: 1,
+        lastmodISO: new Date().toISOString()
+      }))
+    }
   },
 
   colorMode: {
