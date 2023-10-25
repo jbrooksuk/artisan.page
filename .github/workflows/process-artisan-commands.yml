@@ -80,37 +80,10 @@ jobs:
         run: |
           cd /tmp/laravel
           cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
+          cp /tmp/${{ matrix.laravel.v }}.x.json ./assets/
 
-      - name: Set up Git User
-        run: |
-          git config --global user.name ${GITHUB_ACTOR}
-          git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-
-      - name: Commit Laravel Command Files
-        run: |
-          n=0
-          until [ "$n" -ge 10 ]
-          do
-            git fetch --all
-            git reset --hard HEAD
-            git clean -f -d
-            git pull || true
-            cp /tmp/${{ matrix.laravel.v }}.x.json ./assets/
-            git add -A || true
-            git commit -am 'Build Laravel version v${{ matrix.laravel.v }}' || true
-            git push --force && break
-            n=$((n+1))
-            sleep 15
-          done
-        env:
-          matrix: ${{ needs.fetch_laravel_versions.outputs.matrix }}
-        continue-on-error: true
-
-      - name: Store artifacts
-        uses: actions/upload-artifact@v3
-        env:
-          matrix: ${{ needs.fetch_laravel_versions.outputs.matrix }}
+      - name: Commit compiled files
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: Command File
-          path: |
-            /tmp/${{ matrix.laravel.v }}.x.json
+          commit_message: Build Laravel version v${{ matrix.laravel.v }}
+          file_pattern: assets/${{ matrix.laravel.v }}.x.json
