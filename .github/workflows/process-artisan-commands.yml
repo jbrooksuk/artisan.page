@@ -41,9 +41,9 @@ jobs:
       - name: Import packages
         id: set-packages
         run: |
-          packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+          packages=`cat ${{ GITHUB_WORKSPACE }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
           echo $packages
-          echo "::set-output name=packages::$packages"
+          echo "packages=$packages" >> $GITHUB_OUTPUT
   generate:
     needs: fetch_laravel_versions
     name: Laravel v${{ matrix.laravel.v }} - PHP ${{ matrix.laravel.php }}
@@ -70,7 +70,7 @@ jobs:
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
-      - name: Install Laravel packages
+      - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
           composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
@@ -81,7 +81,7 @@ jobs:
           cd /tmp/laravel
           cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
 
-      - name: Commit comand files if needed #it fails if nothing has changed so we allow an error
+      - name: Commit Laravel Command Files
         run: |
           n=0
           until [ "$n" -ge 10 ]
