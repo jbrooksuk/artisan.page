@@ -30,7 +30,7 @@ jobs:
           # Output the JSON to the step output
           curl -s https://packagist.org/packages/laravel/laravel.json \
           | jq -r '.package.versions[] | select(.require.php != null) | select(.version_normalized != null) | .version_normalized, .require.php' \
-          | sed -e '/dev/,+1d' -e 's/[^|]*|//' -e 's/[^0-9]*//' \
+          | sed -e '/dev/,+1d' -e '1~2 s/\..*//' -e '2~2 s/[^|]*|//' -e 's/[^0-9]*//' \
           | cut -f1,2 -d'.' \
           | awk 'NR%2{printf "%s ",$0;next;}1' \
           | sort -Vru -k1,1 \
