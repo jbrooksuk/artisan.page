@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   target: 'static',
 
   site: {
-    url: 'https://artisan.page',
+    url: 'https://artisan.page'
   },
 
   app: {
@@ -39,6 +39,7 @@ export default defineNuxtConfig({
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
+      'tailwindcss/nesting': {},
     },
   },
 

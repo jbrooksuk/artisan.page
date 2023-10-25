@@ -1,55 +1,10 @@
 <template>
   <div>
-    <nav>
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex gap-x-2 items-center">
-          <div class="flex-1 w-full">
-            <label for="current-version" class="sr-only">Laravel Version</label>
-            <select
-              name="current-version"
-              id="current-version"
-              v-model="currentVersion"
-              class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-700"
-            >
-              <option
-                v-for="version in manifest.laravel"
-                :value="version"
-                :key="version"
-              >
-                Laravel {{ version }}
-              </option>
-            </select>
-          </div>
-          <div>
-            <ThemePicker />
-          </div>
-        </div>
-
-        <div class="flex-1 w-full">
-          <Search :model-value="filter" @update:modelValue="filterResults" />
-        </div>
-
-        <div class="space-x-2 hidden md:flex">
-          <a
-            href="https://x.com/jbrooksuk"
-            class="text-artisan hover:text-artisan-light"
-            title="Follow @jbrooksuk on Twitter"
-          >
-            <TwitterIcon class="h-6 w-6 fill-current" />
-          </a>
-
-          <a
-            href="https://github.com/jbrooksuk/artisan.page"
-            class="text-artisan hover:text-artisan-light"
-            title="See on GitHub"
-          >
-            <GitHubIcon class="h-6 w-6 fill-current" />
-          </a>
-        </div>
+    <div class="flex justify-center">
+      <div class="w-2/3">
+        <Search :model-value="filter" @update:modelValue="filterResults" />
       </div>
-    </nav>
-
-    <Sponsors />
+    </div>
 
     <main>
       <div class="flex my-4">
@@ -134,11 +89,8 @@
 
 <script>
 import manifest from '../manifest.json'
-import TwitterIcon from '~/components/Icons/TwitterIcon.vue'
-import GitHubIcon from '~/components/Icons/GitHubIcon.vue'
 
 export default {
-  components: { GitHubIcon, TwitterIcon },
   props: {
     version: {
       type: String,
@@ -164,29 +116,6 @@ export default {
     document.addEventListener('scroll', this.handleScroll)
   },
   watch: {
-    currentVersion(newVersion, oldVersion) {
-      if (newVersion && !manifest.laravel.includes(newVersion)) {
-        this.$nuxt.error({
-          statusCode: 404,
-          message: `Laravel version ${newVersion} not found.`,
-        })
-      }
-
-      if (oldVersion === null) {
-        return
-      }
-
-      if (newVersion !== oldVersion) {
-        if (typeof window.fathom !== 'undefined') {
-          window.fathom.trackGoal('QUL7QUJP', 0)
-        }
-
-        this.$router.push({
-          path: `/${newVersion}/`,
-          hash: window.location.hash,
-        })
-      }
-    },
     commandData() {
       window.location.hash &&
         this.$nextTick(() => {

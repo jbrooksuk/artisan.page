@@ -2,12 +2,12 @@
   <div>
     <a :id="slug" class="anchor"></a>
     <div
-      class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
+      class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-600"
     >
       <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
         <div class="bg-red-700 bg-opacity-40 p-4 px-8">
           <h2 class="text-lg font-bold text-white dark:text-gray-300">
-            <a :href="`#${slug}`">{{ command.name }}</a>
+            <NuxtLink :href="`/${version}/${slug}`">{{ command.name }}</NuxtLink>
           </h2>
           <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
             {{ command.description }}
@@ -48,7 +48,7 @@
       </div>
 
       <div
-        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-400 dark:bg-opacity-40"
+        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-700"
       >
         <div class="flex items-center">
           <div class="flex-initial">

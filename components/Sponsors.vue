@@ -1,5 +1,5 @@
 <template>
-  <article class="mb-8 mt-4">
+  <article class="my-4">
     <div class="text-center mb-2">
       <p class="text-gray-700 dark:text-gray-300 text-sm font-bold">
         Sponsored by
