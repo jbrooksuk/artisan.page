@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.fetch_versions.outputs.matrix }}
+      packages: ${{ steps.set-packages.outputs.packages }}
     steps:
       - name: Get versions from Packagist
         id: fetch_versions
@@ -37,6 +38,12 @@ jobs:
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
+      - name: Import packages
+        id: set-packages
+        run: |
+          packages=`cat ${{ github.workspace }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+          echo $packages
+          echo "::set-output name=packages::$packages"
   generate:
     needs: fetch_laravel_versions
     name: Laravel v${{ matrix.laravel.v }} - PHP ${{ matrix.laravel.php }}
@@ -62,6 +69,12 @@ jobs:
 
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
+
+      - name: Install Laravel packages
+        run: |
+          cd /tmp/laravel
+          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.prepare.outputs.packages).packages}}
+        continue-on-error: true
 
       - name: Run Generator Command
         run: |

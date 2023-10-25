@@ -1,4 +1,20 @@
 {
   "laravel": ["10.x", "9.x", "8.x", "7.x", "6.x"],
-  "packages": []
+  "packages": [
+    "laravel/breeze",
+    "laravel/cashier",
+    "laravel/cashier-paddle",
+    "laravel/dusk",
+    "laravel/envoy",
+    "laravel/fortify",
+    "laravel/horizon",
+    "laravel/jetstream",
+    "laravel/pail",
+    "laravel/passport",
+    "laravel/sail",
+    "laravel/sanctum",
+    "laravel/scout",
+    "laravel/socialite",
+    "laravel/telescope"
+  ]
 }
