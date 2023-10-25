@@ -1,3 +1,12 @@
+<script setup>
+import { laravel } from '~/manifest.json'
+
+useHead({
+  title: laravel[0],
+  titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+})
+</script>
+
 <template>
   <div class="flex flex-col min-h-screen">
     <Header />

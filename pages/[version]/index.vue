@@ -3,6 +3,7 @@ const version = useRoute().params.version
 
 useHead({
   title: version,
+  titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
 })
 </script>
 

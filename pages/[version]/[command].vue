@@ -13,6 +13,11 @@ const pages = computed(() => [
     current: true,
   },
 ])
+
+useHead({
+  title: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  titleTemplate: null,
+})
 </script>
 
 <template>
