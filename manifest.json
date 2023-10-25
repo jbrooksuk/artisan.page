@@ -10,6 +10,8 @@
     "laravel/horizon",
     "laravel/jetstream",
     "laravel/passport",
+    "laravel/pennant",
+    "laravel/octane",
     "laravel/sail",
     "laravel/sanctum",
     "laravel/scout",
