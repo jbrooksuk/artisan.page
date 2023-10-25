@@ -74,7 +74,6 @@ jobs:
         run: |
           cd /tmp/laravel
           composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.fetch_laravel_versions.outputs.packages).packages}}
-        continue-on-error: true
 
       - name: Run Generator Command
         run: |
