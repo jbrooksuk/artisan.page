@@ -55,9 +55,9 @@
       <div class="flex my-4">
         <div class="hidden md:block md:w-1/4 pr-4 space-y-4">
           <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500">
-            Available Commands
+            Commands
             <span class="text-xs text-gray-500 dark:text-gray-200">
-              ({{ this.data.length }})
+              ({{ commandData.length }})
             </span>
           </h2>
 
@@ -83,7 +83,7 @@
 
         <div class="w-full">
           <div class="space-y-8">
-            <div v-if="!data.length">
+            <div v-if="!commandData.length">
               <div
                 class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center dark:bg-gray-800"
               >
@@ -92,7 +92,7 @@
                 </p>
               </div>
             </div>
-            <div v-else-if="commands.length == 0">
+            <div v-else-if="commands.length === 0">
               <div
                 class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
               >
@@ -114,6 +114,7 @@
               v-for="command in commands"
               :key="command.name"
               :command="command"
+              :version="currentVersion"
             />
           </div>
         </div>
@@ -148,7 +149,7 @@ export default {
       showBackToTop: false,
       manifest: manifest,
       currentVersion: null,
-      data: [],
+      commandData: [],
       filter: '',
     }
   },
@@ -186,7 +187,7 @@ export default {
         })
       }
     },
-    data() {
+    commandData() {
       window.location.hash &&
         this.$nextTick(() => {
           document.querySelector(window.location.hash).scrollIntoView({
@@ -203,7 +204,7 @@ export default {
         return Object.values(this.commandLinks).flat()
       }
 
-      return this.data.filter(command => {
+      return this.commandData.filter(command => {
         if (
           command.name.toLowerCase().includes(keyword) ||
           command.synopsis.toLowerCase().includes(keyword) ||
@@ -216,7 +217,7 @@ export default {
     commandLinks() {
       let commandLinks = {}
 
-      this.data.forEach(command => {
+      this.commandData.forEach(command => {
         const groupName = command.name.includes(':')
           ? command.name.split(':')[0]
           : ''
@@ -237,8 +238,8 @@ export default {
   },
   methods: {
     async loadData(version) {
-      const data = await import(`../assets/${version}.json`)
-      this.data = data.default
+      const commandData = await import(`../assets/${version}.json`)
+      this.commandData = commandData.default
     },
     handleScroll() {
       const rootElement = document.documentElement

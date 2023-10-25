@@ -2,7 +2,7 @@
   <article class="mb-8 mt-4">
     <div class="text-center mb-2">
       <p class="text-gray-700 dark:text-gray-300 text-sm font-bold">
-        Proudly sponsored by
+        Sponsored by
       </p>
     </div>
     <div class="flex items-center justify-center gap-8">
@@ -13,8 +13,8 @@
         target="_blank"
         class="font-bold text-artisan hover:text-artisan-light"
       >
-        <img src="../static/cachet.svg" class="h-8 dark:hidden" />
-        <img src="../static/cachet-dark.svg" class="h-8 hidden dark:block" />
+        <img src="~/assets/sponsors/cachet.svg" class="h-8 dark:hidden" />
+        <img src="~/assets/sponsors/cachet-dark.svg" class="h-8 hidden dark:block" />
       </a>
       <a
         href="https://checkmango.com/?ref=artisan.page"
@@ -23,9 +23,9 @@
         target="_blank"
         class="font-bold text-artisan hover:text-artisan-light"
       >
-        <img src="../static/checkmango.svg" class="h-8 dark:hidden" />
+        <img src="~/assets/sponsors/checkmango.svg" class="h-8 dark:hidden" />
         <img
-          src="../static/checkmango-dark.svg"
+          src="~/assets/sponsors/checkmango-dark.svg"
           class="h-8 hidden dark:block"
         />
       </a>
