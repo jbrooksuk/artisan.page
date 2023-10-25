@@ -41,7 +41,7 @@ jobs:
       - name: Import packages
         id: set-packages
         run: |
-          packages=`cat ${{ GITHUB_WORKSPACE }}/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
+          packages=`cat $GITHUB_WORKSPACE/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
           echo $packages
           echo "packages=$packages" >> $GITHUB_OUTPUT
   generate:
