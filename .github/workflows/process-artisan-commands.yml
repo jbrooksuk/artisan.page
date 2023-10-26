@@ -25,7 +25,6 @@ jobs:
           # Convert to JSON e.g {v: "8", php: ">=7.3.0"}
           # Extract the versions and their PHP requirements
           # Remove duplicate lines based on the first column
-          # Remove v5.x versions as the putput breaks
           # Get major v only, dedupe, and combine on one line
           # Output the JSON to the step output
           curl -s https://packagist.org/packages/laravel/laravel.json \
@@ -34,7 +33,6 @@ jobs:
           | cut -f1,2 -d'.' \
           | awk 'NR%2{printf "%s ",$0;next;}1' \
           | sort -Vru -k1,1 \
-          | sed '/^5 /d' \
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
@@ -79,11 +77,11 @@ jobs:
       - name: Run Generator Command
         run: |
           cd /tmp/laravel
-          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
+          cp ${{ github.workspace }}/build.php /tmp/laravel/ | php -f /tmp/laravel/build.php > /tmp/${{ matrix.laravel.v }}.x.json
           cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
       - name: Sync Git Changes
-        run: git pull # can be run safely as only .x.json files are changed
+        run: git pull || true # can be run safely as only .x.json files are changed
 
       - name: Commit Laravel Version
         uses: stefanzweifel/git-auto-commit-action@v5
