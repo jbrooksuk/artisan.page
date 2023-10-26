@@ -2,6 +2,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
+use Illuminate\Support\Facades\Artisan;
+
 $commands = Artisan::all();
 
 echo collect($commands)->sortBy(function ($command) {
