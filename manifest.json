@@ -1,5 +1,5 @@
 {
-  "laravel": ["10.x", "9.x", "8.x", "7.x", "6.x"],
+  "laravel": ["10.x", "9.x", "8.x", "7.x", "6.x", "5.x"],
   "packages": [
     "laravel/breeze",
     "laravel/cashier",
