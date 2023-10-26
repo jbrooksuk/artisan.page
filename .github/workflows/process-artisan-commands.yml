@@ -77,7 +77,7 @@ jobs:
       - name: Run Generator Command
         run: |
           cd /tmp/laravel
-          cat ${{ github.workspace }}/build | php artisan tinker > /tmp/${{ matrix.laravel.v }}.x.json | true
+          cp ${{ github.workspace }}/build.php /tmp/laravel/ | php -f /tmp/laravel/build.php > /tmp/${{ matrix.laravel.v }}.x.json
           cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
       - name: Sync Git Changes

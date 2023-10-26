@@ -1,3 +1,7 @@
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
 $commands = Artisan::all();
 
 echo collect($commands)->sortBy(function ($command) {
