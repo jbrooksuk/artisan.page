@@ -16,6 +16,8 @@
     "laravel/sanctum",
     "laravel/scout",
     "laravel/socialite",
-    "laravel/telescope"
+    "laravel/telescope",
+    "livewire/livewire",
+    "inertiajs/inertia-laravel"
   ]
 }
