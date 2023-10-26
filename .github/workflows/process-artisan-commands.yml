@@ -81,7 +81,7 @@ jobs:
           cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
       - name: Sync Git Changes
-        run: git pull # can be run safely as only .x.json files are changed
+        run: git pull || true # can be run safely as only .x.json files are changed
 
       - name: Commit Laravel Version
         uses: stefanzweifel/git-auto-commit-action@v5
