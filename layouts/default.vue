@@ -22,6 +22,7 @@ useSeoMeta({
   twitterSite: '@jbrooksuk',
   twitterImage: 'https://artisan.page/og.png',
   twitterTitle: 'Laravel Artisan Cheatsheet',
+  twitterCard: 'summary_large_image',
 })
 </script>
 
