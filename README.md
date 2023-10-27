@@ -1,10 +1,15 @@
-# [artisan.page](https://artisan.page)
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/img/logo-dark.svg">
+    <img src="assets/img/logo.svg" alt="Laravel Artisan Cheatsheet" />
+  </picture>
+</p>
 
-A bookmarkable, searchable cheatsheet for all of Laravel's default Artisan commands.
+A bookmarkable, searchable cheatsheet for [Laravel's](https://laravel.com) Artisan commands.
 
 ## Generation
 
-The generation of the manifest files is done via the `build` script.
+The generation of the manifest files is done via the `build.php` script.
 
 ## Build Setup
 
