@@ -1,72 +1,18 @@
 <template>
   <div>
-    <nav>
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex gap-x-2 items-center">
-          <div class="flex-1 w-full">
-            <label for="current-version" class="sr-only">Laravel Version</label>
-            <select
-              name="current-version"
-              id="current-version"
-              v-model="currentVersion"
-              class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 dark:bg-gray-800 dark:text-gray-300 dark:ring-gray-700"
-            >
-              <option
-                v-for="version in manifest.laravel"
-                :value="version"
-                :key="version"
-              >
-                Laravel {{ version }}
-              </option>
-            </select>
-          </div>
-          <div>
-            <ThemePicker />
-          </div>
-        </div>
-
-        <div class="flex-1 w-full">
-          <Search :model-value="filter" @update:modelValue="filterResults" />
-        </div>
-
-        <span
-          class="font-semibold font-heading text-gray-900 dark:text-gray-500"
-          >Sponsored by
-          <a
-            href="https://checkmango.com/?ref=artisan.page"
-            target="_blank"
-            class="font-bold text-artisan hover:text-artisan-light"
-            >Checkmango
-          </a>
-        </span>
-
-        <div class="space-x-2 hidden md:flex">
-          <a
-            href="https://twitter.com/jbrooksuk"
-            class="text-artisan hover:text-artisan-light"
-            title="Follow @jbrooksuk on Twitter"
-          >
-            <TwitterIcon class="h-6 w-6 fill-current" />
-          </a>
-
-          <a
-            href="https://github.com/jbrooksuk/artisan.page"
-            class="text-artisan hover:text-artisan-light"
-            title="GitHub Project"
-          >
-            <GitHubIcon class="h-6 w-6 fill-current" />
-          </a>
-        </div>
+    <div class="flex justify-center">
+      <div class="w-2/3">
+        <Search :model-value="filter" @update:modelValue="filterResults" />
       </div>
-    </nav>
+    </div>
 
     <main>
-      <div class="flex my-8">
+      <div class="flex my-4">
         <div class="hidden sticky top-0 overflow-scroll h-screen md:block md:w-1/4 pr-4 space-y-4">
           <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500">
-            Available Commands
+            Commands
             <span class="text-xs text-gray-500 dark:text-gray-200">
-              ({{ this.data.length }})
+              ({{ commandData.length }})
             </span>
           </h2>
 
@@ -92,7 +38,7 @@
 
         <div class="w-full">
           <div class="space-y-8">
-            <div v-if="!data.length">
+            <div v-if="!commandData.length">
               <div
                 class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center dark:bg-gray-800"
               >
@@ -101,7 +47,7 @@
                 </p>
               </div>
             </div>
-            <div v-else-if="commands.length == 0">
+            <div v-else-if="commands.length === 0">
               <div
                 class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
               >
@@ -123,6 +69,7 @@
               v-for="command in commands"
               :key="command.name"
               :command="command"
+              :version="currentVersion"
             />
           </div>
         </div>
@@ -142,11 +89,8 @@
 
 <script>
 import manifest from '../manifest.json'
-import TwitterIcon from '~/components/Icons/TwitterIcon.vue'
-import GitHubIcon from '~/components/Icons/GitHubIcon.vue'
 
 export default {
-  components: { GitHubIcon, TwitterIcon },
   props: {
     version: {
       type: String,
@@ -157,7 +101,7 @@ export default {
       showBackToTop: false,
       manifest: manifest,
       currentVersion: null,
-      data: [],
+      commandData: [],
       filter: '',
     }
   },
@@ -172,30 +116,7 @@ export default {
     document.addEventListener('scroll', this.handleScroll)
   },
   watch: {
-    currentVersion(newVersion, oldVersion) {
-      if (newVersion && !manifest.laravel.includes(newVersion)) {
-        this.$nuxt.error({
-          statusCode: 404,
-          message: `Laravel version ${newVersion} not found.`,
-        })
-      }
-
-      if (oldVersion === null) {
-        return
-      }
-
-      if (newVersion !== oldVersion) {
-        if (typeof window.fathom !== 'undefined') {
-          window.fathom.trackGoal('QUL7QUJP', 0)
-        }
-
-        this.$router.push({
-          path: `/${newVersion}/`,
-          hash: window.location.hash,
-        })
-      }
-    },
-    data() {
+    commandData() {
       window.location.hash &&
         this.$nextTick(() => {
           document.querySelector(window.location.hash).scrollIntoView({
@@ -212,7 +133,7 @@ export default {
         return Object.values(this.commandLinks).flat()
       }
 
-      return this.data.filter(command => {
+      return this.commandData.filter(command => {
         if (
           command.name.toLowerCase().includes(keyword) ||
           command.synopsis.toLowerCase().includes(keyword) ||
@@ -225,7 +146,7 @@ export default {
     commandLinks() {
       let commandLinks = {}
 
-      this.data.forEach(command => {
+      this.commandData.forEach(command => {
         const groupName = command.name.includes(':')
           ? command.name.split(':')[0]
           : ''
@@ -246,8 +167,8 @@ export default {
   },
   methods: {
     async loadData(version) {
-      const data = await import(`../assets/${version}.json`)
-      this.data = data.default
+      const commandData = await import(`../assets/${version}.json`)
+      this.commandData = commandData.default
     },
     handleScroll() {
       const rootElement = document.documentElement

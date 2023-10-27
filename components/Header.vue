@@ -1,6 +1,6 @@
 <template>
   <div
-    class="md:flex md:items-center md:justify-between md:space-x-5 bg-gray-50 dark:bg-gray-900 py-4 px-12 border-b border-white dark:border-gray-700 dark:text-gray-400"
+    class="md:flex md:items-center md:justify-between md:space-x-5 bg-gray-100 dark:bg-gray-900 py-4 px-12 dark:text-gray-400"
   >
     <div class="flex flex-col items-center justify-center w-full">
       <div class="relative">

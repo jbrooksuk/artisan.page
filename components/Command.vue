@@ -2,12 +2,14 @@
   <div>
     <a :id="slug" class="anchor"></a>
     <div
-      class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
+      class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-600"
     >
       <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
-        <div class="bg-black bg-opacity-40 p-4 px-8">
+        <div class="bg-red-700 bg-opacity-40 p-4 px-8">
           <h2 class="text-lg font-bold text-white dark:text-gray-300">
-            <a :href="`#${slug}`">{{ command.name }}</a>
+            <NuxtLink :href="`/${version}/${slug}`">{{
+              command.name
+            }}</NuxtLink>
           </h2>
           <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
             {{ command.description }}
@@ -48,14 +50,14 @@
       </div>
 
       <div
-        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-400 dark:bg-opacity-40"
+        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-700"
       >
         <div class="flex items-center">
           <div class="flex-initial">
             <pre
               class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-gray-900 whitespace-pre-wrap dark:text-gray-300"
             >
-  php artisan {{ command.synopsis }}</pre
+php artisan {{ command.synopsis }}</pre
             >
           </div>
           <div class="pr-8 flex-1 text-right">
@@ -108,7 +110,7 @@
 
 <script>
 export default {
-  props: ['command'],
+  props: ['version', 'command'],
   data() {
     return {
       keyboardUsed: false,
@@ -147,19 +149,6 @@ export default {
 </script>
 
 <style>
-.bg-opacity-40 {
-  --bg-opacity: 0.4;
-}
-
-.py-0\.5 {
-  padding: 0.125rem;
-}
-
-.px-2\.5 {
-  padding-left: 0.625rem;
-  padding-right: 0.625rem;
-}
-
 a[id].anchor {
   position: relative;
   display: block;
