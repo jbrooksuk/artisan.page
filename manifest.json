@@ -11,6 +11,7 @@
     "laravel/jetstream",
     "laravel/passport",
     "laravel/pennant",
+    "laravel/nova",
     "laravel/octane",
     "laravel/sail",
     "laravel/sanctum",
