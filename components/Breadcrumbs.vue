@@ -45,7 +45,7 @@ defineProps({
       </li>
     </ol>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8">
       <div class="gap-4 flex">
         <a
           href="https://x.com/jbrooksuk"
