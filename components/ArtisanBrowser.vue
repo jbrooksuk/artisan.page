@@ -8,15 +8,15 @@
 
     <main>
       <div class="flex my-4">
-        <div class="hidden sticky top-0 overflow-scroll h-screen md:block md:w-1/4 pr-4 space-y-4">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500">
+        <div class="hidden sticky top-0 overflow-scroll h-screen md:block md:w-1/4 pr-4 space-y-4 scroll-mr-2 snap-y snap-start">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500 snap-start">
             Commands
             <span class="text-xs text-gray-500 dark:text-gray-200">
               ({{ commandData.length }})
             </span>
           </h2>
 
-          <div v-for="(group, groupName) in commandLinks" :key="groupName">
+          <div v-for="(group, groupName) in commandLinks" :key="groupName" class="snap-start">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-500">
               {{ groupName }}
               <span
@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <div class="w-full">
+        <div class="w-full pr-0 md:pl-8">
           <div class="space-y-8">
             <div v-if="!commandData.length">
               <div
