@@ -70,7 +70,8 @@ jobs:
 
       - name: Add Laravel Nova Repository
         run: |
-          composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}'
+          cd /tmp/laravel
+          composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}' --file composer.json
 
       - name: Install Laravel Packages
         run: |
