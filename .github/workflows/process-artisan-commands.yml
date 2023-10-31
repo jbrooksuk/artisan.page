@@ -68,6 +68,10 @@ jobs:
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
+      - name: Add Laravel Nova Repository
+        run: |
+          composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}' --file composer.json
+
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
