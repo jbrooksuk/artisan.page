@@ -9,6 +9,12 @@
       "email": "email@example.com"
     }
   ],
+  "repositories": {
+    "nova": {
+      "type": "composer",
+      "url": "https://nova.laravel.com"
+    }
+  },
   "require": {
   }
 }
