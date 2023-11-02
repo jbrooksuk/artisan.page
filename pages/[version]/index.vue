@@ -1,9 +1,16 @@
 <script setup>
-const version = useRoute().params.version
+const route = useRoute()
+const version = route.params.version
 
 useHead({
   title: version,
   titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://artisan.page${route.path}/`,
+    },
+  ],
 })
 </script>
 

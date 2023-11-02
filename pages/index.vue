@@ -1,9 +1,16 @@
 <script setup>
 import { laravel } from '~/manifest.json'
+const route = useRoute()
 
 useHead({
   title: laravel[0],
   titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://artisan.page${route.path}`,
+    },
+  ],
 })
 </script>
 
