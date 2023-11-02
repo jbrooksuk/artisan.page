@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import manifest from '../manifest.json'
+import { laravel } from '../manifest.json'
 
 export default {
   props: {
@@ -99,14 +99,13 @@ export default {
   data() {
     return {
       showBackToTop: false,
-      manifest: manifest,
       currentVersion: null,
       commandData: [],
       filter: '',
     }
   },
   created() {
-    this.currentVersion = this.version || manifest['laravel'][0]
+    this.currentVersion = this.version || laravel[0]
     this.loadData(this.currentVersion)
   },
   mounted() {
@@ -167,8 +166,8 @@ export default {
   },
   methods: {
     async loadData(version) {
-      const commandData = await import(`../assets/${version}.json`)
-      this.commandData = commandData.default
+      const commands = await import(`../assets/${version}.json`)
+      this.commandData = commands.default
     },
     handleScroll() {
       const rootElement = document.documentElement

@@ -1,5 +1,5 @@
-import manifest from '../../manifest.json'
+import { laravel } from '../../manifest.json'
 
 export default defineEventHandler((event) => {
-  return manifest.laravel
+  return laravel
 })

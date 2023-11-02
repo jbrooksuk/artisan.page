@@ -1,8 +1,8 @@
 <script setup>
-import manifest from '../manifest.json'
+import { laravel } from '../manifest.json'
 
 useHead({
-  title: manifest.laravel[0],
+  title: laravel[0],
 })
 
 useSeoMeta({

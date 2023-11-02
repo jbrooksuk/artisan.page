@@ -1,14 +1,14 @@
-import manifest from '../../manifest.json'
+import { laravel } from '../../manifest.json'
 import fs from 'node:fs'
 import { sendStream } from 'h3'
 
 export default defineEventHandler((event) => {
   const version = getRouterParam(event, 'version')
 
-  if (!manifest.laravel.includes(version)) {
+  if (!laravel.includes(version)) {
     throw createError({
       statusCode: 404,
-      statusMessage: 'Version does not exist. Versions available: ' + manifest.laravel.join(', '),
+      statusMessage: 'Version does not exist. Versions available: ' + laravel.join(', '),
     })
   }
 

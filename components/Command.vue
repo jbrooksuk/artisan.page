@@ -7,7 +7,7 @@
       <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
         <div class="bg-red-700 bg-opacity-40 p-4 px-8">
           <h2 class="text-lg font-bold text-white dark:text-gray-300">
-            <NuxtLink :href="`/${version}/${slug}`">{{
+            <NuxtLink :to="`/${version}/${slug}`">{{
               command.name
             }}</NuxtLink>
           </h2>
