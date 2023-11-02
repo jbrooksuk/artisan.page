@@ -25,6 +25,14 @@ useHead({
     },
   ],
 })
+
+useSeoMeta({
+  description: `php artisan ${command.name} - ${command.description}`,
+  ogTitle: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  ogDescription: `php artisan ${command.name} - ${command.description}`,
+  twitterTitle: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  twitterDescription: `php artisan ${command.name} - ${command.description}`,
+})
 </script>
 
 <template>
