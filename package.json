@@ -9,6 +9,7 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
+    "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.0.18",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
