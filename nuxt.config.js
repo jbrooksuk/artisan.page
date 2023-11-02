@@ -80,16 +80,6 @@ export default defineNuxtConfig({
     trailingSlash: true,
   },
 
-  sitemap: {
-    urls: async () => {
-      return laravelManifest.map(version => ({
-        url: `/${version}/`,
-        changefreq: 'weekly',
-        priority: 1,
-      }))
-    },
-  },
-
   colorMode: {
     preference: 'system',
     fallback: 'light',
