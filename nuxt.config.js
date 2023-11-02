@@ -86,7 +86,6 @@ export default defineNuxtConfig({
         url: `/${version}/`,
         changefreq: 'weekly',
         priority: 1,
-        lastmodISO: new Date().toISOString(),
       }))
     },
   },
