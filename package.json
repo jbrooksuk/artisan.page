@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build.php",
+    "build": "nuxi build",
     "start": "nuxi start",
     "generate": "nuxi generate"
   },
