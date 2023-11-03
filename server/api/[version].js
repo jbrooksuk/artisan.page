@@ -1,6 +1,4 @@
 import { laravel } from '../../manifest.json'
-import fs from 'node:fs'
-import { sendStream } from 'h3'
 
 const versionMap = {
   '10.x': () => import(`~/assets/10.x.json`),
