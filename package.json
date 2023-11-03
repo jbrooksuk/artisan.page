@@ -21,5 +21,8 @@
     "nuxt-simple-sitemap": "^3.4.1",
     "postcss": "^8.4.31",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
