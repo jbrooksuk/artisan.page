@@ -89,7 +89,7 @@
 
 <script>
 import { laravel } from '../manifest.json'
-import { groupBy } from 'lodash'
+import groupBy from 'lodash.groupby'
 
 export default {
   props: {
