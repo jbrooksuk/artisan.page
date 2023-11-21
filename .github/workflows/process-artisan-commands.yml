@@ -72,7 +72,7 @@ jobs:
         run: |
           cd /tmp/laravel
           composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}' --file composer.json
-          composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_LICENSE_KEY }}
+          composer config --global http-basic.nova.laravel.com "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_LICENSE_KEY }}"
 
       - name: Install Laravel Packages
         run: |
