@@ -19,7 +19,7 @@
     "lodash.groupby": "^4.6.0",
     "mousetrap": "^1.6.5",
     "nuxt": "^3.7.4",
-    "nuxt-simple-sitemap": "^3.4.1",
+    "nuxt-simple-sitemap": "^4.1.3",
     "postcss": "^8.4.31",
     "vue-router": "^4.2.5"
   }
