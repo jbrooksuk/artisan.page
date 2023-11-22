@@ -58,6 +58,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     'nuxt-simple-sitemap',
+    'nuxt-simple-robots',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
