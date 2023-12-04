@@ -86,7 +86,7 @@ jobs:
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
-          composer require --no-progress --no-interaction --ignore-platform-reqs ${{fromJson(needs.fetch_laravel_versions.outputs.packages).packages}}
+          composer require --no-progress --no-interaction --ignore-platform-reqs -W ${{fromJson(needs.fetch_laravel_versions.outputs.packages).packages}}
         continue-on-error: true
 
       - name: Run Generator Command
