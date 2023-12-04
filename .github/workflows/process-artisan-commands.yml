@@ -99,7 +99,7 @@ jobs:
         run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
 
       - name: Commit Laravel Version
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: EndBug/add-and-commit@v9
         with:
-          commit_message: Build Laravel version v${{ matrix.laravel.v }}
-          file_pattern: assets/${{ matrix.laravel.v }}.x.json
+          message: Build Laravel version v${{ matrix.laravel.v }}
+          add: assets/${{ matrix.laravel.v }}.x.json
