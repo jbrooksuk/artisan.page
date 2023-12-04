@@ -1,4 +1,5 @@
 name: Process Artisan Commands
+
 on:
   push:
     branches:
@@ -39,6 +40,8 @@ jobs:
 
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Import packages
         id: set-packages
@@ -54,9 +57,15 @@ jobs:
     strategy:
       matrix:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
