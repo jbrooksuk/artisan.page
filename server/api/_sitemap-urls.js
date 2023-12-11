@@ -26,5 +26,5 @@ export default defineEventHandler(async () => {
       }))
     }))
 
-    return versions.concat(...pages)
+    return [...versions, ...pages]
 })
