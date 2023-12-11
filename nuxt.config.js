@@ -76,6 +76,12 @@ export default defineNuxtConfig({
     },
   },
 
+  routes: {
+    '/': { prerender: true },
+    '/sitemap.xml': { prerender: true },
+    '/robots.txt': { prerender: true, ssr: false },
+  },
+
   hooks: {
     async 'nitro:config'(config) {
     const routes = [...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
@@ -86,10 +92,6 @@ export default defineNuxtConfig({
 
       config.prerender.routes.push(...routes)
     },
-  },
-
-  router: {
-    trailingSlash: true,
   },
 
   colorMode: {
