@@ -72,13 +72,13 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip
           tools: composer:v2
 
+      - name: Install Laravel
+        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
+
       - name: Configure PHP Platform
         run: |
           cd /tmp/laravel
           composer config platform.php ${{ matrix.laravel.php }} --file composer.json
-
-      - name: Install Laravel
-        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
       - name: Add Laravel Nova Repository
         run: |
