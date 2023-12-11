@@ -32,6 +32,19 @@
           class="h-8 hidden dark:block"
         />
       </a>
+      <a
+        href="https://invoicing.to/?ref=artisan.page"
+        title="Invoicing.to"
+        @click="sponsorClick"
+        target="_blank"
+        class="font-bold text-artisan hover:text-artisan-light"
+      >
+        <img src="~/assets/sponsors/invoicing-to.svg" class="h-8 dark:hidden" />
+        <img
+          src="~/assets/sponsors/invoicing-to-dark.svg"
+          class="h-8 hidden dark:block"
+        />
+      </a>
     </div>
   </article>
 </template>
