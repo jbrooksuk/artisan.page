@@ -74,11 +74,11 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip
           tools: composer:v2
 
-      - name: Install Laravel
-        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
-
       - name: Configure PHP Platform
         run: composer config platform.php ${{ matrix.laravel.php }} --file composer.json
+
+      - name: Install Laravel
+        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
       - name: Add Laravel Nova Repository
         run: |
@@ -104,5 +104,5 @@ jobs:
       - name: Commit Laravel Version
         uses: EndBug/add-and-commit@v9
         with:
-          message: [${{ matrix.laravel.v }}] Build Laravel
+          message: "[${{ matrix.laravel.v }}] Build Laravel"
           add: assets/${{ matrix.laravel.v }}.x.json
