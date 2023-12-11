@@ -1,12 +1,12 @@
 {
   "name": "vendor_name/workflows",
   "description": "description",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "license": "proprietary",
   "authors": [
     {
-      "name": "james",
-      "email": "email@example.com"
+      "name": "James Brooks",
+      "email": "james@alt-three.com"
     }
   ],
   "repositories": {
@@ -16,5 +16,6 @@
     }
   },
   "require": {
-  }
+  },
+  "prefer-stable": true
 }
