@@ -68,7 +68,6 @@ export default defineNuxtConfig({
   build: {},
 
   nitro: {
-    static: true,
     prerender: {
       failOnError: true,
       routes: ['/', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
