@@ -16,7 +16,7 @@ const pages = computed(() => [
 ])
 
 useHead({
-  title: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  title: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
   titleTemplate: null,
   link: [
     {
@@ -28,9 +28,9 @@ useHead({
 
 useSeoMeta({
   description: `php artisan ${command.name} - ${command.description}`,
-  ogTitle: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  ogTitle: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
   ogDescription: `php artisan ${command.name} - ${command.description}`,
-  twitterTitle: `php artisan ${command.name} - Laravel ${commandVersion} - Laravel Artisan Cheatsheet`,
+  twitterTitle: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
   twitterDescription: `php artisan ${command.name} - ${command.description}`,
 })
 </script>

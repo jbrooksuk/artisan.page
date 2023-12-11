@@ -4,7 +4,7 @@ const route = useRoute()
 
 useHead({
   title: laravel[0],
-  titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+  titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
   link: [
     {
       rel: 'canonical',

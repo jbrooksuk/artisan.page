@@ -4,7 +4,7 @@ const version = route.params.version
 
 useHead({
   title: version,
-  titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+  titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
   link: [
     {
       rel: 'canonical',

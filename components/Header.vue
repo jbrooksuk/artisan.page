@@ -5,7 +5,7 @@
     <div class="flex flex-col items-center justify-center w-full">
       <div class="relative">
         <Logo class="h-16" />
-        <span class="sr-only">Laravel Artisan Cheatsheet</span>
+        <span class="sr-only">The Laravel Artisan Cheatsheet</span>
       </div>
       <div>
         <h2 class="tracking-tight font-medium hidden md:block">
