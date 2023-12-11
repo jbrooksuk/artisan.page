@@ -89,8 +89,8 @@ jobs:
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
-          for package in $(jq '.packages | values | .[]' ${{ github.workspace }}/manifest.json); do
-            composer require --no-progress --no-interaction --ignore-platform-reqs -W $package
+          for package in $(jq '.packages | .[]' ${{ github.workspace }}/manifest.json); do
+            composer require --no-progress --no-interaction --ignore-platform-reqs -W $(echo $package | xargs echo)
           done
         continue-on-error: true
 
