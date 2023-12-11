@@ -72,7 +72,7 @@ export default defineNuxtConfig({
     static: true,
     prerender: {
       failOnError: true,
-      routes: ['/'],
+      routes: ['/', '/sitemap.xml'],
     },
   },
 
