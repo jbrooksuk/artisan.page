@@ -72,7 +72,7 @@ export default defineNuxtConfig({
     static: true,
     prerender: {
       failOnError: true,
-      routes: ['/', '/sitemap.xml', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
+      routes: ['/', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
         const commands = require(`./assets/${version}.json`)
 
         return commands.map((command) => `/${version}/${command.name.replace(':', '')}`)
