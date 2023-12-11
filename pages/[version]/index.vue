@@ -2,11 +2,11 @@
 const route = useRoute()
 const version = route.params.version
 
-definePageMeta({
+/*definePageMeta({
   validate: async(route) => {
     return /^[\d\.x]+$/.test(route.params.version)
   }
-})
+})*/
 
 useHead({
   title: version,
