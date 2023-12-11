@@ -11,13 +11,12 @@ on:
 
 jobs:
   fetch_laravel_versions:
-    name: Fetch Latest Laravel Versions
+    name: Discover Latest Laravel Versions
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.fetch_versions.outputs.matrix }}
-      packages: ${{ steps.set-packages.outputs.packages }}
     steps:
-      - name: Get versions from Packagist
+      - name: Fetch from Packagist
         id: fetch_versions
         run: |
           # Fetch the latest Laravel versions from Packagist
@@ -35,18 +34,6 @@ jobs:
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
-
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Import packages
-        id: set-packages
-        run: |
-          packages=`cat $GITHUB_WORKSPACE/manifest.json | jq --compact-output '. | {packages: (.packages | join(" "))}'`
-          echo $packages
-          echo "packages=$packages" >> $GITHUB_OUTPUT
 
   generate:
     needs: fetch_laravel_versions
@@ -69,7 +56,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.laravel.php }}
-          extensions: dom, curl, libxml, mbstring, zip
           tools: composer:v2
 
       - name: Install Laravel
@@ -100,8 +86,8 @@ jobs:
           cp ${{ github.workspace }}/build.php /tmp/laravel/ | php -f /tmp/laravel/build.php > /tmp/${{ matrix.laravel.v }}.x.json
           cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
-      - name: Sync Git Changes
-        run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
+#      - name: Sync Git Changes
+#        run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
 
       - name: Commit Laravel Version
         uses: EndBug/add-and-commit@v9
