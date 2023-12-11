@@ -87,8 +87,8 @@ jobs:
           cp ${{ github.workspace }}/build.php /tmp/laravel/ | php -f /tmp/laravel/build.php > /tmp/${{ matrix.laravel.v }}.x.json
           cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
-#      - name: Sync Git Changes
-#        run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
+      - name: Sync Git Changes
+        run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
 
       - name: Commit Laravel Version
         uses: EndBug/add-and-commit@v9
