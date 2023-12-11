@@ -76,10 +76,11 @@ export default defineNuxtConfig({
     },
   },
 
-  routes: {
+  routeRules: {
+    '/**': { isr: 60 },
     '/': { prerender: true },
     '/sitemap.xml': { prerender: true },
-    '/robots.txt': { prerender: true, ssr: false },
+    '/robots.txt': { prerender: true },
   },
 
   hooks: {
