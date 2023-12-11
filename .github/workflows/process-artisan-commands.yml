@@ -73,7 +73,9 @@ jobs:
           tools: composer:v2
 
       - name: Configure PHP Platform
-        run: composer config platform.php ${{ matrix.laravel.php }} --file composer.json
+        run: |
+          cd /tmp/laravel
+          composer config platform.php ${{ matrix.laravel.php }} --file composer.json
 
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
