@@ -42,6 +42,7 @@ jobs:
     strategy:
       matrix:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
+      fail-fast: false
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
       # added or changed files to the repository.
