@@ -94,5 +94,5 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: "[${{ matrix.laravel.v }}] Build Laravel [skip ci]"
-          pull: '--rebase'
+          pull: ' '
           add: assets/${{ matrix.laravel.v }}.x.json
