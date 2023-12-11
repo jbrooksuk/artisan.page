@@ -77,6 +77,9 @@ jobs:
       - name: Install Laravel
         run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" /tmp/laravel
 
+      - name: Configure PHP Platform
+        run: composer config platform.php ${{ matrix.laravel.php }} --file composer.json
+
       - name: Add Laravel Nova Repository
         run: |
           cd /tmp/laravel
