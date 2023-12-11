@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   ssr: true,
-  preset: 'node-server',
 
   site: {
     url: 'https://artisan.page',
@@ -72,15 +71,8 @@ export default defineNuxtConfig({
     static: true,
     prerender: {
       failOnError: true,
-      routes: ['/', '/sitemap.xml'],
+      routes: ['/'],
     },
-  },
-
-  routeRules: {
-    '/**': { isr: 60 },
-    '/': { prerender: true },
-    '/sitemap.xml': { prerender: true },
-    '/robots.txt': { prerender: true },
   },
 
   hooks: {
