@@ -7,6 +7,19 @@ const command = commandData.default.filter(
   command => command.name.replace(':', '') === commandName
 )[0]
 
+if (! command) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: `Command Not Found - ${commandName}`
+  })
+}
+
+definePageMeta({
+  validate: async(route) => {
+    return /^[\d\.x]+$/.test(route.params.version) && /^[\w\-]+$/.test(route.params.command)
+  }
+})
+
 const pages = computed(() => [
   {
     name: command.name || 'Wait...',

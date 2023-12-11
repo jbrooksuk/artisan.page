@@ -72,11 +72,19 @@ export default defineNuxtConfig({
     static: true,
     prerender: {
       failOnError: true,
-      routes: ['/', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
+      routes: ['/'],
+    },
+  },
+
+  hooks: {
+    async 'nitro:config'(config) {
+    const routes = [...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
         const commands = require(`./assets/${version}.json`)
 
         return commands.map((command) => `/${version}/${command.name.replace(':', '')}`)
-      })],
+      })]
+
+      config.prerender.routes.push(...routes)
     },
   },
 

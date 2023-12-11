@@ -2,6 +2,12 @@
 const route = useRoute()
 const version = route.params.version
 
+definePageMeta({
+  validate: async(route) => {
+    return /^[\d\.x]+$/.test(route.params.version)
+  }
+})
+
 useHead({
   title: version,
   titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
