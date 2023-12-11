@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   ssr: true,
+  preset: 'node-server',
 
   site: {
     url: 'https://artisan.page',
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      titleTemplate: 'Laravel v%s - Laravel Artisan Cheatsheet',
+      titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
       link: [
         {
           rel: 'icon',
@@ -70,15 +71,12 @@ export default defineNuxtConfig({
   nitro: {
     static: true,
     prerender: {
-      crawlLinks: true,
       failOnError: true,
-      routes: laravel.flatMap((version) => `/${version}/`).concat(
-          laravel.flatMap((version) => {
-            const commands = require(`./assets/${version}.json`)
+      routes: ['/', '/sitemap.xml', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
+        const commands = require(`./assets/${version}.json`)
 
-            return commands.map((command) => `/${version}/${command.name.replace(':', '')}`)
-          }),
-      ),
+        return commands.map((command) => `/${version}/${command.name.replace(':', '')}`)
+      })],
     },
   },
 
