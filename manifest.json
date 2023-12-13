@@ -13,6 +13,7 @@
     "laravel/pennant",
     "laravel/nova",
     "laravel/octane",
+    "laravel/pulse",
     "laravel/sail",
     "laravel/sanctum",
     "laravel/scout",
