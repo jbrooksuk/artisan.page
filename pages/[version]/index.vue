@@ -2,11 +2,11 @@
 const route = useRoute()
 const version = route.params.version
 
-/*definePageMeta({
+definePageMeta({
   validate: async(route) => {
     return /^[\d\.x]+$/.test(route.params.version)
   }
-})*/
+})
 
 useHead({
   title: version,
@@ -25,8 +25,6 @@ useHead({
     <Header />
 
     <Breadcrumbs :pages="[]" />
-
-    <Sponsors />
 
     <div
       class="mx-auto px-4 sm:px-6 lg:px-8 w-full xl:w-3/4 flex flex-col gap-8"

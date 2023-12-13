@@ -11,12 +11,12 @@ defineProps({
 
 <template>
   <nav
-    class="flex justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800"
+    class="flex justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 sticky top-0 z-10 shadow-sm"
     aria-label="Breadcrumb"
   >
     <ol
       role="list"
-      class="flex items-center space-x-4 px-4 sm:px-6 lg:px-8 w-full xl:w-3/4"
+      class="flex items-center space-x-4 px-4 sm:px-6 lg:px-8"
     >
       <li>
         <div>
@@ -44,6 +44,8 @@ defineProps({
         </div>
       </li>
     </ol>
+
+    <Sponsors />
 
     <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8">
       <div class="gap-4 flex">

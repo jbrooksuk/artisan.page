@@ -32,7 +32,7 @@ onMounted(() => {
 }
 
 .Carbon {
-  @apply p-3 flex flex-col max-w-full md:fixed md:right-4 md:bottom-4 md:w-40;
+  @apply p-3 flex flex-col max-w-full md:fixed md:right-4 md:bottom-4 md:w-40 mb-20 sm:mb-0;
 
   #carbonads span {
     @apply flex flex-col justify-between;

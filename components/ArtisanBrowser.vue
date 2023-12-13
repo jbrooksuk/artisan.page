@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="flex justify-center">
+    <div class="flex justify-center my-8">
       <div class="w-2/3">
         <Search :model-value="filter" @update:modelValue="filterResults" />
       </div>
     </div>
 
     <main>
-      <div class="flex my-4">
-        <div class="hidden sticky top-0 overflow-y-auto h-screen md:block md:w-1/4 pr-4 space-y-4 scroll-mr-2 snap-y snap-start">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500 snap-start">
+      <div class="flex my-8 relative">
+        <div class="hidden sticky top-20 overflow-y-auto h-screen md:block md:w-1/4 pr-4 space-y-4 scroll-mr-2 snap-y snap-start">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500 snap-start scroll-m-4">
             Commands
             <span class="text-xs text-gray-500 dark:text-gray-200">
               ({{ commandData.length }})
