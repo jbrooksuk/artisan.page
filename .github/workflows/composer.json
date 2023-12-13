@@ -1,7 +1,7 @@
 {
   "name": "vendor_name/workflows",
   "description": "description",
-  "minimum-stability": "dev",
+  "minimum-stability": "beta",
   "license": "proprietary",
   "authors": [
     {
