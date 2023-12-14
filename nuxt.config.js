@@ -67,15 +67,11 @@ export default defineNuxtConfig({
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-  nitro: {
-    prerender: {
-      failOnError: true,
-      routes: ['/', ...laravel.flatMap((version) => `/${version}/`), ...laravel.flatMap((version) => {
-        const commands = require(`./assets/${version}.json`)
-
-        return commands.map((command) => `/${version}/${command.name.replace(':', '')}`)
-      })],
-    },
+  sitemap: {
+    cacheMaxAgeSeconds: 360, // 1 hour
+    sources: [
+      '/api/__sitemap__/urls'
+    ]
   },
 
   colorMode: {
