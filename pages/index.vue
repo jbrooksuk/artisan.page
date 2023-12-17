@@ -8,7 +8,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: `https://artisan.page/${laravel[0]}`,
+      href: `https://artisan.page${route.path}`,
     },
   ],
 })
