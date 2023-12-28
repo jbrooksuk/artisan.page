@@ -1,5 +1,5 @@
 <script setup>
-import { laravel } from '../manifest.json'
+import { laravel, packages } from '../manifest.json'
 
 useHead({
   title: laravel[0],
@@ -9,15 +9,16 @@ defineRobotMeta()
 
 useSeoMeta({
   title: 'The Laravel Artisan Cheatsheet',
-  description: "A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.",
+  description: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
+  keywords: ['laravel', ...laravel.map(version => `laravel ${version}`), 'artisan', 'cheatsheet', 'cheat sheet', 'commands', 'cli', 'php', ...packages.map(pkg => pkg.split('/').join(' '))].join(', '),
 
-  ogDescription: "A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.",
+  ogDescription: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
   ogImage: 'https://artisan.page/og.png',
   ogTitle: 'The Laravel Artisan Cheatsheet',
   ogType: 'website',
 
   twitterCreator: '@jbrooksuk',
-  twitterDescription: "A bookmarkable, searchable cheatsheet for Laravel's PHP Artisan commands.",
+  twitterDescription: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
   twitterSite: '@jbrooksuk',
   twitterImage: 'https://artisan.page/og.png',
   twitterTitle: 'The Laravel Artisan Cheatsheet',
