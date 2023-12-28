@@ -41,11 +41,11 @@ useSeoMeta({
   title: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
   titleTemplate: null,
 
-  description: `php artisan ${command.name} - ${command.description}. The Laravel ${commandVersion} Artisan cheatsheet. Discover Laravel ${commandVersion} php artisan commands.`,
-  ogTitle: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
-  ogDescription: `php artisan ${command.name} - ${command.description}. The Laravel ${commandVersion} Artisan cheatsheet. Discover Laravel ${commandVersion} php artisan commands.`,
-  twitterTitle: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
-  twitterDescription: `php artisan ${command.name} - ${command.description}. The Laravel ${commandVersion} Artisan cheatsheet. Discover Laravel ${commandVersion} php artisan commands.`,
+  description: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
+  ogTitle: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
+  ogDescription: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
+  twitterTitle: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
+  twitterDescription: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
 })
 </script>
 
