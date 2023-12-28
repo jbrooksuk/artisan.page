@@ -7,10 +7,11 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/cachet.svg" class="h-8 dark:hidden" />
+      <img src="~/assets/sponsors/cachet.svg" class="h-8 dark:hidden" alt="Cachet" />
       <img
         src="~/assets/sponsors/cachet-dark.svg"
         class="h-8 hidden dark:block"
+        alt="Cachet"
       />
     </a>
     <a
@@ -20,10 +21,11 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/checkmango.svg" class="h-8 dark:hidden" />
+      <img src="~/assets/sponsors/checkmango.svg" class="h-8 dark:hidden" alt="Checkmango" />
       <img
         src="~/assets/sponsors/checkmango-dark.svg"
         class="h-8 hidden dark:block"
+        alt="Checkmango"
       />
     </a>
     <a
@@ -33,10 +35,11 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/invoicing-to.svg" class="h-8 dark:hidden" />
+      <img src="~/assets/sponsors/invoicing-to.svg" class="h-8 dark:hidden" alt="Invoicing.to" />
       <img
         src="~/assets/sponsors/invoicing-to-dark.svg"
         class="h-8 hidden dark:block"
+        alt="Invoicing.to"
       />
     </a>
   </div>
