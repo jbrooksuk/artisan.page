@@ -7,9 +7,9 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/cachet.svg" class="h-8 dark:hidden" alt="Cachet" />
-      <img
-        src="~/assets/sponsors/cachet-dark.svg"
+      <NuxtImg src="/sponsors/cachet.svg" class="h-8 dark:hidden" alt="Cachet" />
+      <NuxtImg
+        src="/sponsors/cachet-dark.svg"
         class="h-8 hidden dark:block"
         alt="Cachet"
       />
@@ -21,9 +21,9 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/checkmango.svg" class="h-8 dark:hidden" alt="Checkmango" />
-      <img
-        src="~/assets/sponsors/checkmango-dark.svg"
+      <NuxtImg src="/sponsors/checkmango.svg" class="h-8 dark:hidden" alt="Checkmango" />
+      <NuxtImg
+        src="/sponsors/checkmango-dark.svg"
         class="h-8 hidden dark:block"
         alt="Checkmango"
       />
@@ -35,9 +35,9 @@
       target="_blank"
       class="font-bold text-artisan hover:text-artisan-light"
     >
-      <img src="~/assets/sponsors/invoicing-to.svg" class="h-8 dark:hidden" alt="Invoicing.to" />
-      <img
-        src="~/assets/sponsors/invoicing-to-dark.svg"
+      <NuxtImg src="/sponsors/invoicing-to.svg" class="h-8 dark:hidden" alt="Invoicing.to" />
+      <NuxtImg
+        src="/sponsors/invoicing-to-dark.svg"
         class="h-8 hidden dark:block"
         alt="Invoicing.to"
       />
