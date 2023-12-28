@@ -8,7 +8,9 @@ $app = require __DIR__.'/bootstrap/app.php';
 
 $commands = $app->make(Kernel::class)->all();
 
-echo collect($commands)->sortBy(function ($command) {
+echo collect($commands)->unique(function ($command) {
+  return $command->getName();
+})->sortBy(function ($command) {
   return $command->getName();
 })->map(function ($command) {
   return [
