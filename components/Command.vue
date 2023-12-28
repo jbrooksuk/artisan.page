@@ -22,8 +22,8 @@
           v-if="command.options.length"
           class="text-sm text-gray-700 dark:text-gray-300"
         >
-          <p class="font-bold text-lg">Options</p>
-          <ul class="list-none list-inside space-y-1">
+          <h3 class="font-bold text-lg">Options</h3>
+          <ul class="list-disc list-outside space-y-1">
             <li v-for="option in command.options" :key="option.name">
               <code class="text-mono">{{ option.name }}</code> -
               {{ option.description }}
@@ -37,13 +37,26 @@
           v-if="command.arguments.length"
           class="text-sm text-gray-700 dark:text-gray-300"
         >
-          <p class="font-bold text-lg">Arguments</p>
-          <ul class="list-none list-inside space-y-1">
+          <h3 class="font-bold text-lg">Arguments</h3>
+          <ul class="list-disc list-outside space-y-1">
             <li v-for="argument in command.arguments" :key="argument.name">
               <code class="text-mono">{{ argument.name }}</code> -
               {{ argument.description }}
 
               <Badge :required="argument.required" />
+            </li>
+          </ul>
+        </div>
+
+        <div
+          v-if="extended && command.aliases.length"
+          class="text-sm text-gray-700 dark:text-gray-300"
+        >
+          <h3 class="font-bold text-lg">Aliases</h3>
+          <p class="">This command may be aliased by the following:</p>
+          <ul class="list-disc list-outside space-y-1">
+            <li v-for="alias in command.aliases" :key="alias">
+              <code class="text-mono">{{ alias }}</code>
             </li>
           </ul>
         </div>
@@ -110,7 +123,14 @@ php artisan {{ command.synopsis }}</pre
 
 <script>
 export default {
-  props: ['version', 'command'],
+  props: {
+    version: String,
+    command: Object,
+    extended: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       keyboardUsed: false,
@@ -129,7 +149,7 @@ export default {
   },
   methods: {
     hasParams(command) {
-      return command.options.length || command.arguments.length
+      return command.options.length || command.arguments.length || (this.extended && command.aliases.length)
     },
     async copyCommand(event, command) {
       const textarea = document.createElement('textarea')

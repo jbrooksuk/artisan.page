@@ -59,7 +59,7 @@ useSeoMeta({
       class="mx-auto px-4 sm:px-6 lg:px-8 w-full xl:w-2/3 flex flex-col gap-8"
     >
       <div class="mt-8">
-        <Command :command="command" :version="commandVersion" />
+        <Command :command="command" :version="commandVersion" :extended="true" />
       </div>
 
       <Carbon />
