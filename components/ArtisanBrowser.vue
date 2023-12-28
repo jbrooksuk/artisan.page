@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex justify-center my-8">
+    <div class="flex justify-center my-4 md:my-8">
       <div class="w-2/3">
         <Search :model-value="filter" @update:modelValue="filterResults" />
       </div>
