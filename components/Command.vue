@@ -6,14 +6,14 @@
     >
       <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
         <div class="bg-red-700 bg-opacity-40 p-4 px-8">
-          <h2 class="text-lg font-bold text-white dark:text-gray-300">
+          <h1 class="text-lg md:text-xl font-bold text-white dark:text-gray-300">
             <NuxtLink :to="`/${version}/${slug}`">{{
               command.name
             }}</NuxtLink>
-          </h2>
-          <h3 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
+          </h1>
+          <h2 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
             {{ command.description }}
-          </h3>
+          </h2>
         </div>
       </div>
 
