@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     // '@nuxtjs/redirect-module',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
+    '@nuxtjs/web-vitals',
     'nuxt-simple-sitemap',
     'nuxt-simple-robots',
   ],
