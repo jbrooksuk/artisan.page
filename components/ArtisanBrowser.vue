@@ -137,7 +137,8 @@ export default {
         if (
           command.name.toLowerCase().includes(keyword) ||
           command.synopsis.toLowerCase().includes(keyword) ||
-          command.description.toLowerCase().includes(keyword)
+          command.description.toLowerCase().includes(keyword) ||
+          command.aliases.includes(keyword)
         ) {
           return command
         }
