@@ -4,8 +4,10 @@
   >
     <div class="flex flex-col items-center justify-center w-full">
       <div class="relative">
-        <Logo class="h-16" />
-        <span class="sr-only">The Laravel Artisan Cheatsheet</span>
+        <NuxtLink href="/">
+          <Logo class="h-16" />
+          <span class="sr-only">The Laravel Artisan Cheatsheet</span>
+        </NuxtLink>
       </div>
       <div>
         <h2 class="tracking-tight font-medium hidden md:block">
