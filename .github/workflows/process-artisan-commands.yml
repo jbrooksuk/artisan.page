@@ -37,7 +37,7 @@ jobs:
 
   generate:
     needs: fetch_laravel_versions
-    name: Laravel v${{ matrix.laravel.v }} - PHP ${{ matrix.laravel.php }}
+    name: Laravel ${{ matrix.laravel.v }}.x - PHP ${{ matrix.laravel.php }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -93,6 +93,6 @@ jobs:
       - name: Commit Laravel Version
         uses: EndBug/add-and-commit@v9
         with:
-          message: "[${{ matrix.laravel.v }}] Build Laravel [skip ci]"
+          message: "Build Laravel [${{ matrix.laravel.v }}].x [skip ci]"
           pull: ' '
           add: assets/${{ matrix.laravel.v }}.x.json
