@@ -7,13 +7,13 @@
 
 <p align="center" style="display: flex; gap: 2rem; justify-content: center; width: 100%; align-items: center; height: 50px">
     <a href="https://checkmango.com">
-        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/assets/sponsors/checkmango.svg" alt="Checkmango" height="36">
+        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/public/sponsors/checkmango.svg" alt="Checkmango" height="36">
     </a>
     <a href="https://cachethq.io">
-        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/assets/sponsors/cachet.svg" alt="Cachet" height="36">
+        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/public/sponsors/cachet.svg" alt="Cachet" height="36">
     </a>
     <a href="https://invoicing.to">
-        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/assets/sponsors/invoicing-to.svg" alt="Invoicing.to" height="36">
+        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/public/sponsors/invoicing-to.svg" alt="Invoicing.to" height="36">
     </a>
 </p>
 
