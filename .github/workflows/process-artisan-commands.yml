@@ -41,12 +41,11 @@ jobs:
     name: Laravel ${{ matrix.laravel.v }}.x - PHP ${{ matrix.laravel.php }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
         exclude:
-          - php: 8.0
-            laravel: 9
-      fail-fast: false
+          - { 'laravel.v': 8, 'laravel.php': '8.0' }
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
       # added or changed files to the repository.
