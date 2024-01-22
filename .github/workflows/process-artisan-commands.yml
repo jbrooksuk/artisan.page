@@ -43,6 +43,9 @@ jobs:
     strategy:
       matrix:
         laravel: ${{ fromJson(needs.fetch_laravel_versions.outputs.matrix) }}
+        exclude:
+          - php: 8.0
+            laravel: 9
       fail-fast: false
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
