@@ -30,6 +30,7 @@ useSeoMeta({
   <div>
     <RobotMeta />
 
+    <News />
     <slot />
   </div>
 </template>
