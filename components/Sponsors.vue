@@ -28,20 +28,6 @@
         alt="Checkmango"
       />
     </a>
-    <a
-      href="https://invoicing.to/?ref=artisan.page"
-      title="Invoicing.to"
-      @click="sponsorClick"
-      target="_blank"
-      class="font-bold text-artisan hover:text-artisan-light"
-    >
-      <NuxtImg src="/sponsors/invoicing-to.svg" class="h-8 dark:hidden" alt="Invoicing.to" />
-      <NuxtImg
-        src="/sponsors/invoicing-to-dark.svg"
-        class="h-8 hidden dark:block"
-        alt="Invoicing.to"
-      />
-    </a>
   </div>
 </template>
 

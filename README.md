@@ -12,9 +12,6 @@
     <a href="https://cachethq.io">
         <img src="https://github.com/jbrooksuk/artisan.page/raw/master/public/sponsors/cachet.svg" alt="Cachet" height="36">
     </a>
-    <a href="https://invoicing.to">
-        <img src="https://github.com/jbrooksuk/artisan.page/raw/master/public/sponsors/invoicing-to.svg" alt="Invoicing.to" height="36">
-    </a>
 </p>
 
 A bookmarkable, searchable cheatsheet for [Laravel's](https://laravel.com) Artisan commands.
