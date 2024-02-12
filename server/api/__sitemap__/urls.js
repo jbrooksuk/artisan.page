@@ -25,11 +25,11 @@ const changeFrequency = (version) => {
 
 const lastMod = (version) => {
   return {
-    '8.x': '2023-01-24T00:00:00.000Z',
-    '7.x': '2021-03-03T00:00:00.000Z',
-    '6.x': '2022-09-06T00:00:00.000Z',
-    '5.x': '2020-02-26T00:00:00.000Z',
-  }[version] || new Date()
+    '8.x': '2023-01-24T00:00:00',
+    '7.x': '2021-03-03T00:00:00',
+    '6.x': '2022-09-06T00:00:00',
+    '5.x': '2020-02-26T00:00:00',
+  }[version] || new Date().toISOString().split('.')[0]
 }
 
 export default defineSitemapEventHandler(async () => {
