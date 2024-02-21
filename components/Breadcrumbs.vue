@@ -3,6 +3,7 @@ import { ChevronRightIcon, HomeIcon } from '@heroicons/vue/20/solid'
 import GitHubIcon from './Icons/GitHubIcon.vue'
 import TwitterIcon from './Icons/TwitterIcon.vue'
 import VersionPicker from './VersionPicker.vue'
+import ChatBubbleIcon from "./Icons/ChatBubbleIcon.vue";
 
 defineProps({
   pages: Array,
@@ -19,12 +20,16 @@ defineProps({
       class="flex items-center space-x-4 px-4 sm:px-6 lg:px-8"
     >
       <li>
-        <div>
-          <NuxtLink href="/" class="text-gray-400 hover:text-gray-500">
-            <HomeIcon class="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-            <span class="sr-only">Home</span>
-          </NuxtLink>
-        </div>
+        <NuxtLink href="/" class="text-gray-400 hover:text-gray-500">
+          <HomeIcon class="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+          <span class="sr-only">Home</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <a href="https://chat.openai.com/g/g-0qZT0sbek-artisan-gpt" class="text-gray-400 hover:text-gray-500" title="Ask Artisan GPT about Laravel's Artisan commands.">
+          <ChatBubbleIcon class="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+          <span class="sr-only">ArtisanGPT</span>
+        </a>
       </li>
       <li>
         <VersionPicker />
