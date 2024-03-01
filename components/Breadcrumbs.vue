@@ -32,6 +32,9 @@ defineProps({
         </a>
       </li>
       <li>
+        <a href="https://james.brooks.page/blog/laravel-artisan-cheatsheet-api" class="text-gray-500 hover:text-gray-600 font-bold">API</a>
+      </li>
+      <li>
         <VersionPicker />
       </li>
       <li v-for="page in pages" :key="page.name">
