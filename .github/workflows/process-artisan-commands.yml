@@ -78,6 +78,12 @@ jobs:
           composer config repositories.nova '{"type": "composer", "url": "https://nova.laravel.com"}' --file composer.json
           composer config --global http-basic.nova.laravel.com "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_LICENSE_KEY }}"
 
+      - name: Add Laravel Spark Repository
+        run: |
+          cd /tmp/laravel
+          composer config repositories.spark '{"type": "composer", "url": "https://spark.laravel.com"}' --file composer.json
+          composer config --global http-basic.spark.laravel.com "${{ secrets.SPARK_USERNAME }}" "${{ secrets.SPARK_LICENSE_KEY }}"
+
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
