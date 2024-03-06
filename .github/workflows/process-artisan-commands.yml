@@ -82,7 +82,7 @@ jobs:
         run: |
           cd /tmp/laravel
           composer config repositories.spark '{"type": "composer", "url": "https://spark.laravel.com"}' --file composer.json
-          composer config --global http-basic.spark.laravel.com "${{ secrets.SPARK_USERNAME }}" "${{ secrets.SPARK_LICENSE_KEY }}"
+          composer config --global http-basic.spark.laravel.com "${{ secrets.SPARK_USERNAME }}" "${{ secrets.SPARK_API_TOKEN }}"
 
       - name: Install Laravel Packages
         run: |
