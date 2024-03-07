@@ -124,11 +124,6 @@
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
-    "5.x": [
-      "laravel/telescope",
-      "laravel/tinker",
-      "livewire/livewire",
-      "inertiajs/inertia-laravel"
-    ]
+    "5.x": []
   }
 }
