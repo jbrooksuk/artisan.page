@@ -87,8 +87,8 @@ jobs:
       - name: Install Laravel Packages
         run: |
           cd /tmp/laravel
+          echo "Installing Laravel ${{ matrix.laravel.v }} Packages"
           PACKAGES=$(jq '.configuration["${{ matrix.laravel.v }}"] | .[]' ${{ github.workspace }}/manifest.json)
-          echo $PACKAGES
           for PACKAGE in $PACKAGES; do
             composer require --no-progress --no-interaction --ignore-platform-reqs -W $(echo $PACKAGE | xargs echo) || true
           done
