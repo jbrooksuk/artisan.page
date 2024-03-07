@@ -105,7 +105,6 @@
       "laravel/sanctum",
       "laravel/scout",
       "laravel/socialite",
-      "laravel/spark-stripe",
       "laravel/telescope",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
