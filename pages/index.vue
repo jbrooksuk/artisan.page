@@ -6,7 +6,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: `https://artisan.page/${laravel[0]}`, // The index canonical route should always be the version.
+      href: `https://artisan.page${route.path}`,
     },
   ],
 })
