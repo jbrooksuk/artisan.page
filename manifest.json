@@ -125,16 +125,6 @@
       "inertiajs/inertia-laravel"
     ],
     "5.x": [
-      "laravel/cashier",
-      "laravel/cashier-paddle",
-      "laravel/envoy",
-      "laravel/passport",
-      "laravel/nova",
-      "laravel/octane",
-      "laravel/sail",
-      "laravel/sanctum",
-      "laravel/scout",
-      "laravel/socialite",
       "laravel/telescope",
       "laravel/tinker",
       "livewire/livewire",
