@@ -115,6 +115,6 @@ jobs:
         with:
           message: |
             Build Laravel ${{ matrix.laravel.v }}.x
-            [skip ci]
+            [skip ci] [ci skip]
           pull: ' '
           add: assets/${{ matrix.laravel.v }}.x.json
