@@ -1,5 +1,5 @@
 {
-  "laravel": ["10.x", "9.x", "8.x", "7.x", "6.x", "5.x"],
+  "laravel": ["11.x", "10.x", "9.x", "8.x", "7.x", "6.x", "5.x"],
   "packages": [
     "laravel/breeze",
     "laravel/cashier",
@@ -25,6 +25,30 @@
     "inertiajs/inertia-laravel"
   ],
   "configuration": {
+    "11.x": [
+      "laravel/breeze",
+      "laravel/cashier",
+      "laravel/cashier-paddle",
+      "laravel/dusk",
+      "laravel/envoy",
+      "laravel/fortify",
+      "laravel/horizon",
+      "laravel/jetstream",
+      "laravel/passport",
+      "laravel/pennant",
+      "laravel/nova",
+      "laravel/octane",
+      "laravel/pulse:@beta",
+      "laravel/sail",
+      "laravel/sanctum",
+      "laravel/scout",
+      "laravel/socialite",
+      "laravel/spark-paddle",
+      "laravel/spark-stripe",
+      "laravel/telescope",
+      "livewire/livewire",
+      "inertiajs/inertia-laravel"
+    ],
     "10.x": [
       "laravel/breeze",
       "laravel/cashier",
