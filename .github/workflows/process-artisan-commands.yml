@@ -26,7 +26,7 @@ jobs:
           # Remove duplicate lines based on the first column
           # Get major v only, dedupe, and combine on one line
           # Output the JSON to the step output
-          curl -s https://packagist.org/packages/laravel/laravel.json \
+          curl -s https://packagist.org/packages/laravel/laravel.json?$(date +%F) \
           | jq -r '.package.versions[] | select(.require.php != null) | select(.version_normalized != null) | .version_normalized, .require.php' \
           | sed -e '/dev/,+1d' -e '1~2 s/\..*//' -e '2~2 s/[^|]*|//' -e 's/[^0-9]*//' \
           | cut -f1,2 -d'.' \
