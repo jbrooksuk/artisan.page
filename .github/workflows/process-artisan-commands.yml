@@ -65,7 +65,7 @@ jobs:
           tools: composer:v2
 
       - name: Install Laravel
-        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" --stability=dev --prefer-dist /tmp/laravel
+        run: composer create-project --no-progress laravel/laravel="^${{ matrix.laravel.v }}" --stability=beta --prefer-dist /tmp/laravel
 
       - name: Configure PHP Platform
         run: |
