@@ -24,7 +24,7 @@
         >
           <h3 class="font-bold text-lg">Options</h3>
           <ul class="list-disc list-outside space-y-1">
-            <li v-for="option in command.options" :key="option.name">
+            <li v-for="option in commandOptions" :key="option.name">
               <code class="text-mono">{{ option.name }}</code> -
               {{ option.description }}
 
@@ -122,6 +122,8 @@ php artisan {{ command.synopsis }}</pre
 </template>
 
 <script>
+import {copyToClipboard, dataSortBy} from "usemods";
+
 export default {
   props: {
     version: String,
@@ -143,6 +145,11 @@ export default {
     })
   },
   computed: {
+    commandOptions() {
+      return dataSortBy(this.command.options, {
+        property: 'name'
+      })
+    },
     slug() {
       return this.command.name.replace(':', '')
     },
@@ -152,16 +159,12 @@ export default {
       return command.options.length || command.arguments.length || (this.extended && command.aliases.length)
     },
     async copyCommand(event, command) {
-      const textarea = document.createElement('textarea')
-      textarea.setAttribute('aria-hidden', 'true')
-      textarea.textContent = command
-      document.body.appendChild(textarea)
-      textarea.select()
-      document.execCommand('copy')
-      document.body.removeChild(textarea)
-      event.target.closest('button').focus()
       this.copied = true
+
+      copyToClipboard(command)
+
       await new Promise(resolve => setTimeout(resolve, 1500))
+
       this.copied = false
     },
   },
