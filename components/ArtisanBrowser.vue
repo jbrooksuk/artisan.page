@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import { scrollToAnchor } from 'usemods'
 import { laravel } from '../manifest.json'
 import groupBy from 'lodash.groupby'
 
@@ -119,9 +120,7 @@ export default {
     commandData() {
       window.location.hash &&
         this.$nextTick(() => {
-          document.querySelector(window.location.hash).scrollIntoView({
-            behavior: 'auto',
-          })
+          scrollToAnchor(window.location.hash.replace('#', ''))
         })
     },
   },
