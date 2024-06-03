@@ -16,6 +16,10 @@
             </span>
           </h2>
 
+          <div v-if="!commandData.length" class="snap-start ml-5">
+              <CommandsLoading />
+          </div>
+
           <div v-for="(group, groupName) in commandLinks" :key="groupName" class="snap-start">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-500">
               {{ groupName }}
@@ -39,13 +43,7 @@
         <div class="w-full pr-0 md:pl-8">
           <div class="space-y-8">
             <div v-if="!commandData.length">
-              <div
-                class="rounded-xl shadow-lg overflow-hidden bg-white p-10 text-center dark:bg-gray-800"
-              >
-                <p class="text-xl font-bold text-gray-900 dark:text-gray-300">
-                  Loading...
-                </p>
-              </div>
+              <CommandCardLoading />
             </div>
             <div v-else-if="commands.length === 0">
               <div
@@ -91,6 +89,8 @@
 import { scrollToAnchor } from 'usemods'
 import { laravel } from '../manifest.json'
 import groupBy from 'lodash.groupby'
+import CommandCardLoading from './CommandCardLoading.vue'
+import CommandsLoading from './CommandsLoading.vue'
 
 export default {
   props: {
