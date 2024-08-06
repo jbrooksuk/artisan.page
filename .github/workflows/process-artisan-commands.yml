@@ -5,9 +5,11 @@ on:
     branches:
       - master
   pull_request:
+    branches:
+      - '!dependabot/**'
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * 3'
+    - cron: '0 0,12,22 * * *'
 
 jobs:
   fetch_laravel_versions:
@@ -15,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.fetch_versions.outputs.matrix }}
-    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Fetch from Packagist
         id: fetch_versions
