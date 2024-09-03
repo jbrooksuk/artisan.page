@@ -23,6 +23,7 @@
     "laravel/spark-stripe",
     "laravel/telescope",
     "livewire/livewire",
+    "livewire/volt",
     "inertiajs/inertia-laravel"
   ],
   "configuration": {
@@ -49,6 +50,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "livewire/livewire",
+      "livewire/volt",
       "inertiajs/inertia-laravel"
     ],
     "10.x": [
@@ -74,6 +76,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "livewire/livewire",
+      "livewire/volt",
       "inertiajs/inertia-laravel"
     ],
     "9.x": [
