@@ -53,7 +53,7 @@ defineProps({
       </li>
     </ol>
 
-<!--    <Sponsors />-->
+    <Sponsors />
 
     <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8">
       <div class="gap-4 flex">
