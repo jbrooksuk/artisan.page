@@ -5,8 +5,6 @@ useHead({
   title: laravel[0],
 })
 
-defineRobotMeta()
-
 useSeoMeta({
   title: 'The Laravel Artisan Cheatsheet',
   description: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
@@ -28,8 +26,6 @@ useSeoMeta({
 
 <template>
   <div>
-    <RobotMeta />
-
 <!--    <News />-->
     <slot />
   </div>
