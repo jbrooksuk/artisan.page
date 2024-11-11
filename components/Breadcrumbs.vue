@@ -52,7 +52,7 @@ defineProps({
     <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8">
       <div class="gap-4 flex">
         <a
-          href="https://tweet.now/?text=Check%20out%20artisan.page%20by%20%40jbrooksuk%20🤌"
+          href="https://tweet.new/?text=Check%20out%20artisan.page%20by%20%40jbrooksuk%20🤌"
           class="text-artisan hover:text-artisan-light hidden md:block"
           title="Tweet about artisan.page"
         >
