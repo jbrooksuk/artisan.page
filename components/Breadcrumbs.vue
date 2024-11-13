@@ -26,12 +26,6 @@ defineProps({
         </NuxtLink>
       </li>
       <li>
-        <a href="https://chat.openai.com/g/g-0qZT0sbek-artisan-gpt" class="text-gray-400 hover:text-gray-500" title="Ask Artisan GPT about Laravel's Artisan commands.">
-          <ChatBubbleIcon class="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-          <span class="sr-only">ArtisanGPT</span>
-        </a>
-      </li>
-      <li>
         <a href="https://james.brooks.page/blog/laravel-artisan-cheatsheet-api" class="text-gray-500 hover:text-gray-600 font-bold">API</a>
       </li>
       <li>
@@ -58,9 +52,9 @@ defineProps({
     <div class="flex items-center gap-4 px-4 sm:px-6 lg:px-8">
       <div class="gap-4 flex">
         <a
-          href="https://x.com/jbrooksuk"
+          href="https://tweet.new/?text=Check%20out%20artisan.page%20by%20%40jbrooksuk%20🤌"
           class="text-artisan hover:text-artisan-light hidden md:block"
-          title="Follow @jbrooksuk on Twitter"
+          title="Tweet about artisan.page"
         >
           <TwitterIcon class="h-6 w-6 fill-current" />
         </a>
