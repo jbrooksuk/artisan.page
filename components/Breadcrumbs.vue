@@ -1,9 +1,7 @@
 <script setup>
 import { ChevronRightIcon, HomeIcon } from '@heroicons/vue/20/solid'
-import GitHubIcon from './Icons/GitHubIcon.vue'
 import TwitterIcon from './Icons/TwitterIcon.vue'
 import VersionPicker from './VersionPicker.vue'
-import ChatBubbleIcon from "./Icons/ChatBubbleIcon.vue";
 
 defineProps({
   pages: Array,
@@ -12,8 +10,8 @@ defineProps({
 
 <template>
   <nav
-    class="flex justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 sticky top-0 z-10 shadow-sm"
-    aria-label="Breadcrumb"
+    class="flex justify-between px-4 py-3 bg-gray-50 dark:bg-gray-800 sticky top-0 z-10 shadow-md"
+    aria-label="Breadcrumbs"
   >
     <ol
       role="list"
