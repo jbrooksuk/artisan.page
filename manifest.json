@@ -23,6 +23,7 @@
     "laravel/spark-paddle",
     "laravel/spark-stripe",
     "laravel/telescope",
+    "laravel/vapor-core",
     "livewire/livewire",
     "livewire/volt",
     "inertiajs/inertia-laravel"
@@ -52,6 +53,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "livewire/livewire",
+      "laravel/vapor-core",
       "livewire/volt",
       "inertiajs/inertia-laravel"
     ],
@@ -78,6 +80,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "livewire/volt",
       "inertiajs/inertia-laravel"
@@ -104,6 +107,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "livewire/volt",
       "inertiajs/inertia-laravel"
@@ -127,6 +131,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
@@ -149,6 +154,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
@@ -165,6 +171,7 @@
       "laravel/scout",
       "laravel/socialite",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
@@ -179,6 +186,7 @@
       "laravel/scout",
       "laravel/socialite",
       "laravel/telescope",
+      "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
