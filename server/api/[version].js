@@ -1,6 +1,7 @@
 import { laravel } from '../../manifest.json'
 
 const versionMap = {
+  '12.x': () => import(`~/assets/12.x.json`),
   '11.x': () => import(`~/assets/11.x.json`),
   '10.x': () => import(`~/assets/10.x.json`),
   '9.x': () => import(`~/assets/9.x.json`),
