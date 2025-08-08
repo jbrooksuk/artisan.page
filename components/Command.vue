@@ -25,7 +25,7 @@
           <h3 class="font-bold text-lg">Options</h3>
           <ul class="list-disc list-outside space-y-1">
             <li v-for="option in commandOptions" :key="option.name">
-              <code class="text-mono">{{ option.name }}</code> -
+              <code class="text-mono font-semibold">{{ option.name }}<span v-if="option.default" class="font-normal">={{ option.default}}</span></code> -
               {{ option.description }}
 
               <Badge :required="option.value_required" />

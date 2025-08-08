@@ -31,6 +31,7 @@ echo collect($commands)->unique(function ($command) {
       return [
         'name' => $option->getName(),
         'description' => $option->getDescription(),
+        'default' => $option->getDefault(),
         'value_required' => $option->isValueRequired(),
         'value_optional' => $option->isValueOptional(),
       ];
