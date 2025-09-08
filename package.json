@@ -23,7 +23,7 @@
     "autoprefixer": "^10.4.16",
     "lodash.groupby": "^4.6.0",
     "mousetrap": "^1.6.5",
-    "nuxt": "^3.9.3",
+    "nuxt": "^4.1.1",
     "postcss": "^8.4.31",
     "usemods": "^1.1.0",
     "vue-router": "^4.2.5"
