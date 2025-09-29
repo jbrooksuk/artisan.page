@@ -12,7 +12,11 @@ const versionMap = {
 }
 
 export default defineEventHandler(async (event) => {
-  const version = getRouterParam(event, 'version')
+  let version = getRouterParam(event, 'version')
+
+  if (version === 'latest') {
+    version = laravel[0]
+  }
 
   if (!laravel.includes(version)) {
     throw createError({
