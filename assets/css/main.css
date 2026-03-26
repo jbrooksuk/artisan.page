@@ -5,6 +5,8 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light dark;
+  overflow: hidden;
+  height: 100%;
 }
 
 html.dark {
@@ -16,5 +18,153 @@ html.light {
 }
 
 body {
-  @apply bg-gray-100 dark:bg-gray-900 antialiased;
+  height: 100%;
+  overflow: hidden;
+  @apply bg-white dark:bg-gray-950 antialiased;
+}
+
+/* Always show scrollbar on main content to prevent layout shift */
+main {
+  overflow-y: scroll !important;
+}
+
+/* Subtle noise texture overlay for depth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+.dark body::before {
+  opacity: 0.03;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  @apply bg-gray-300/50 dark:bg-gray-700/50 rounded-full;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Command card entrance animation */
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-command] {
+  animation: card-enter 0.3s ease-out both;
+}
+
+/* Stagger the first few visible cards */
+[data-command]:nth-child(1) { animation-delay: 0.02s; }
+[data-command]:nth-child(2) { animation-delay: 0.06s; }
+[data-command]:nth-child(3) { animation-delay: 0.10s; }
+[data-command]:nth-child(4) { animation-delay: 0.14s; }
+
+/* Terminal block glow effect */
+.terminal-block {
+  position: relative;
+}
+
+.terminal-block::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgba(232, 81, 79, 0.08), rgba(116, 212, 255, 0.05));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-block:hover::after {
+  opacity: 1;
+}
+
+/* Sidebar link transitions */
+.sidebar-link {
+  transition: all 0.15s ease;
+}
+
+.sidebar-link:hover {
+  transform: translateX(2px);
+}
+
+/* Copy button pulse on success */
+@keyframes copy-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.copy-success {
+  animation: copy-pulse 0.3s ease;
+  color: #22c55e !important;
+}
+
+/* Badge subtle shine */
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, transparent 50%);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.badge-shine:hover::after {
+  transform: translateX(100%);
+}
+
+/* Search focus ring animation */
+@keyframes focus-ring {
+  from { box-shadow: 0 0 0 0 rgba(211, 64, 62, 0.3); }
+  to { box-shadow: 0 0 0 3px rgba(211, 64, 62, 0); }
+}
+
+#search:focus {
+  animation: focus-ring 0.6s ease;
+}
+
+/* Mobile search overlay backdrop blur */
+.search-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }

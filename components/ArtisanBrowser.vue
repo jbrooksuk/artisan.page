@@ -1,87 +1,158 @@
 <template>
-  <div>
-    <div class="flex justify-center my-4 md:my-8">
-      <div class="w-2/3">
+  <div class="flex flex-col md:flex-row h-screen overflow-hidden bg-white dark:bg-gray-950">
+    <!-- Mobile Header -->
+    <MobileHeader
+      :version="currentVersion"
+      @search="showMobileSearch = true"
+    />
+
+    <!-- Mobile Search Overlay -->
+    <ClientOnly>
+      <MobileSearch
+        v-model="showMobileSearch"
+        :filter="filter"
+        :result-count="commands.length"
+        @update:filter="filterResults"
+      />
+    </ClientOnly>
+
+    <!-- Desktop Sidebar -->
+    <aside class="hidden md:flex md:flex-col md:w-[280px] border-r border-gray-200 dark:border-gray-800 h-full shrink-0">
+      <!-- Logo + Version -->
+      <div class="flex items-center justify-between px-3 pt-3 pb-2">
+        <NuxtLink href="/">
+          <LogoIcon id="sidebar-logo" class="h-[30px] w-auto" />
+          <span class="sr-only">Artisan.page</span>
+        </NuxtLink>
+        <VersionPicker />
+      </div>
+
+      <!-- Search -->
+      <div class="px-3 py-2">
         <Search :model-value="filter" @update:modelValue="filterResults" />
       </div>
-    </div>
 
-    <main>
-      <div class="flex my-8 relative">
-        <div class="hidden sticky top-20 overflow-y-auto h-screen md:block md:w-1/4 pr-4 space-y-4 scroll-mr-2 snap-y snap-start">
-          <h2 class="text-xl font-bold text-gray-900 dark:text-gray-500 snap-start scroll-m-4">
-            Commands
-            <span class="text-xs text-gray-500 dark:text-gray-200">
-              ({{ commandData.length }})
-            </span>
-          </h2>
+      <!-- Command List -->
+      <nav class="flex-1 overflow-y-auto sidebar-scroll px-5 pb-4">
+        <div v-if="!commandData.length" class="py-4">
+          <CommandsLoading />
+        </div>
 
-          <div v-if="!commandData.length" class="snap-start ml-5">
-              <CommandsLoading />
-          </div>
-
-          <div v-for="(group, groupName) in commandLinks" :key="groupName" class="snap-start">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-500">
-              {{ groupName }}
-              <span
-                v-if="groupName !== ''"
-                class="text-xs text-gray-500 dark:text-gray-200"
-              >
-                ({{ group.length }})
-              </span>
-            </h3>
-
+        <div v-for="(group, groupName) in commandLinks" :key="groupName">
+          <h3 class="font-sans font-medium text-[13px] text-gray-950 dark:text-gray-400 py-2.5 leading-4">
+            {{ groupName || 'artisan' }}
+          </h3>
+          <div class="pl-3 pb-4">
             <CommandLink
               v-for="command in group"
               :key="command.name"
               :command="command"
-              class="text-sm"
+              :active="activeCommand === command.name"
             />
           </div>
         </div>
+      </nav>
 
-        <div class="w-full pr-0 md:pl-8">
-          <div class="space-y-8">
-            <div v-if="!commandData.length">
-              <CommandCardLoading />
-            </div>
-            <div v-else-if="commands.length === 0">
-              <div
-                class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-200"
-              >
-                <div class="px-8 py-4">
-                  <h1
-                    class="text-xl font-bold text-gray-900 dark:text-gray-300"
-                  >
-                    No Commands Found
-                  </h1>
-                  <p class="dark:text-gray-300">
-                    Nothing found for
-                    <code class="font-mono font-bold">{{ filter }}</code>
-                  </p>
-                </div>
-              </div>
-            </div>
+      <!-- Footer -->
+      <div class="border-t border-gray-200 dark:border-gray-800 flex items-center justify-between px-3 py-4">
+        <a
+          href="https://github.com/sponsors/jbrooksuk"
+          title="Sponsor James Brooks"
+          @click="sponsorClick"
+          target="_blank"
+          class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
+        >
+          Sponsor Artisan.page on GitHub <span>↗</span>
+        </a>
+        <ThemePicker />
+      </div>
+    </aside>
 
-            <Command
-              v-for="command in commands"
-              :key="command.name"
-              :command="command"
-              :version="currentVersion"
-            />
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto" ref="mainContent" @scroll="handleScroll">
+      <!-- Page Header -->
+      <div class="hidden md:block border-b border-gray-200/80 dark:border-gray-800/80 bg-gradient-to-b from-gray-50/50 to-transparent dark:from-gray-900/30 dark:to-transparent">
+        <div class="flex items-center justify-between px-4 md:px-8 py-5 max-w-3xl mx-auto w-full">
+        <div class="flex items-center gap-3">
+          <NuxtLink href="/">
+            <LogoIcon id="header-logo" class="h-8 w-auto" />
+          </NuxtLink>
+          <div>
+            <NuxtLink href="/" class="font-sans font-semibold text-gray-950 dark:text-gray-200 text-base leading-tight block">
+              Artisan.page
+            </NuxtLink>
+            <span class="text-[11px] text-gray-500 dark:text-gray-500 leading-tight">The Laravel Artisan cheatsheet</span>
           </div>
+        </div>
+        <div class="flex items-center gap-5">
+          <a
+            href="https://github.com/sponsors/jbrooksuk"
+            @click="sponsorClick"
+            target="_blank"
+            class="text-artisan-accent text-xs hover:underline decoration-artisan-accent/40"
+          >
+            Sponsor ↗
+          </a>
+          <a
+            href="https://github.com/jbrooksuk/artisan.page"
+            target="_blank"
+            class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            title="GitHub"
+          >
+            <svg class="size-4" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+        </div>
         </div>
       </div>
+
+      <div v-if="!commandData.length">
+        <CommandCardLoading />
+      </div>
+      <div v-else-if="commands.length === 0" class="px-4 md:px-8 py-10 max-w-3xl mx-auto w-full">
+        <p class="text-gray-700 dark:text-gray-400 text-sm">
+          No commands found for
+          <code class="font-mono font-bold">{{ filter }}</code>
+        </p>
+      </div>
+
+      <template v-for="(command, index) in commands" :key="command.name">
+        <Command
+          :command="command"
+          :version="currentVersion"
+        />
+
+        <!-- Carbon ad after the 3rd command -->
+        <div v-if="index === 2" class="border-b border-gray-200 dark:border-gray-800">
+          <div class="px-4 md:px-8 py-6 max-w-3xl mx-auto w-full">
+          <Carbon />
+          </div>
+        </div>
+      </template>
     </main>
 
-    <div
-      class="fixed left-5 bottom-5 bg-gray-900 text-white text-center p-5 cursor-pointer rounded-md border-2 dark:border dark:border-gray-400 dark:hover:border-gray-500"
+    <!-- Mobile Footer -->
+    <div class="md:hidden border-t border-gray-200 dark:border-gray-800 flex items-center justify-between px-3 py-4 bg-white dark:bg-gray-950 shrink-0">
+      <a
+        href="https://github.com/sponsors/jbrooksuk"
+        title="Sponsor James Brooks"
+        @click="sponsorClick"
+        target="_blank"
+        class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
+      >
+        Sponsor Artisan.page on GitHub <span>↗</span>
+      </a>
+      <ThemePicker />
+    </div>
+
+    <!-- Back to top -->
+    <button
+      v-show="showBackToTop"
+      class="fixed left-5 bottom-5 bg-gray-950 text-white text-center p-3 cursor-pointer rounded-md border dark:border-gray-700 z-20 text-sm md:hidden"
       title="Back to top"
       @click="backToTop"
-      v-show="showBackToTop"
     >
-      👆
-    </div>
+      ↑
+    </button>
   </div>
 </template>
 
@@ -89,6 +160,7 @@
 import { scrollToAnchor } from 'usemods'
 import { laravel } from '../manifest.json'
 import groupBy from 'lodash.groupby'
+import Fuse from 'fuse.js'
 import CommandCardLoading from './CommandCardLoading.vue'
 import CommandsLoading from './CommandsLoading.vue'
 
@@ -101,9 +173,11 @@ export default {
   data() {
     return {
       showBackToTop: false,
+      showMobileSearch: false,
       currentVersion: null,
       commandData: [],
       filter: '',
+      activeCommand: null,
     }
   },
   created() {
@@ -113,8 +187,11 @@ export default {
   mounted() {
     const { query } = this.$route
     this.filter = query.search || ''
-
-    document.addEventListener('scroll', this.handleScroll)
+  },
+  beforeUnmount() {
+    if (this._observer) {
+      this._observer.disconnect()
+    }
   },
   watch: {
     commandData() {
@@ -122,36 +199,42 @@ export default {
         this.$nextTick(() => {
           scrollToAnchor(window.location.hash.replace('#', ''))
         })
+
+      // Set up intersection observer for active command tracking
+      this.$nextTick(() => {
+        this.setupScrollObserver()
+      })
     },
   },
   computed: {
+    fuse() {
+      return new Fuse(this.commandData, {
+        keys: [
+          { name: 'name', weight: 2 },
+          { name: 'description', weight: 1 },
+          { name: 'synopsis', weight: 0.5 },
+          { name: 'aliases', weight: 1.5 },
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+      })
+    },
     commands() {
-      const keyword = this.filter.toLowerCase()
-
-      if (!keyword) {
+      if (!this.filter) {
         return Object.values(this.commandLinks).flat()
       }
 
-      return this.commandData.filter((command) => {
-        if (
-          command.name.toLowerCase().includes(keyword) ||
-          command.synopsis.toLowerCase().includes(keyword) ||
-          command.description.toLowerCase().includes(keyword) ||
-          command.aliases.includes(keyword)
-        ) {
-          return command
-        }
-      })
+      return this.fuse.search(this.filter).map((result) => result.item)
     },
     commandLinks() {
-      // Sort the commands into alphabetical order so that we can
-      // display the 'ungrouped' commands at the top of the list.
       return Object.fromEntries(
-        Object.entries(groupBy(this.commandData, (command) => {
-          return command.name.includes(':')
-            ? command.name.split(':')[0]
-            : ''
-        })).sort((a, b) => a[0] > b[0])
+        Object.entries(
+          groupBy(this.commandData, (command) => {
+            return command.name.includes(':')
+              ? command.name.split(':')[0]
+              : ''
+          })
+        ).sort((a, b) => a[0].localeCompare(b[0]))
       )
     },
   },
@@ -161,16 +244,53 @@ export default {
       this.commandData = commands.default
     },
     handleScroll() {
-      const rootElement = document.documentElement
-      const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
-
-      this.showBackToTop = rootElement.scrollTop / scrollTotal > 0.05
+      const el = this.$refs.mainContent
+      if (!el) return
+      const scrollTotal = el.scrollHeight - el.clientHeight
+      this.showBackToTop = el.scrollTop / scrollTotal > 0.05
     },
     backToTop() {
-      document.documentElement.scroll({ top: 0, behavior: 'smooth' })
+      this.$refs.mainContent?.scroll({ top: 0, behavior: 'smooth' })
     },
     filterResults(value) {
       this.filter = value.trim()
+    },
+    setupScrollObserver() {
+      if (this._observer) {
+        this._observer.disconnect()
+      }
+
+      const main = this.$refs.mainContent
+      if (!main) return
+
+      const commandEls = main.querySelectorAll('[data-command]')
+      if (!commandEls.length) return
+
+      this._observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+
+          if (visible.length > 0) {
+            this.activeCommand = visible[0].target.dataset.command
+          }
+        },
+        {
+          root: main,
+          rootMargin: '-5% 0px -75% 0px',
+          threshold: 0,
+        }
+      )
+
+      commandEls.forEach((el) => {
+        this._observer.observe(el)
+      })
+    },
+    sponsorClick() {
+      if (typeof window.fathom !== 'undefined') {
+        window.fathom.trackGoal('L3DZXKHP', 0)
+      }
     },
   },
 }

@@ -1,119 +1,106 @@
 <template>
-  <div>
+  <div class="border-b border-gray-200 dark:border-gray-800" :data-command="command.name">
     <a :id="slug" class="anchor"></a>
-    <div
-      class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-600"
-    >
-      <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
-        <div class="bg-red-700 bg-opacity-40 p-4 px-8">
-          <h1 class="text-lg md:text-xl font-bold text-white dark:text-gray-300">
-            <NuxtLink :to="`/${version}/${slug}`">{{
-              command.name
-            }}</NuxtLink>
-          </h1>
-          <h2 class="text-sm font-normal text-white dark:text-gray-300 -mt-1">
-            {{ command.description }}
-          </h2>
+    <div class="px-4 md:px-8 py-10 max-w-3xl mx-auto w-full">
+      <!-- Command name and description -->
+      <div class="flex flex-col gap-1 mb-5">
+        <h1 class="font-mono font-bold text-xl text-artisan-accent leading-[26px]">
+          <NuxtLink :to="`/${version}/${slug}`">{{ command.name }}</NuxtLink>
+        </h1>
+        <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
+          {{ command.description }}
+        </p>
+      </div>
+
+      <!-- Terminal block -->
+      <div class="terminal-block bg-gray-950 rounded-lg p-1 pb-1 mb-5">
+        <div class="flex items-center justify-between px-3 py-1">
+          <span class="text-gray-500 text-xs leading-5">Terminal</span>
+          <button
+            type="button"
+            class="text-gray-500 hover:text-gray-400 transition-colors"
+            :class="{ 'copy-success': copied }"
+            @click="copyCommand($event, `php artisan ${command.name}`)"
+            :title="copied ? 'Copied!' : 'Copy command'"
+          >
+            <svg v-if="copied" class="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            <svg v-else class="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0 0 13.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 0 1-.75.75H9.75a.75.75 0 0 1-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 0 1 1.927-.184" />
+            </svg>
+          </button>
+        </div>
+        <div class="bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded px-3 py-5 overflow-x-auto scrollbar-none">
+          <code class="font-mono text-[13px] leading-5 whitespace-nowrap"><span class="text-[#e8514f]">php artisan</span>{{ ' ' }}<span class="text-[#74d4ff]">{{ command.name }}</span><template v-if="synopsisArgs">{{ ' ' }}<span class="text-[#cad5e2]">{{ synopsisArgs }}</span></template></code>
         </div>
       </div>
 
-      <div class="px-8 py-4 space-y-2" v-if="hasParams(command)">
-        <div
-          v-if="command.options.length"
-          class="text-sm text-gray-700 dark:text-gray-300"
-        >
-          <h3 class="font-bold text-lg">Options</h3>
-          <ul class="list-disc list-outside space-y-1">
-            <li v-for="option in commandOptions" :key="option.name">
-              <code class="text-mono font-semibold">{{ option.name }}<span v-if="option.default" class="font-normal">={{ option.default}}</span></code> -
-              {{ option.description }}
-
+      <!-- Options -->
+      <div v-if="command.options.length" class="mb-5">
+        <h3 class="font-sans font-medium text-sm text-gray-950 dark:text-gray-300 leading-5 mb-3">
+          Options
+        </h3>
+        <div class="flex flex-col">
+          <div
+            v-for="(option, index) in commandOptions"
+            :key="option.name"
+            class="flex flex-col gap-0.5 py-3"
+            :class="{
+              'border-t border-gray-200 dark:border-gray-800': true,
+            }"
+          >
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-semibold text-[13px] text-artisan-accent leading-5">
+                {{ formatOptionName(option.name) }}
+              </span>
               <Badge :required="option.value_required" />
-            </li>
-          </ul>
-        </div>
-
-        <div
-          v-if="command.arguments.length"
-          class="text-sm text-gray-700 dark:text-gray-300"
-        >
-          <h3 class="font-bold text-lg">Arguments</h3>
-          <ul class="list-disc list-outside space-y-1">
-            <li v-for="argument in command.arguments" :key="argument.name">
-              <code class="text-mono">{{ argument.name }}</code> -
-              {{ argument.description }}
-
-              <Badge :required="argument.required" />
-            </li>
-          </ul>
-        </div>
-
-        <div
-          v-if="extended && command.aliases.length"
-          class="text-sm text-gray-700 dark:text-gray-300"
-        >
-          <h3 class="font-bold text-lg">Aliases</h3>
-          <p class="">This command may be aliased by the following:</p>
-          <ul class="list-disc list-outside space-y-1">
-            <li v-for="alias in command.aliases" :key="alias">
-              <code class="text-mono">{{ alias }}</code>
-            </li>
-          </ul>
+            </div>
+            <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
+              {{ option.description }}
+            </p>
+          </div>
         </div>
       </div>
 
-      <div
-        class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-700"
-      >
-        <div class="flex items-center">
-          <div class="flex-initial">
-            <pre
-              class="scrollbar-none overflow-hidden overflow-x-auto p-6 px-8 text-sm leading-snug text-gray-900 whitespace-pre-wrap dark:text-gray-300"
-            >
-php artisan {{ command.synopsis }}</pre
-            >
+      <!-- Arguments -->
+      <div v-if="command.arguments.length">
+        <h3 class="font-sans font-medium text-sm text-gray-950 dark:text-gray-300 leading-5 mb-3">
+          Arguments
+        </h3>
+        <div class="flex flex-col">
+          <div
+            v-for="argument in command.arguments"
+            :key="argument.name"
+            class="flex flex-col gap-0.5 py-3 border-t border-gray-200 dark:border-gray-800"
+          >
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-semibold text-[13px] text-artisan-accent leading-5">
+                {{ argument.name }}
+              </span>
+              <Badge :required="argument.required" />
+            </div>
+            <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
+              {{ argument.description }}
+            </p>
           </div>
-          <div class="pr-8 flex-1 text-right">
-            <button
-              type="button"
-              class="group-hover:opacity-100 focus:opacity-100 opacity-0 text-gray-900 transition duration-200"
-              :class="{ 'focus:outline-none': !keyboardUsed }"
-              @click="copyCommand($event, `php artisan ${command.name}`)"
-            >
-              <span class="sr-only">Click to copy</span>
-              <svg
-                v-if="copied"
-                class="w-6 h-6"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                />
-              </svg>
-              <svg
-                v-else
-                class="w-6 h-6"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                />
-              </svg>
-            </button>
+        </div>
+      </div>
+
+      <!-- Aliases (extended view only) -->
+      <div v-if="extended && command.aliases.length" class="mt-5">
+        <h3 class="font-sans font-medium text-sm text-gray-950 dark:text-gray-300 leading-5 mb-3">
+          Aliases
+        </h3>
+        <div class="flex flex-col">
+          <div
+            v-for="alias in command.aliases"
+            :key="alias"
+            class="py-3 border-t border-gray-200 dark:border-gray-800"
+          >
+            <span class="font-mono text-[13px] text-artisan-accent leading-5">
+              {{ alias }}
+            </span>
           </div>
         </div>
       </div>
@@ -122,7 +109,7 @@ php artisan {{ command.synopsis }}</pre
 </template>
 
 <script>
-import {copyToClipboard, dataSortBy} from "usemods";
+import { copyToClipboard, dataSortBy } from 'usemods'
 
 export default {
   props: {
@@ -135,36 +122,35 @@ export default {
   },
   data() {
     return {
-      keyboardUsed: false,
       copied: false,
     }
-  },
-  mounted() {
-    window.addEventListener('keydown', e => {
-      if (e.keyCode === 9) this.keyboardUsed = true
-    })
   },
   computed: {
     commandOptions() {
       return dataSortBy(this.command.options, {
-        property: 'name'
+        property: 'name',
       })
     },
     slug() {
       return this.command.name.replace(':', '')
     },
+    synopsisArgs() {
+      // Extract everything after the command name from the synopsis
+      const parts = this.command.synopsis.split(' ')
+      // Remove the command name (first part)
+      parts.shift()
+      return parts.join(' ')
+    },
   },
   methods: {
-    hasParams(command) {
-      return command.options.length || command.arguments.length || (this.extended && command.aliases.length)
+    formatOptionName(name) {
+      // Strip leading dashes for display
+      return name.replace(/^-+/, '')
     },
     async copyCommand(event, command) {
       this.copied = true
-
       copyToClipboard(command)
-
-      await new Promise(resolve => setTimeout(resolve, 1500))
-
+      await new Promise((resolve) => setTimeout(resolve, 1500))
       this.copied = false
     },
   },

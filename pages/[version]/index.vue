@@ -15,6 +15,29 @@ useHead({
       href: `https://artisan.page${route.path}`,
     },
   ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://artisan.page',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: `Laravel ${version}`,
+            item: `https://artisan.page/${version}/`,
+          },
+        ],
+      }),
+    },
+  ],
 })
 
 useSeoMeta({
@@ -22,25 +45,14 @@ useSeoMeta({
   titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
 
   description: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
+  ogTitle: `Laravel ${version} Artisan Cheatsheet - artisan.page`,
   ogDescription: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
+  ogUrl: `https://artisan.page/${version}/`,
+  twitterTitle: `Laravel ${version} Artisan Cheatsheet - artisan.page`,
   twitterDescription: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
 })
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <Header />
-
-    <Breadcrumbs :pages="[]" />
-
-    <div
-      class="mx-auto px-4 sm:px-6 lg:px-8 w-full xl:w-3/4 flex flex-col gap-8"
-    >
-      <ArtisanBrowser :version="$route.params.version" />
-
-      <Carbon />
-    </div>
-
-    <AppFooter />
-  </div>
+  <ArtisanBrowser :version="$route.params.version" />
 </template>
