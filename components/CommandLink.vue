@@ -1,6 +1,9 @@
 <template>
   <a
-    class="ml-5 text-gray-600 dark:text-gray-400 dark:hover:text-artisan-light hover:text-artisan-light hover:underline block mb-1"
+    class="block font-mono text-xs leading-[26px] rounded-md px-2 -mx-2 transition-colors"
+    :class="active
+      ? 'bg-[#fbecec] dark:bg-artisan-accent/10 text-artisan-accent'
+      : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
     @click="handleCommandClick"
     :href="`#${slug}`"
     :title="command.description"
@@ -11,10 +14,16 @@
 </template>
 
 <script>
-import { scrollToAnchor} from 'usemods'
+import { scrollToAnchor } from 'usemods'
 
 export default {
-  props: ['command'],
+  props: {
+    command: Object,
+    active: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     slug() {
       return this.command.name.replace(':', '')
@@ -23,7 +32,6 @@ export default {
   methods: {
     handleCommandClick() {
       scrollToAnchor(this.slug)
-
       this.refreshCarbon()
     },
     refreshCarbon() {

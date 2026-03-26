@@ -26,8 +26,8 @@ export default defineNuxtConfig({
           href: 'https://artisan.page/favicon.ico',
         },
         {
-          rel: 'style',
-          href: 'https://fonts.bunny.net/css2?family=Nunito+Sans:wght@400;500;600;700;800&display=swap',
+          rel: 'stylesheet',
+          href: 'https://fonts.bunny.net/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap',
         },
       ],
       script: [

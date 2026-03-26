@@ -1,26 +1,58 @@
 <template>
-  <div class="space-y-8">
-    <div v-for="(index) in 3" :key="index">
-      <div class="shadow-lg rounded-lg overflow-hidden bg-white dark:bg-gray-800 dark:border-2 dark:border-gray-600">
-        <div class="rounded-t-lg bg-gradient-to-r from-artisan to-artisan-light">
-          <div class="bg-red-700 bg-opacity-40 p-4 px-8 space-y-2">
-            <div class="animate-pulse h-3 bg-gray-300 rounded-full w-32" />
-            <div class="animate-pulse h-3 bg-gray-300 rounded-full w-60" />
+  <div>
+    <div v-for="index in 3" :key="index" class="border-b border-gray-200 dark:border-gray-800">
+      <div class="px-4 md:px-8 py-10 max-w-3xl mx-auto w-full">
+        <!-- Command name + description -->
+        <div class="mb-5 space-y-2">
+          <div class="animate-pulse h-5 bg-gray-200 dark:bg-gray-800 rounded w-28" />
+          <div class="animate-pulse h-4 bg-gray-200 dark:bg-gray-800 rounded w-64" />
+        </div>
+
+        <!-- Terminal block -->
+        <div class="bg-gray-950 rounded-lg p-1 mb-5">
+          <div class="px-3 py-1.5">
+            <div class="animate-pulse h-3 bg-gray-800 rounded w-16" />
+          </div>
+          <div class="bg-[rgba(255,255,255,0.05)] rounded px-3 py-5">
+            <div class="animate-pulse h-4 bg-gray-800 rounded w-72" />
           </div>
         </div>
 
-        <div class="px-8 py-4 space-y-3">
-          <div class="animate-pulse h-3 bg-gray-300 rounded-full w-72" />
-          <div class="animate-pulse h-3 bg-gray-300 rounded-full w-80" />
-          <div class="animate-pulse h-3 bg-gray-300 rounded-full w-96" />
-          <div class="animate-pulse h-3 bg-gray-300 rounded-full w-56" />
-          <div class="animate-pulse h-3 bg-gray-300 rounded-full w-60" />
+        <!-- Options -->
+        <div class="mb-5">
+          <div class="animate-pulse h-4 bg-gray-200 dark:bg-gray-800 rounded w-16 mb-3" />
+          <div class="border-t border-gray-200 dark:border-gray-800 py-3 space-y-1.5">
+            <div class="flex items-center gap-2">
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-24" />
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-14" />
+            </div>
+            <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-56" />
+          </div>
+          <div class="border-t border-gray-200 dark:border-gray-800 py-3 space-y-1.5">
+            <div class="flex items-center gap-2">
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-20" />
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-14" />
+            </div>
+            <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-48" />
+          </div>
+          <div class="border-t border-gray-200 dark:border-gray-800 py-3 space-y-1.5">
+            <div class="flex items-center gap-2">
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-16" />
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-14" />
+            </div>
+            <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-44" />
+          </div>
         </div>
 
-        <div class="group relative overflow-hidden rounded-b-lg bg-gray-700 bg-opacity-10 dark:bg-gray-700">
-          <div class="py-4 px-8 space-y-3">
-            <div class="animate-pulse h-3 bg-gray-300 rounded-full w-60" />
-            <div class="animate-pulse h-3 bg-gray-300 rounded-full w-72" />
+        <!-- Arguments -->
+        <div>
+          <div class="animate-pulse h-4 bg-gray-200 dark:bg-gray-800 rounded w-20 mb-3" />
+          <div class="border-t border-gray-200 dark:border-gray-800 py-3 space-y-1.5">
+            <div class="flex items-center gap-2">
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-28" />
+              <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-14" />
+            </div>
+            <div class="animate-pulse h-3.5 bg-gray-200 dark:bg-gray-800 rounded w-36" />
           </div>
         </div>
       </div>

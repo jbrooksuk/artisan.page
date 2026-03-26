@@ -1,10 +1,9 @@
 <template>
   <span
-    class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium uppercase"
+    class="inline-flex items-center justify-center px-1 rounded text-[10px] font-normal leading-[17px] border-[0.5px]"
     :class="{
-      'bg-red-100 text-red-800 dark:bg-red-700 dark:text-red-200': required,
-      'bg-green-100 text-green-800 dark:bg-green-700 dark:text-green-300':
-        !required,
+      'bg-[rgba(211,64,62,0.03)] border-[rgba(211,64,62,0.6)] text-artisan-accent': required,
+      'bg-[#f4fcf6] border-[#73b78f] text-[#25613d]': !required,
     }"
   >
     <template v-if="required">Required</template>
