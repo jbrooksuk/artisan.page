@@ -11,6 +11,7 @@
       <MobileSearch
         v-model="showMobileSearch"
         :filter="filter"
+        :result-count="commands.length"
         @update:filter="filterResults"
       />
     </ClientOnly>
@@ -70,15 +71,18 @@
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto" ref="mainContent" @scroll="handleScroll">
       <!-- Page Header -->
-      <div class="hidden md:block border-b border-gray-200 dark:border-gray-800">
+      <div class="hidden md:block border-b border-gray-200/80 dark:border-gray-800/80 bg-gradient-to-b from-gray-50/50 to-transparent dark:from-gray-900/30 dark:to-transparent">
         <div class="flex items-center justify-between px-4 md:px-8 py-5 max-w-3xl mx-auto w-full">
         <div class="flex items-center gap-3">
           <NuxtLink href="/">
             <LogoIcon id="header-logo" class="h-8 w-auto" />
           </NuxtLink>
-          <NuxtLink href="/" class="font-sans font-semibold text-gray-950 dark:text-gray-200 text-base">
-            Artisan.page
-          </NuxtLink>
+          <div>
+            <NuxtLink href="/" class="font-sans font-semibold text-gray-950 dark:text-gray-200 text-base leading-tight block">
+              Artisan.page
+            </NuxtLink>
+            <span class="text-[11px] text-gray-500 dark:text-gray-500 leading-tight">The Laravel Artisan cheatsheet</span>
+          </div>
         </div>
         <div class="flex items-center gap-5">
           <a
@@ -156,6 +160,7 @@
 import { scrollToAnchor } from 'usemods'
 import { laravel } from '../manifest.json'
 import groupBy from 'lodash.groupby'
+import Fuse from 'fuse.js'
 import CommandCardLoading from './CommandCardLoading.vue'
 import CommandsLoading from './CommandsLoading.vue'
 
@@ -202,23 +207,24 @@ export default {
     },
   },
   computed: {
+    fuse() {
+      return new Fuse(this.commandData, {
+        keys: [
+          { name: 'name', weight: 2 },
+          { name: 'description', weight: 1 },
+          { name: 'synopsis', weight: 0.5 },
+          { name: 'aliases', weight: 1.5 },
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+      })
+    },
     commands() {
-      const keyword = this.filter.toLowerCase()
-
-      if (!keyword) {
+      if (!this.filter) {
         return Object.values(this.commandLinks).flat()
       }
 
-      return this.commandData.filter((command) => {
-        if (
-          command.name.toLowerCase().includes(keyword) ||
-          command.synopsis.toLowerCase().includes(keyword) ||
-          command.description.toLowerCase().includes(keyword) ||
-          command.aliases.includes(keyword)
-        ) {
-          return command
-        }
-      })
+      return this.fuse.search(this.filter).map((result) => result.item)
     },
     commandLinks() {
       return Object.fromEntries(

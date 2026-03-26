@@ -13,12 +13,13 @@
       </div>
 
       <!-- Terminal block -->
-      <div class="bg-gray-950 rounded-lg p-1 pb-1 mb-5">
+      <div class="terminal-block bg-gray-950 rounded-lg p-1 pb-1 mb-5">
         <div class="flex items-center justify-between px-3 py-1">
           <span class="text-gray-500 text-xs leading-5">Terminal</span>
           <button
             type="button"
-            class="text-gray-500 hover:text-gray-400 transition"
+            class="text-gray-500 hover:text-gray-400 transition-colors"
+            :class="{ 'copy-success': copied }"
             @click="copyCommand($event, `php artisan ${command.name}`)"
             :title="copied ? 'Copied!' : 'Copy command'"
           >

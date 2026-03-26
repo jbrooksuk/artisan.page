@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  resultCount: {
+    type: Number,
+    default: null,
+  },
 })
 
 const emit = defineEmits(['update:modelValue', 'update:filter'])
@@ -52,12 +56,12 @@ onMounted(() => {
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div v-if="modelValue" class="fixed inset-0 z-50 md:hidden">
+      <div v-if="modelValue" class="fixed inset-0 top-[50px] z-50 md:hidden">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-gray-950/50" @click="close" />
+        <div class="absolute inset-0 bg-gray-950/30 search-backdrop" @click="close" />
 
         <!-- Search panel -->
-        <div class="relative bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 p-4">
+        <div class="relative bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 p-4 shadow-lg">
           <div class="flex items-center gap-3">
             <div class="flex-1 relative">
               <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -78,9 +82,12 @@ onMounted(() => {
               @click="close"
               class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm font-medium"
             >
-              Cancel
+              Close
             </button>
           </div>
+          <p v-if="filter && resultCount !== null" class="text-xs text-gray-500 mt-2 pl-1">
+            {{ resultCount }} {{ resultCount === 1 ? 'command' : 'commands' }} found
+          </p>
         </div>
       </div>
     </transition>

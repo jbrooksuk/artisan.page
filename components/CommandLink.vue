@@ -1,6 +1,19 @@
 <template>
+  <NuxtLink
+    v-if="href"
+    :to="href"
+    class="sidebar-link block font-mono text-xs leading-[26px] rounded-md px-2 -mx-2"
+    :class="active
+      ? 'bg-[#fbecec] dark:bg-artisan-accent/10 text-artisan-accent'
+      : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
+    :title="command.description"
+    v-bind="$attrs"
+  >
+    {{ command.name }}
+  </NuxtLink>
   <a
-    class="block font-mono text-xs leading-[26px] rounded-md px-2 -mx-2 transition-colors"
+    v-else
+    class="sidebar-link block font-mono text-xs leading-[26px] rounded-md px-2 -mx-2"
     :class="active
       ? 'bg-[#fbecec] dark:bg-artisan-accent/10 text-artisan-accent'
       : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
@@ -22,6 +35,10 @@ export default {
     active: {
       type: Boolean,
       default: false,
+    },
+    href: {
+      type: String,
+      default: null,
     },
   },
   computed: {
