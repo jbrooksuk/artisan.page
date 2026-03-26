@@ -1,3 +1,5 @@
+import { Resvg } from '@resvg/resvg-js'
+
 export default defineEventHandler((event) => {
   const query = getQuery(event)
   const command = query.command || 'artisan'
@@ -9,9 +11,6 @@ export default defineEventHandler((event) => {
   const svg = `
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <style>
-      @import url('https://fonts.bunny.net/css2?family=DM+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap');
-    </style>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#BB2926" />
       <stop offset="100%" stop-color="#F26763" />
@@ -56,37 +55,47 @@ export default defineEventHandler((event) => {
   </g>
 
   <!-- Site name + tagline -->
-  <text x="114" y="80" font-family="'DM Sans', sans-serif" font-size="24" fill="#ffffff" font-weight="700">Artisan.page</text>
-  <text x="114" y="100" font-family="'DM Sans', sans-serif" font-size="13" fill="#6f6f6f">The Laravel Artisan Cheatsheet</text>
+  <text x="114" y="80" font-family="sans-serif" font-size="24" fill="#ffffff" font-weight="700">Artisan.page</text>
+  <text x="114" y="100" font-family="sans-serif" font-size="13" fill="#6f6f6f">The Laravel Artisan Cheatsheet</text>
 
   <!-- Command name -->
-  <text x="80" y="185" font-family="'JetBrains Mono', monospace" font-size="40" fill="#d3403e" font-weight="700">${escapeXml(command)}</text>
+  <text x="80" y="185" font-family="monospace" font-size="40" fill="#d3403e" font-weight="700">${escapeXml(command)}</text>
 
   <!-- Description -->
-  <text x="80" y="225" font-family="'DM Sans', sans-serif" font-size="20" fill="#999999">${escapeXml(truncate(description, 90))}</text>
+  <text x="80" y="225" font-family="sans-serif" font-size="20" fill="#999999">${escapeXml(truncate(description, 90))}</text>
 
-  <!-- Terminal block — simplified -->
+  <!-- Terminal block -->
   <rect x="80" y="270" width="1040" height="110" rx="10" fill="#1e1e1e" />
-  <text x="100" y="298" font-family="'DM Sans', sans-serif" font-size="12" fill="#666666">Terminal</text>
-  <text x="100" y="342" font-family="'JetBrains Mono', monospace" font-size="22">
+  <text x="100" y="298" font-family="sans-serif" font-size="12" fill="#666666">Terminal</text>
+  <text x="100" y="342" font-family="monospace" font-size="22">
     <tspan fill="#e8514f">php artisan</tspan><tspan fill="#74d4ff"> ${escapeXml(command)}</tspan>
   </text>
 
-  <!-- Version text — simple, no badge box -->
+  <!-- Version text -->
   ${versionText ? `
-  <text x="80" y="440" font-family="'DM Sans', sans-serif" font-size="16" fill="#d3403e" font-weight="500">${escapeXml(versionText)}</text>
+  <text x="80" y="440" font-family="sans-serif" font-size="16" fill="#d3403e" font-weight="500">${escapeXml(versionText)}</text>
   ` : ''}
 
-  <!-- URL bottom right -->
-  <text x="1110" y="580" font-family="'DM Sans', sans-serif" font-size="14" fill="#444444" text-anchor="end">artisan.page</text>
+  <!-- URL -->
+  <text x="1110" y="580" font-family="sans-serif" font-size="14" fill="#444444" text-anchor="end">artisan.page</text>
 </svg>`
 
+  const resvg = new Resvg(svg, {
+    fitTo: {
+      mode: 'width',
+      value: 1200,
+    },
+  })
+
+  const pngData = resvg.render()
+  const pngBuffer = pngData.asPng()
+
   setResponseHeaders(event, {
-    'Content-Type': 'image/svg+xml',
+    'Content-Type': 'image/png',
     'Cache-Control': 'public, max-age=86400, s-maxage=86400',
   })
 
-  return svg
+  return pngBuffer
 })
 
 function escapeXml(str) {

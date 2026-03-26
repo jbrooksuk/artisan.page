@@ -29,6 +29,7 @@
     "vue-router": "^5.0.3"
   },
   "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "fuse.js": "^7.1.0"
   }
 }
