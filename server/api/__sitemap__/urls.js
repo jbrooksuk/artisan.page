@@ -1,6 +1,7 @@
 import { laravel } from '../../../manifest.json'
 
 const versionMap = {
+  '13.x': () => import(`~/assets/13.x.json`),
   '12.x': () => import(`~/assets/12.x.json`),
   '11.x': () => import(`~/assets/11.x.json`),
   '10.x': () => import(`~/assets/10.x.json`),
@@ -13,15 +14,17 @@ const versionMap = {
 
 const versionPriority = (version) => {
   return {
-    '12.x': 1.0,
-    '11.x': 0.9,
-    '10.x': 0.8,
+    '13.x': 1.0,
+    '12.x': 0.9,
+    '11.x': 0.8,
+    '10.x': 0.7,
     '9.x': 0.5,
   }[version] || 0.4
 }
 
 const changeFrequency = (version) => {
   return {
+    '13.x': 'weekly',
     '12.x': 'weekly',
     '11.x': 'weekly',
     '10.x': 'weekly',
