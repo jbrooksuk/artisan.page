@@ -1,5 +1,5 @@
 <script setup>
-import { laravel, packages } from '../manifest.json'
+import { laravel } from '../manifest.json'
 
 useHead({
   title: laravel[0],
@@ -33,8 +33,6 @@ useHead({
 useSeoMeta({
   title: 'The Laravel Artisan Cheatsheet',
   description: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
-  keywords: ['laravel', ...laravel.map(version => `laravel ${version}`), 'artisan', 'cheatsheet', 'cheat sheet', 'commands', 'cli', 'php', ...packages.map(pkg => pkg.split('/').join(' '))].join(', '),
-
   ogDescription: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
   ogImage: 'https://artisan.page/og.png',
   ogTitle: 'The Laravel Artisan Cheatsheet',
