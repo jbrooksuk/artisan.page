@@ -75,6 +75,29 @@ useHead({
         ],
       }),
     },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: `php artisan ${command.name}`,
+        description: command.description,
+        url: `https://artisan.page/${commandVersion}/${commandName}`,
+        inLanguage: 'en',
+        proficiencyLevel: 'Beginner',
+        about: {
+          '@type': 'SoftwareApplication',
+          name: 'Laravel',
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Cross-platform',
+        },
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'Artisan.page',
+          url: 'https://artisan.page',
+        },
+      }),
+    },
   ],
 })
 

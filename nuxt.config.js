@@ -81,6 +81,17 @@ export default defineNuxtConfig({
     ]
   },
 
+  robots: {
+    groups: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/api/'],
+      },
+    ],
+    sitemap: 'https://artisan.page/sitemap.xml',
+  },
+
   colorMode: {
     preference: 'system',
     fallback: 'light',
