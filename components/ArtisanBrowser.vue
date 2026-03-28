@@ -78,9 +78,9 @@
             <LogoIcon id="header-logo" class="h-8 w-auto" />
           </NuxtLink>
           <div>
-            <NuxtLink href="/" class="font-sans font-semibold text-gray-950 dark:text-gray-200 text-base leading-tight block">
-              Artisan.page
-            </NuxtLink>
+            <h1 class="font-sans font-semibold text-gray-950 dark:text-gray-200 text-base leading-tight">
+              <NuxtLink href="/">Artisan.page</NuxtLink>
+            </h1>
             <span class="text-[11px] text-gray-500 dark:text-gray-500 leading-tight">The Laravel Artisan cheatsheet</span>
           </div>
         </div>

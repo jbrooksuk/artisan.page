@@ -1,12 +1,12 @@
 <template>
-  <div class="border-b border-gray-200 dark:border-gray-800" :data-command="command.name">
+  <article class="border-b border-gray-200 dark:border-gray-800" :data-command="command.name">
     <a :id="slug" class="anchor"></a>
     <div class="px-4 md:px-8 py-10 max-w-3xl mx-auto w-full">
       <!-- Command name and description -->
       <div class="flex flex-col gap-1 mb-5">
-        <h1 class="font-mono font-bold text-xl text-artisan-accent leading-[26px]">
+        <h2 class="font-mono font-bold text-xl text-artisan-accent leading-[26px]">
           <NuxtLink :to="`/${version}/${slug}`">{{ command.name }}</NuxtLink>
-        </h1>
+        </h2>
         <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
           {{ command.description }}
         </p>
@@ -105,7 +105,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
