@@ -52,12 +52,6 @@ const socialDescription = sanitise(`${cleanDescription} — Laravel ${commandVer
 
 const ogImageUrl = `https://artisan.page/api/og?command=${encodeURIComponent(command.name)}&description=${encodeURIComponent(cleanDescription)}&version=${encodeURIComponent(commandVersion)}`
 
-const { data: lastModData } = await useAsyncData(
-  `lastmod-${commandVersion}`,
-  () => $fetch('/api/lastmod', { params: { version: commandVersion } })
-)
-const dateModified = lastModData.value?.lastmod || new Date().toISOString().split('T')[0]
-
 useHead({
   link: [
     {
@@ -103,7 +97,6 @@ useHead({
         url: `https://artisan.page/${commandVersion}/${commandName}`,
         inLanguage: 'en',
         proficiencyLevel: 'Beginner',
-        dateModified,
         keywords: ['Laravel', 'Artisan', `Laravel ${commandVersion}`, command.name, `php artisan ${command.name}`],
         articleSection: `Laravel ${commandVersion}`,
         about: {

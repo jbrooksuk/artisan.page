@@ -1,5 +1,4 @@
 import { laravel } from '../../../manifest.json'
-import { lastModForVersion } from '../../utils/lastmod'
 
 const versionMap = {
   '13.x': () => import('~/assets/13.x.json'),
@@ -32,12 +31,21 @@ const changeFrequency = (version) => {
   }[version] || 'monthly'
 }
 
+const lastMod = (version) => {
+  return {
+    '8.x': '2023-01-24',
+    '7.x': '2021-03-03',
+    '6.x': '2022-09-06',
+    '5.x': '2020-02-26',
+  }[version] || new Date().toISOString().split('T')[0]
+}
+
 export default defineSitemapEventHandler(async () => {
   const versions = [...laravel].map((version) => ({
     loc: `/${version}`,
     changefreq: changeFrequency(version),
     priority: versionPriority(version),
-    lastmod: lastModForVersion(version)
+    lastmod: lastMod(version)
   }))
 
   const pages = await Promise.all(Object.keys(versionMap).map(async (version) => {
@@ -47,19 +55,14 @@ export default defineSitemapEventHandler(async () => {
       loc: `/${version}/${command.name.replace(':', '')}`,
       changefreq: changeFrequency(version),
       priority: versionPriority(version),
-      lastmod: lastModForVersion(version),
+      lastmod: lastMod(version),
     }))
   }))
-
-  const homeLastMod = laravel
-    .map((version) => lastModForVersion(version))
-    .sort()
-    .pop() || new Date().toISOString().split('T')[0]
 
   return [{
     loc: '/',
     changefreq: 'weekly',
     priority: 1.0,
-    lastmod: homeLastMod
+    lastmod: new Date().toISOString().split('T')[0]
   }, ...versions, ...pages.flat()]
 })
