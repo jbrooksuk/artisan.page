@@ -1,26 +1,34 @@
+import { writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { Resvg } from '@resvg/resvg-js'
 
-const FONT_URLS = [
-  'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf',
-  'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf',
+const FONT_SOURCES = [
+  { url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf', filename: 'DMSans.ttf' },
+  { url: 'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf', filename: 'JetBrainsMono.ttf' },
 ]
 
-let fontBuffersPromise
+const FONT_DIR = join(tmpdir(), 'artisan-og-fonts')
+let fontFilesPromise
 
-async function fetchFont(url) {
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`Failed to fetch font ${url}: ${res.status}`)
-  return Buffer.from(await res.arrayBuffer())
-}
-
-function loadFonts() {
-  if (!fontBuffersPromise) {
-    fontBuffersPromise = Promise.all(FONT_URLS.map(fetchFont)).catch((err) => {
-      fontBuffersPromise = undefined
+function loadFontFiles() {
+  if (!fontFilesPromise) {
+    fontFilesPromise = (async () => {
+      if (!existsSync(FONT_DIR)) mkdirSync(FONT_DIR, { recursive: true })
+      return Promise.all(FONT_SOURCES.map(async ({ url, filename }) => {
+        const path = join(FONT_DIR, filename)
+        if (existsSync(path)) return path
+        const res = await fetch(url)
+        if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`)
+        writeFileSync(path, Buffer.from(await res.arrayBuffer()))
+        return path
+      }))
+    })().catch((err) => {
+      fontFilesPromise = undefined
       throw err
     })
   }
-  return fontBuffersPromise
+  return fontFilesPromise
 }
 
 export default defineEventHandler(async (event) => {
@@ -34,7 +42,7 @@ export default defineEventHandler(async (event) => {
     ? renderCommand({ command, description, version })
     : renderVersion({ version, count })
 
-  const buffers = await loadFonts()
+  const fontFiles = await loadFontFiles()
 
   const resvg = new Resvg(svg, {
     fitTo: {
@@ -42,7 +50,7 @@ export default defineEventHandler(async (event) => {
       value: 1200,
     },
     font: {
-      fontBuffers: buffers,
+      fontFiles,
       loadSystemFonts: false,
       defaultFontFamily: 'DM Sans',
     },
