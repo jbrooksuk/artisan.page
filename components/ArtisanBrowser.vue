@@ -254,6 +254,10 @@ export default {
     },
     filterResults(value) {
       this.filter = value.trim()
+
+      if (this.filter && typeof window.fathom !== 'undefined') {
+        window.fathom.trackEvent('Command Search')
+      }
     },
     setupScrollObserver() {
       if (this._observer) {
@@ -273,7 +277,14 @@ export default {
             .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
 
           if (visible.length > 0) {
-            this.activeCommand = visible[0].target.dataset.command
+            const newCommand = visible[0].target.dataset.command
+            if (newCommand !== this.activeCommand) {
+              this.activeCommand = newCommand
+
+              if (typeof window.fathom !== 'undefined') {
+                window.fathom.trackEvent('Command Scroll')
+              }
+            }
           }
         },
         {
