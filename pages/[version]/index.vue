@@ -35,7 +35,7 @@ useHead({
             '@type': 'ListItem',
             position: 2,
             name: `Laravel ${version}`,
-            item: `https://artisan.page/${version}/`,
+            item: `https://artisan.page/${version}`,
           },
         ],
       }),
@@ -48,7 +48,7 @@ useHead({
         name: `Laravel ${version} Artisan Commands`,
         description: `Complete list of php artisan commands for Laravel ${version}`,
         numberOfItems: allCommands.length,
-        itemListElement: allCommands.slice(0, 50).map((cmd, index) => ({
+        itemListElement: allCommands.map((cmd, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           name: `php artisan ${cmd.name}`,
@@ -59,18 +59,22 @@ useHead({
   ],
 })
 
+const ogImageUrl = `https://artisan.page/api/og?version=${encodeURIComponent(version)}&count=${allCommands.length}`
+
 useSeoMeta({
   title: version,
   titleTemplate: 'Laravel v%s - The Laravel Artisan Cheatsheet',
 
-  description: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
+  description: `The Laravel ${version} Artisan cheatsheet — browse and search ${allCommands.length} php artisan commands.`,
   ogTitle: `Laravel ${version} Artisan Cheatsheet - artisan.page`,
-  ogDescription: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
-  ogImage: 'https://artisan.page/og.png',
-  ogUrl: `https://artisan.page/${version}/`,
+  ogDescription: `Browse ${allCommands.length} php artisan commands for Laravel ${version}.`,
+  ogImage: ogImageUrl,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogUrl: `https://artisan.page/${version}`,
   twitterTitle: `Laravel ${version} Artisan Cheatsheet - artisan.page`,
-  twitterDescription: `The Laravel ${version} Artisan cheatsheet. Discover Laravel ${version} php artisan commands.`,
-  twitterImage: 'https://artisan.page/og.png',
+  twitterDescription: `Browse ${allCommands.length} php artisan commands for Laravel ${version}.`,
+  twitterImage: ogImageUrl,
 })
 </script>
 

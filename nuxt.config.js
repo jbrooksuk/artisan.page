@@ -65,7 +65,6 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     '@nuxtjs/web-vitals',
-    '@nuxt/image',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -73,6 +72,28 @@ export default defineNuxtConfig({
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  ignore: ['**/.claude/**'],
+
+  watchers: {
+    chokidar: {
+      ignored: [
+        '**/node_modules/**',
+        '**/.git/**',
+        '**/.nuxt/**',
+        '**/.output/**',
+        '**/.claude/**',
+      ],
+    },
+  },
+
+  vite: {
+    server: {
+      watch: {
+        ignored: ['**/.claude/**'],
+      },
+    },
+  },
 
   sitemap: {
     cacheMaxAgeSeconds: 86400, // 24 hours
@@ -85,7 +106,7 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: ['/', '/api/og'],
         disallow: ['/api/'],
       },
     ],

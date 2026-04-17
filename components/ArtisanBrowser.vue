@@ -60,6 +60,7 @@
           title="Sponsor James Brooks"
           @click="sponsorClick"
           target="_blank"
+          rel="noopener noreferrer"
           class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
         >
           Sponsor Artisan.page on GitHub <span>↗</span>
@@ -89,6 +90,7 @@
             href="https://github.com/sponsors/jbrooksuk"
             @click="sponsorClick"
             target="_blank"
+            rel="noopener noreferrer"
             class="text-artisan-accent text-xs hover:underline decoration-artisan-accent/40"
           >
             Sponsor ↗
@@ -96,6 +98,7 @@
           <a
             href="https://github.com/jbrooksuk/artisan.page"
             target="_blank"
+            rel="noopener noreferrer"
             class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
             title="GitHub"
           >
@@ -137,6 +140,7 @@
         title="Sponsor James Brooks"
         @click="sponsorClick"
         target="_blank"
+        rel="noopener noreferrer"
         class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
       >
         Sponsor Artisan.page on GitHub <span>↗</span>

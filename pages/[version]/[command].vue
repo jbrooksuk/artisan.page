@@ -38,7 +38,25 @@ definePageMeta({
   }
 })
 
-const ogImageUrl = `https://artisan.page/api/og?command=${encodeURIComponent(command.name)}&description=${encodeURIComponent(command.description)}&version=${encodeURIComponent(commandVersion)}`
+const sanitise = (text, max) => {
+  const cleaned = String(text).replace(/\s+/g, ' ').trim()
+  if (cleaned.length <= max) return cleaned
+  const truncated = cleaned.slice(0, max - 1)
+  const lastSpace = truncated.lastIndexOf(' ')
+  return (lastSpace > max * 0.6 ? truncated.slice(0, lastSpace) : truncated) + '…'
+}
+
+const cleanDescription = sanitise(command.description, 200)
+const metaDescription = sanitise(`php artisan ${command.name} — ${cleanDescription} — Laravel ${commandVersion}`, 155)
+const socialDescription = sanitise(`${cleanDescription} — Laravel ${commandVersion} Artisan command reference.`, 200)
+
+const ogImageUrl = `https://artisan.page/api/og?command=${encodeURIComponent(command.name)}&description=${encodeURIComponent(cleanDescription)}&version=${encodeURIComponent(commandVersion)}`
+
+const { data: lastModData } = await useAsyncData(
+  `lastmod-${commandVersion}`,
+  () => $fetch('/api/lastmod', { params: { version: commandVersion } })
+)
+const dateModified = lastModData.value?.lastmod || new Date().toISOString().split('T')[0]
 
 useHead({
   link: [
@@ -64,7 +82,7 @@ useHead({
             '@type': 'ListItem',
             position: 2,
             name: `Laravel ${commandVersion}`,
-            item: `https://artisan.page/${commandVersion}/`,
+            item: `https://artisan.page/${commandVersion}`,
           },
           {
             '@type': 'ListItem',
@@ -81,10 +99,13 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'TechArticle',
         headline: `php artisan ${command.name}`,
-        description: command.description,
+        description: cleanDescription,
         url: `https://artisan.page/${commandVersion}/${commandName}`,
         inLanguage: 'en',
         proficiencyLevel: 'Beginner',
+        dateModified,
+        keywords: ['Laravel', 'Artisan', `Laravel ${commandVersion}`, command.name, `php artisan ${command.name}`],
+        articleSection: `Laravel ${commandVersion}`,
         about: {
           '@type': 'SoftwareApplication',
           name: 'Laravel',
@@ -102,16 +123,18 @@ useHead({
 })
 
 useSeoMeta({
-  title: `php artisan ${command.name} - Laravel ${commandVersion} - The Laravel Artisan Cheatsheet`,
+  title: `php artisan ${command.name} — Laravel ${commandVersion}`,
   titleTemplate: null,
 
-  description: `php artisan ${command.name} - ${command.description} - Laravel ${commandVersion}.`,
-  ogTitle: `php artisan ${command.name} - Laravel ${commandVersion}`,
-  ogDescription: `${command.description} — Laravel ${commandVersion} Artisan command reference.`,
+  description: metaDescription,
+  ogTitle: `php artisan ${command.name} — Laravel ${commandVersion}`,
+  ogDescription: socialDescription,
   ogImage: ogImageUrl,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   ogUrl: `https://artisan.page/${commandVersion}/${commandName}`,
-  twitterTitle: `php artisan ${command.name} - Laravel ${commandVersion}`,
-  twitterDescription: `${command.description} — Laravel ${commandVersion} Artisan command reference.`,
+  twitterTitle: `php artisan ${command.name} — Laravel ${commandVersion}`,
+  twitterDescription: socialDescription,
   twitterImage: ogImageUrl,
 })
 
@@ -167,6 +190,7 @@ const sponsorClick = () => {
           title="Sponsor James Brooks"
           @click="sponsorClick"
           target="_blank"
+          rel="noopener noreferrer"
           class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
         >
           Sponsor Artisan.page on GitHub <span>↗</span>
@@ -196,6 +220,7 @@ const sponsorClick = () => {
               href="https://github.com/sponsors/jbrooksuk"
               @click="sponsorClick"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-artisan-accent text-xs hover:underline decoration-artisan-accent/40"
             >
               Sponsor ↗
@@ -203,6 +228,7 @@ const sponsorClick = () => {
             <a
               href="https://github.com/jbrooksuk/artisan.page"
               target="_blank"
+              rel="noopener noreferrer"
               class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
               title="GitHub"
             >
@@ -226,6 +252,7 @@ const sponsorClick = () => {
         title="Sponsor James Brooks"
         @click="sponsorClick"
         target="_blank"
+        rel="noopener noreferrer"
         class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
       >
         Sponsor Artisan.page on GitHub <span>↗</span>

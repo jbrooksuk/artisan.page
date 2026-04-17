@@ -16,6 +16,7 @@ useHead({
         name: 'Artisan.page',
         alternateName: 'The Laravel Artisan Cheatsheet',
         url: 'https://artisan.page',
+        inLanguage: 'en',
         description: "A searchable, bookmarkable cheatsheet for Laravel's Artisan commands.",
         potentialAction: {
           '@type': 'SearchAction',
@@ -31,14 +32,16 @@ useHead({
 })
 
 useSeoMeta({
-  title: 'The Laravel Artisan Cheatsheet',
   description: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
   ogDescription: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
   ogImage: 'https://artisan.page/og.png',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   ogTitle: 'The Laravel Artisan Cheatsheet',
   ogType: 'website',
   ogSiteName: 'Artisan.page',
   ogUrl: 'https://artisan.page',
+  ogLocale: 'en_US',
 
   twitterCreator: '@jbrooksuk',
   twitterDescription: "The Laravel Artisan cheatsheet. Discover Laravel's php artisan commands.",
