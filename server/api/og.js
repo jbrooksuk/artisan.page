@@ -1,16 +1,26 @@
 import { Resvg } from '@resvg/resvg-js'
 
-let fontBuffers = null
+const FONT_URLS = [
+  'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/dmsans/DMSans%5Bopsz%2Cwght%5D.ttf',
+  'https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf',
+]
 
-async function loadFonts() {
-  if (fontBuffers) return fontBuffers
-  const storage = useStorage('assets:server')
-  const files = ['fonts/DMSans.ttf', 'fonts/JetBrainsMono.ttf']
-  const loaded = await Promise.all(files.map((key) => storage.getItemRaw(key)))
-  fontBuffers = loaded
-    .filter(Boolean)
-    .map((raw) => (Buffer.isBuffer(raw) ? raw : Buffer.from(raw)))
-  return fontBuffers
+let fontBuffersPromise
+
+async function fetchFont(url) {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Failed to fetch font ${url}: ${res.status}`)
+  return Buffer.from(await res.arrayBuffer())
+}
+
+function loadFonts() {
+  if (!fontBuffersPromise) {
+    fontBuffersPromise = Promise.all(FONT_URLS.map(fetchFont)).catch((err) => {
+      fontBuffersPromise = undefined
+      throw err
+    })
+  }
+  return fontBuffersPromise
 }
 
 export default defineEventHandler(async (event) => {
