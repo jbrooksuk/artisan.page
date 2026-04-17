@@ -1,6 +1,19 @@
 import { Resvg } from '@resvg/resvg-js'
 
-export default defineEventHandler((event) => {
+let fontBuffers = null
+
+async function loadFonts() {
+  if (fontBuffers) return fontBuffers
+  const storage = useStorage('assets:server')
+  const files = ['fonts/DMSans.ttf', 'fonts/JetBrainsMono.ttf']
+  const loaded = await Promise.all(files.map((key) => storage.getItemRaw(key)))
+  fontBuffers = loaded
+    .filter(Boolean)
+    .map((raw) => (Buffer.isBuffer(raw) ? raw : Buffer.from(raw)))
+  return fontBuffers
+}
+
+export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const command = query.command ? String(query.command) : ''
   const description = query.description ? String(query.description) : ''
@@ -11,10 +24,17 @@ export default defineEventHandler((event) => {
     ? renderCommand({ command, description, version })
     : renderVersion({ version, count })
 
+  const buffers = await loadFonts()
+
   const resvg = new Resvg(svg, {
     fitTo: {
       mode: 'width',
       value: 1200,
+    },
+    font: {
+      fontBuffers: buffers,
+      loadSystemFonts: false,
+      defaultFontFamily: 'DM Sans',
     },
   })
 
@@ -70,10 +90,10 @@ const SHARED_DEFS = `
     <path fill="#ef3931" d="M57,0,86,16.61,57.16,33.09Z" />
   </g>
 
-  <text x="114" y="80" font-family="sans-serif" font-size="24" fill="#ffffff" font-weight="700">Artisan.page</text>
-  <text x="114" y="100" font-family="sans-serif" font-size="13" fill="#6f6f6f">The Laravel Artisan Cheatsheet</text>
+  <text x="114" y="80" font-family="DM Sans" font-size="24" fill="#ffffff" font-weight="700">Artisan.page</text>
+  <text x="114" y="100" font-family="DM Sans" font-size="13" fill="#6f6f6f">The Laravel Artisan Cheatsheet</text>
 
-  <text x="1110" y="580" font-family="sans-serif" font-size="14" fill="#444444" text-anchor="end">artisan.page</text>
+  <text x="1110" y="580" font-family="DM Sans" font-size="14" fill="#444444" text-anchor="end">artisan.page</text>
 `
 
 function renderCommand({ command, description, version }) {
@@ -84,16 +104,16 @@ function renderCommand({ command, description, version }) {
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   ${SHARED_DEFS}
 
-  <text x="80" y="185" font-family="monospace" font-size="40" fill="#d3403e" font-weight="700">${escapeXml(command)}</text>
-  <text x="80" y="225" font-family="sans-serif" font-size="20" fill="#999999">${escapeXml(truncate(desc, 90))}</text>
+  <text x="80" y="185" font-family="JetBrains Mono" font-size="40" fill="#d3403e" font-weight="700">${escapeXml(command)}</text>
+  <text x="80" y="225" font-family="DM Sans" font-size="20" fill="#999999">${escapeXml(truncate(desc, 90))}</text>
 
   <rect x="80" y="270" width="1040" height="110" rx="10" fill="#1e1e1e" />
-  <text x="100" y="298" font-family="sans-serif" font-size="12" fill="#666666">Terminal</text>
-  <text x="100" y="342" font-family="monospace" font-size="22">
+  <text x="100" y="298" font-family="DM Sans" font-size="12" fill="#666666">Terminal</text>
+  <text x="100" y="342" font-family="JetBrains Mono" font-size="22">
     <tspan fill="#e8514f">php artisan</tspan><tspan fill="#74d4ff"> ${escapeXml(command)}</tspan>
   </text>
 
-  ${versionText ? `<text x="80" y="440" font-family="sans-serif" font-size="16" fill="#d3403e" font-weight="500">${escapeXml(versionText)}</text>` : ''}
+  ${versionText ? `<text x="80" y="440" font-family="DM Sans" font-size="16" fill="#d3403e" font-weight="500">${escapeXml(versionText)}</text>` : ''}
 </svg>`
 }
 
@@ -105,16 +125,16 @@ function renderVersion({ version, count }) {
 <svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   ${SHARED_DEFS}
 
-  <text x="80" y="260" font-family="sans-serif" font-size="84" fill="#ffffff" font-weight="700">${escapeXml(heading)}</text>
-  <text x="80" y="310" font-family="sans-serif" font-size="28" fill="#d3403e" font-weight="500">${escapeXml(subheading)}</text>
+  <text x="80" y="260" font-family="DM Sans" font-size="84" fill="#ffffff" font-weight="700">${escapeXml(heading)}</text>
+  <text x="80" y="310" font-family="DM Sans" font-size="28" fill="#d3403e" font-weight="500">${escapeXml(subheading)}</text>
 
   <rect x="80" y="360" width="1040" height="110" rx="10" fill="#1e1e1e" />
-  <text x="100" y="388" font-family="sans-serif" font-size="12" fill="#666666">Terminal</text>
-  <text x="100" y="432" font-family="monospace" font-size="22">
+  <text x="100" y="388" font-family="DM Sans" font-size="12" fill="#666666">Terminal</text>
+  <text x="100" y="432" font-family="JetBrains Mono" font-size="22">
     <tspan fill="#e8514f">php artisan</tspan><tspan fill="#74d4ff"> list</tspan>
   </text>
 
-  <text x="80" y="525" font-family="sans-serif" font-size="16" fill="#999999">Browse, search, and bookmark every Artisan command.</text>
+  <text x="80" y="525" font-family="DM Sans" font-size="16" fill="#999999">Browse, search, and bookmark every Artisan command.</text>
 </svg>`
 }
 
