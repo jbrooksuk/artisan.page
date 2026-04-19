@@ -5,6 +5,7 @@
       title="Sponsor James Brooks"
       @click="sponsorClick"
       target="_blank"
+      rel="noopener noreferrer"
       class="text-artisan hover:text-artisan-light text-sm font-bold"
     >
       Sponsor Artisan.page on GitHub

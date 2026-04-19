@@ -1,15 +1,15 @@
 import { laravel } from '../../../manifest.json'
 
 const versionMap = {
-  '13.x': () => import(`~/assets/13.x.json`),
-  '12.x': () => import(`~/assets/12.x.json`),
-  '11.x': () => import(`~/assets/11.x.json`),
-  '10.x': () => import(`~/assets/10.x.json`),
-  '9.x': () => import(`~/assets/9.x.json`),
-  '8.x': () => import(`~/assets/8.x.json`),
-  '7.x': () => import(`~/assets/7.x.json`),
-  '6.x': () => import(`~/assets/6.x.json`),
-  '5.x': () => import(`~/assets/5.x.json`),
+  '13.x': () => import('~/assets/13.x.json'),
+  '12.x': () => import('~/assets/12.x.json'),
+  '11.x': () => import('~/assets/11.x.json'),
+  '10.x': () => import('~/assets/10.x.json'),
+  '9.x': () => import('~/assets/9.x.json'),
+  '8.x': () => import('~/assets/8.x.json'),
+  '7.x': () => import('~/assets/7.x.json'),
+  '6.x': () => import('~/assets/6.x.json'),
+  '5.x': () => import('~/assets/5.x.json'),
 }
 
 const versionPriority = (version) => {
@@ -42,8 +42,8 @@ const lastMod = (version) => {
 
 export default defineSitemapEventHandler(async () => {
   const versions = [...laravel].map((version) => ({
-    loc: `/${version}/`,
-    changefreq: 'weekly',
+    loc: `/${version}`,
+    changefreq: changeFrequency(version),
     priority: versionPriority(version),
     lastmod: lastMod(version)
   }))
