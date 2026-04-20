@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "artisan-commands",
+      "type": "skill-md",
+      "description": "Look up Laravel Artisan commands, arguments, options, and aliases across every Laravel version from 5.x through 13.x via artisan.page's HTML pages, markdown responses, or JSON API.",
+      "url": "https://artisan.page/.well-known/agent-skills/artisan-commands/SKILL.md",
+      "digest": "sha256:46161048789cde52a5898e948a2d8464e4fea7cf8796e1517c105731a688c178"
+    }
+  ]
+}
