@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://artisan.page/api/versions",
+      "service-doc": [
+        { "href": "https://artisan.page/llms.txt", "type": "text/plain" }
+      ]
+    },
+    {
+      "anchor": "https://artisan.page/api/latest",
+      "service-doc": [
+        { "href": "https://artisan.page/llms.txt", "type": "text/plain" }
+      ]
+    },
+    {
+      "anchor": "https://artisan.page/api/packages",
+      "service-doc": [
+        { "href": "https://artisan.page/llms.txt", "type": "text/plain" }
+      ]
+    }
+  ]
+}
