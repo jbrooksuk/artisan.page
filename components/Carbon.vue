@@ -4,10 +4,11 @@ const carbonads = ref(null)
 onMounted(() => {
   if (carbonads.value) {
     const script = document.createElement('script')
+    script.async = true
     script.setAttribute('type', 'text/javascript')
     script.setAttribute(
       'src',
-      'https://cdn.carbonads.com/carbon.js?serve=CEAIP27N&placement=artisanpage'
+      'https://cdn.carbonads.com/carbon.js?serve=CEAIP27N&placement=artisanpage&format=cover'
     )
     script.setAttribute('id', '_carbonads_js')
     carbonads.value.appendChild(script)
@@ -18,44 +19,36 @@ onMounted(() => {
 <template>
   <div
     ref="carbonads"
-    class="Carbon border border-gray-200 dark:border-gray-800 rounded-lg bg-white dark:bg-gray-900"
+    class="Carbon"
   ></div>
 </template>
 
 <style>
-.dark .Carbon .carbon-text {
-  @apply text-gray-400 hover:text-gray-300;
-}
-
-.light .Carbon .carbon-text {
-  @apply text-gray-600 hover:text-gray-800;
-}
-
 .Carbon {
-  @apply p-3 flex flex-col max-w-full;
+  @apply p-3 max-w-full flex flex-col items-center;
 
-  #carbonads span {
-    @apply flex flex-col justify-between;
+  .carbon-wrap {
+    @apply flex flex-row items-start gap-4;
+  }
 
-    .carbon-wrap {
-      @apply flex flex-row flex-1;
+  .carbon-img {
+    @apply shrink-0;
 
-      .carbon-img {
-        @apply flex items-start justify-center mr-4 mb-0;
-      }
-
-      .carbon-text {
-        @apply flex-1 text-sm w-full m-0 text-left block;
-      }
+    img {
+      @apply rounded-sm;
     }
   }
 
-  img {
-    @apply w-full rounded-sm;
+  .carbon-text {
+    @apply flex-1 text-sm text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300;
   }
 
-  & .carbon-poweredby {
-    @apply ml-2 text-xs text-right text-gray-400 block pt-2 hover:no-underline hover:text-gray-500;
+  .carbon-poweredby {
+    @apply block text-xs text-right text-gray-400 hover:text-gray-500 hover:no-underline mt-3;
+
+    a {
+      @apply text-gray-400 hover:text-gray-500 hover:no-underline;
+    }
   }
 }
 </style>
