@@ -75,7 +75,10 @@ jobs:
         run: |
           cd /tmp/laravel
           composer config platform.php ${{ matrix.laravel.php }} --file composer.json
-          composer config audit.block-insecure false --file composer.json
+          # Older Composer versions (used for legacy PHP on Laravel 5.x) don't
+          # know this setting, and also don't enforce the audit block, so skip
+          # on failure.
+          composer config audit.block-insecure false --file composer.json || true
 
       - name: Add Laravel Nova Repository
         run: |
