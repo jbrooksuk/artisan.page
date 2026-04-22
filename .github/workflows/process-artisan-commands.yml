@@ -75,6 +75,7 @@ jobs:
         run: |
           cd /tmp/laravel
           composer config platform.php ${{ matrix.laravel.php }} --file composer.json
+          composer config audit.block-insecure false --file composer.json
 
       - name: Add Laravel Nova Repository
         run: |
