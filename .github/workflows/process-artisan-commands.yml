@@ -11,6 +11,9 @@ on:
   schedule:
     - cron: '0 0,12,22 * * *'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   fetch_laravel_versions:
     name: Discover Latest Laravel Versions
