@@ -61,9 +61,12 @@
           @click="sponsorClick"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
+          class="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-artisan-accent bg-artisan-accent/10 ring-1 ring-inset ring-artisan-accent/20 hover:bg-artisan-accent/20 hover:ring-artisan-accent/40 dark:bg-artisan-accent/10 dark:hover:bg-artisan-accent/25 transition-colors duration-150"
         >
-          Sponsor Artisan.page on GitHub <span>↗</span>
+          <svg class="h-3 w-3 fill-current transition-transform duration-150 group-hover:scale-110" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s-7-4.35-9.5-9.35C1 8 3 4.5 6.5 4.5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.5 0 5.5 3.5 4 7.15C19 16.65 12 21 12 21z" />
+          </svg>
+          Sponsor @jbrooksuk
         </a>
         <ThemePicker />
       </div>
@@ -141,9 +144,12 @@
         @click="sponsorClick"
         target="_blank"
         rel="noopener noreferrer"
-        class="text-artisan-accent text-xs leading-4 hover:underline decoration-artisan-accent/40"
+        class="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium text-artisan-accent bg-artisan-accent/10 ring-1 ring-inset ring-artisan-accent/20 hover:bg-artisan-accent/20 hover:ring-artisan-accent/40 dark:bg-artisan-accent/10 dark:hover:bg-artisan-accent/25 transition-colors duration-150"
       >
-        Sponsor Artisan.page on GitHub <span>↗</span>
+        <svg class="h-3 w-3 fill-current transition-transform duration-150 group-hover:scale-110" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-7-4.35-9.5-9.35C1 8 3 4.5 6.5 4.5c2 0 3.5 1 5.5 3 2-2 3.5-3 5.5-3 3.5 0 5.5 3.5 4 7.15C19 16.65 12 21 12 21z" />
+        </svg>
+        Sponsor @jbrooksuk
       </a>
       <ThemePicker />
     </div>
