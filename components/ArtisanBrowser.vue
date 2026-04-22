@@ -127,8 +127,8 @@
           :version="currentVersion"
         />
 
-        <!-- Carbon ad after the 3rd command -->
-        <div v-if="index === 2" class="border-b border-gray-200 dark:border-gray-800">
+        <!-- Carbon ad after the 2nd command -->
+        <div v-if="index === 1" class="border-b border-gray-200 dark:border-gray-800">
           <div class="px-4 md:px-8 py-6 max-w-3xl mx-auto w-full">
           <Carbon />
           </div>

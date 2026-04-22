@@ -20,12 +20,13 @@ onMounted(() => {
   <div
     ref="carbonads"
     class="Carbon"
+    style="min-height: 280px;"
   ></div>
 </template>
 
 <style>
 .Carbon {
-  @apply p-3 max-w-full flex flex-col items-center;
+  @apply p-3 max-w-full flex flex-col items-center justify-center;
 
   .carbon-wrap {
     @apply flex flex-row items-start gap-4;
