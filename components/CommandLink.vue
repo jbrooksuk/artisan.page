@@ -8,6 +8,7 @@
       : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
     :title="command.description"
     v-bind="$attrs"
+    @click="trackEvent"
   >
     {{ command.name }}
   </NuxtLink>
@@ -50,6 +51,12 @@ export default {
     handleCommandClick() {
       scrollToAnchor(this.slug)
       this.refreshCarbon()
+      this.trackEvent()
+    },
+    trackEvent() {
+      if (typeof window.fathom !== 'undefined') {
+        window.fathom.trackEvent('Sidebar Command Click')
+      }
     },
     refreshCarbon() {
       if (typeof _carbonads !== 'undefined') _carbonads.refresh()
