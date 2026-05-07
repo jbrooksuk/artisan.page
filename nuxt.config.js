@@ -1,4 +1,17 @@
+import { readFileSync } from 'node:fs'
 import { laravel } from './manifest'
+
+const prerenderRoutes = laravel.flatMap((version) => {
+  const commands = JSON.parse(readFileSync(`./assets/${version}.json`, 'utf-8'))
+  return [
+    `/${version}`,
+    `/og/${version}.png`,
+    ...commands.flatMap(c => [
+      `/${version}/${c.name.replace(':', '')}`,
+      `/og/${version}/${c.name.replace(':', '')}.png`,
+    ]),
+  ]
+})
 
 export default defineNuxtConfig({
   ssr: true,
@@ -12,7 +25,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
+      routes: ['/', ...prerenderRoutes],
     },
   },
 
@@ -116,7 +129,7 @@ export default defineNuxtConfig({
     groups: [
       {
         userAgent: '*',
-        allow: ['/', '/api/og'],
+        allow: ['/', '/og/'],
         disallow: ['/api/'],
       },
     ],

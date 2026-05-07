@@ -31,24 +31,30 @@ function loadFontFiles() {
   return fontFilesPromise
 }
 
-export default defineEventHandler(async (event) => {
-  const query = getQuery(event)
-  const command = query.command ? String(query.command) : ''
-  const description = query.description ? String(query.description) : ''
-  const version = query.version ? String(query.version) : ''
-  const count = query.count ? String(query.count) : ''
+export const versionMap = {
+  '13.x': () => import('~/assets/13.x.json'),
+  '12.x': () => import('~/assets/12.x.json'),
+  '11.x': () => import('~/assets/11.x.json'),
+  '10.x': () => import('~/assets/10.x.json'),
+  '9.x': () => import('~/assets/9.x.json'),
+  '8.x': () => import('~/assets/8.x.json'),
+  '7.x': () => import('~/assets/7.x.json'),
+  '6.x': () => import('~/assets/6.x.json'),
+  '5.x': () => import('~/assets/5.x.json'),
+}
 
-  const svg = command
-    ? renderCommand({ command, description, version })
-    : renderVersion({ version, count })
+export async function loadCommandsFor(version) {
+  const loader = versionMap[version]
+  if (!loader) return null
+  const { default: commands } = await loader()
+  return commands
+}
 
+export async function renderOgPng(svg) {
   const fontFiles = await loadFontFiles()
 
   const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: 'width',
-      value: 1200,
-    },
+    fitTo: { mode: 'width', value: 1200 },
     font: {
       fontFiles,
       loadSystemFonts: false,
@@ -56,18 +62,10 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const pngData = resvg.render()
-  const pngBuffer = pngData.asPng()
+  return resvg.render().asPng()
+}
 
-  setResponseHeaders(event, {
-    'Content-Type': 'image/png',
-    'Cache-Control': 'public, max-age=86400, s-maxage=86400',
-  })
-
-  return pngBuffer
-})
-
-const SHARED_DEFS = `
+export const SHARED_DEFS = `
   <defs>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#BB2926" />
@@ -114,7 +112,7 @@ const SHARED_DEFS = `
   <text x="1110" y="580" font-family="DM Sans" font-size="14" fill="#444444" text-anchor="end">artisan.page</text>
 `
 
-function renderCommand({ command, description, version }) {
+export function renderCommandSvg({ command, description, version }) {
   const versionText = version ? `Laravel ${version}` : ''
   const desc = description || 'The Laravel Artisan Cheatsheet'
 
@@ -135,7 +133,7 @@ function renderCommand({ command, description, version }) {
 </svg>`
 }
 
-function renderVersion({ version, count }) {
+export function renderVersionSvg({ version, count }) {
   const heading = version ? `Laravel ${version}` : 'Laravel'
   const subheading = count ? `${count} Artisan commands` : 'Artisan command reference'
 
