@@ -100,11 +100,8 @@ export function styleClasses(style) {
   if (!style) return ''
   const classes = []
   // bg wins over fg for visible foreground colour, since Symfony's `<bg=red>`
-  // implicitly uses a contrasting text colour. We deliberately don't add any
-  // padding or border — the source content typically includes leading/trailing
-  // spaces (e.g. `<bg=red> Note: ... </>`) that act as natural padding in a
-  // terminal, and adding more makes it look like a callout box.
-  if (style.bg) classes.push(BG[style.bg] || '', 'rounded-sm')
+  // implicitly uses a contrasting text colour.
+  if (style.bg) classes.push(BG[style.bg] || '', 'inline-block px-1.5 py-0.5 rounded')
   else if (style.fg) classes.push(FG[style.fg] || '')
   if (style.options?.includes('bold')) classes.push('font-bold')
   if (style.options?.includes('underscore')) classes.push('underline')
