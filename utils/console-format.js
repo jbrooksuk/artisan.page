@@ -85,14 +85,14 @@ const FG = {
 }
 
 const BG = {
-  black: 'bg-gray-900 text-gray-100',
-  red: 'bg-red-500/15 text-red-700 dark:text-red-300 ring-1 ring-inset ring-red-500/30',
-  green: 'bg-green-500/15 text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-500/30',
-  yellow: 'bg-yellow-500/15 text-yellow-700 dark:text-yellow-300 ring-1 ring-inset ring-yellow-500/30',
-  blue: 'bg-blue-500/15 text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-500/30',
-  magenta: 'bg-fuchsia-500/15 text-fuchsia-700 dark:text-fuchsia-300 ring-1 ring-inset ring-fuchsia-500/30',
-  cyan: 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 ring-1 ring-inset ring-cyan-500/30',
-  white: 'bg-white text-gray-900',
+  black: 'bg-gray-900 text-gray-50',
+  red: 'bg-red-500/10 text-red-700 dark:bg-red-500/15 dark:text-red-300',
+  green: 'bg-green-500/10 text-green-700 dark:bg-green-500/15 dark:text-green-300',
+  yellow: 'bg-yellow-500/10 text-yellow-800 dark:bg-yellow-500/15 dark:text-yellow-300',
+  blue: 'bg-blue-500/10 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300',
+  magenta: 'bg-fuchsia-500/10 text-fuchsia-700 dark:bg-fuchsia-500/15 dark:text-fuchsia-300',
+  cyan: 'bg-cyan-500/10 text-cyan-700 dark:bg-cyan-500/15 dark:text-cyan-300',
+  white: 'bg-gray-100 text-gray-900',
   default: '',
 }
 
@@ -100,8 +100,11 @@ export function styleClasses(style) {
   if (!style) return ''
   const classes = []
   // bg wins over fg for visible foreground colour, since Symfony's `<bg=red>`
-  // implicitly uses a contrasting text colour.
-  if (style.bg) classes.push(BG[style.bg] || '', 'inline-block px-1.5 py-0.5 rounded')
+  // implicitly uses a contrasting text colour. We deliberately don't add any
+  // padding or border — the source content typically includes leading/trailing
+  // spaces (e.g. `<bg=red> Note: ... </>`) that act as natural padding in a
+  // terminal, and adding more makes it look like a callout box.
+  if (style.bg) classes.push(BG[style.bg] || '', 'rounded-sm')
   else if (style.fg) classes.push(FG[style.fg] || '')
   if (style.options?.includes('bold')) classes.push('font-bold')
   if (style.options?.includes('underscore')) classes.push('underline')
