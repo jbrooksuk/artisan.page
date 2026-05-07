@@ -1,10 +1,20 @@
 import { laravel } from './manifest'
 
 export default defineNuxtConfig({
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-
   ssr: true,
+
+  routeRules: {
+    '/': { prerender: true },
+    '/**': { prerender: true },
+    '/api/**': { prerender: false },
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
 
   site: {
     url: 'https://artisan.page',
