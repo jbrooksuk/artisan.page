@@ -8,7 +8,7 @@
           <NuxtLink :to="`/${version}/${slug}`">{{ command.name }}</NuxtLink>
         </h2>
         <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
-          {{ command.description }}
+          <ConsoleText :text="command.description" />
         </p>
       </div>
 
@@ -57,7 +57,7 @@
               <Badge :required="option.value_required" />
             </div>
             <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
-              {{ option.description }}
+              <ConsoleText :text="option.description" />
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@
               <Badge :required="argument.required" />
             </div>
             <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
-              {{ argument.description }}
+              <ConsoleText :text="argument.description" />
             </p>
           </div>
         </div>

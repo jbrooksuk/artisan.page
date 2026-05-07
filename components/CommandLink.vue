@@ -6,7 +6,7 @@
     :class="active
       ? 'bg-[#fbecec] dark:bg-artisan-accent/10 text-artisan-accent'
       : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
-    :title="command.description"
+    :title="cleanDescription"
     v-bind="$attrs"
   >
     {{ command.name }}
@@ -19,7 +19,7 @@
       : 'text-gray-700 dark:text-gray-400 hover:text-artisan-accent dark:hover:text-artisan-accent'"
     @click="handleCommandClick"
     :href="`#${slug}`"
-    :title="command.description"
+    :title="cleanDescription"
     v-bind="$attrs"
   >
     {{ command.name }}
@@ -28,6 +28,7 @@
 
 <script>
 import { scrollToAnchor } from 'usemods'
+import { stripConsole } from '~/utils/console-format'
 
 export default {
   props: {
@@ -44,6 +45,9 @@ export default {
   computed: {
     slug() {
       return this.command.name.replace(':', '')
+    },
+    cleanDescription() {
+      return stripConsole(this.command.description)
     },
   },
   methods: {
