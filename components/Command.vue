@@ -55,6 +55,7 @@
                 {{ formatOptionName(option.name) }}
               </span>
               <Badge :required="option.value_required" />
+              <Badge v-if="option.deprecated" deprecated />
             </div>
             <p class="text-[13px] text-gray-700 dark:text-gray-400 leading-5">
               <ConsoleText :text="option.description" />
@@ -127,8 +128,18 @@ export default {
   },
   computed: {
     commandOptions() {
-      return dataSortBy(this.command.options, {
+      const sorted = dataSortBy(this.command.options, {
         property: 'name',
+      })
+      return sorted.map((option) => {
+        const deprecated = /\(Deprecated\)/i.test(option.description)
+        return {
+          ...option,
+          deprecated,
+          description: deprecated
+            ? option.description.replace(/\s*\(Deprecated\)/i, '').trim()
+            : option.description,
+        }
       })
     },
     slug() {
