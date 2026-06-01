@@ -37,6 +37,7 @@ jobs:
           | awk 'NR%2{printf "%s ",$0;next;}1' \
           | sort -Vru -k1,1 \
           | jq -Rcn '[inputs | split(" ") | {v:.[0], php:.[1]}]' \
+          | jq -c 'map(if .v == "13" then .php = "8.4" else . end)' \
           | tee /tmp/versions.json
           echo "matrix=$(cat /tmp/versions.json)" >> "$GITHUB_OUTPUT"
 
