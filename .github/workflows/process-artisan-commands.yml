@@ -106,14 +106,21 @@ jobs:
         run: |
           cd /tmp/laravel
           cp ${{ github.workspace }}/build.php /tmp/laravel/
+          set -o pipefail
           BUILD_OUTPUT=$(php -f /tmp/laravel/build.php)
-          if [[ $? -eq 0 ]]; then
-            echo $BUILD_OUTPUT > /tmp/${{ matrix.laravel.v }}.x.json
-            cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
-          else
-            echo "Build failed"
+          PHP_STATUS=$?
+          if [[ $PHP_STATUS -ne 0 ]]; then
+            echo "Build failed with exit code $PHP_STATUS"
+            echo "$BUILD_OUTPUT"
             exit 1
           fi
+          if ! printf '%s' "$BUILD_OUTPUT" | jq empty >/dev/null 2>&1; then
+            echo "Build produced non-JSON output:"
+            echo "$BUILD_OUTPUT"
+            exit 1
+          fi
+          printf '%s' "$BUILD_OUTPUT" > /tmp/${{ matrix.laravel.v }}.x.json
+          cp /tmp/${{ matrix.laravel.v }}.x.json ${{ github.workspace }}/assets/
 
       - name: Sync Git Changes
         run: git pull origin ${GITHUB_REF##*/} || true # can be run safely as only .x.json files are changed
