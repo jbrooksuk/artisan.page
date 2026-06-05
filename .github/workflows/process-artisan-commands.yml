@@ -20,6 +20,11 @@ env:
   # which have renamed the equivalent config setting over time.
   COMPOSER_NO_SECURITY_BLOCKING: '1'
 
+# Least-privilege default for the GITHUB_TOKEN. Jobs that need more (the
+# generate job commits build output) opt in explicitly below.
+permissions:
+  contents: read
+
 jobs:
   fetch_laravel_versions:
     name: Discover Latest Laravel Versions
