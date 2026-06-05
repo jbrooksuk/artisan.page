@@ -199,7 +199,6 @@
       "laravel/cashier-paddle",
       "laravel/dusk",
       "laravel/envoy",
-      "laravel/fortify",
       "laravel/horizon",
       "laravel/passport",
       "laravel/nova",

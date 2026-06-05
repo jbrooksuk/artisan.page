@@ -13,6 +13,17 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  # Allow installing framework versions flagged by security advisories. These
+  # are ephemeral, throwaway installs used only to generate the artisan command
+  # list, so the advisories are irrelevant. Using the env var (rather than an
+  # "audit"/"policy" config key) keeps this working across Composer versions,
+  # which have renamed the equivalent config setting over time.
+  COMPOSER_NO_SECURITY_BLOCKING: '1'
+
+# Least-privilege default for the GITHUB_TOKEN. Jobs that need more (the
+# generate job commits build output) opt in explicitly below.
+permissions:
+  contents: read
 
 jobs:
   fetch_laravel_versions:
@@ -76,10 +87,6 @@ jobs:
         run: |
           cd /tmp/laravel
           composer config platform.php ${{ matrix.laravel.php }} --file composer.json
-          # Older Composer versions (used for legacy PHP on Laravel 5.x) don't
-          # know this setting, and also don't enforce the audit block, so skip
-          # on failure.
-          composer config audit.block-insecure false --file composer.json || true
 
       - name: Add Laravel Nova Repository
         run: |

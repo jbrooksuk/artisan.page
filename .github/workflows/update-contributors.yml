@@ -8,6 +8,9 @@ env:
 jobs:
   main:
     runs-on: ubuntu-latest
+    permissions:
+      # Required to commit the updated CONTRIBUTORS.md back to the repository.
+      contents: write
     steps:
       - uses: minicli/action-contributors@v3
         name: "Update a projects CONTRIBUTORS file"
