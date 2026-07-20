@@ -6,7 +6,9 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "start": "nuxi start",
-    "generate": "nuxi generate"
+    "generate": "nuxi generate",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.16",
@@ -19,12 +21,16 @@
     "@nuxtjs/web-vitals": "^0.2.6",
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.4.11",
     "autoprefixer": "^10.4.16",
+    "happy-dom": "^20.11.0",
     "lodash.groupby": "^4.6.0",
     "mousetrap": "^1.6.5",
     "nuxt": "^4.3.1",
     "postcss": "^8.4.31",
     "usemods": "^1.1.0",
+    "vitest": "^4.1.10",
     "vue-router": "^5.0.3"
   },
   "dependencies": {
