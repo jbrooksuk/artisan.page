@@ -26,6 +26,7 @@
     "laravel/spark-paddle",
     "laravel/spark-stripe",
     "laravel/telescope",
+    "laravel/tinker",
     "laravel/vapor-core",
     "laravel/wayfinder",
     "livewire/livewire",
@@ -59,6 +60,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "laravel/wayfinder",
       "livewire/livewire",
@@ -91,6 +93,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "laravel/wayfinder",
       "livewire/livewire",
@@ -123,6 +126,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "laravel/wayfinder",
       "livewire/livewire",
@@ -152,6 +156,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "livewire/livewire",
       "livewire/volt",
@@ -176,6 +181,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
@@ -199,6 +205,7 @@
       "laravel/spark-paddle",
       "laravel/spark-stripe",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
@@ -215,6 +222,7 @@
       "laravel/scout",
       "laravel/socialite",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
@@ -230,10 +238,13 @@
       "laravel/scout",
       "laravel/socialite",
       "laravel/telescope",
+      "laravel/tinker",
       "laravel/vapor-core",
       "livewire/livewire",
       "inertiajs/inertia-laravel"
     ],
-    "5.x": []
+    "5.x": [
+      "laravel/tinker"
+    ]
   }
 }
