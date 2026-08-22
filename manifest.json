@@ -26,6 +26,7 @@
     "laravel/spark-stripe",
     "laravel/telescope",
     "laravel/vapor-core",
+    "laravel/wayfinder",
     "livewire/livewire",
     "livewire/volt",
     "inertiajs/inertia-laravel"
@@ -57,6 +58,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "laravel/vapor-core",
+      "laravel/wayfinder",
       "livewire/livewire",
       "livewire/volt",
       "inertiajs/inertia-laravel"
@@ -87,6 +89,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "laravel/vapor-core",
+      "laravel/wayfinder",
       "livewire/livewire",
       "livewire/volt",
       "inertiajs/inertia-laravel"
@@ -117,6 +120,7 @@
       "laravel/spark-stripe",
       "laravel/telescope",
       "laravel/vapor-core",
+      "laravel/wayfinder",
       "livewire/livewire",
       "livewire/volt",
       "inertiajs/inertia-laravel"
