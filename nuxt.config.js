@@ -2,12 +2,20 @@ import { readFileSync } from 'node:fs'
 import { laravel } from './manifest'
 
 const prerenderRoutes = laravel.flatMap((version) => {
-  const commands = JSON.parse(readFileSync(`./assets/${version}.json`, 'utf-8'))
+  let commands
+  try {
+    commands = JSON.parse(readFileSync(`./assets/${version}.json`, 'utf-8'))
+  } catch (err) {
+    console.warn(`[nuxt.config] Skipping Laravel ${version}: assets/${version}.json could not be parsed (${err.message})`)
+    return []
+  }
   return [
     `/${version}`,
+    `/${version}.md`,
     `/og/${version}.png`,
     ...commands.flatMap(c => [
       `/${version}/${c.name.replace(':', '')}`,
+      `/${version}/${c.name.replace(':', '')}.md`,
       `/og/${version}/${c.name.replace(':', '')}.png`,
     ]),
   ]

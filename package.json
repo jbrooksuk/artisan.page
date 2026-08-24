@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "generate:llms": "node scripts/generate-llms.mjs",
+    "predev": "npm run generate:llms",
+    "prebuild": "npm run generate:llms",
+    "pregenerate": "npm run generate:llms",
     "dev": "nuxi dev",
     "build": "nuxi build",
     "start": "nuxi start",

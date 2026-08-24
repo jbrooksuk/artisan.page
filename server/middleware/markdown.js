@@ -34,16 +34,28 @@ function prefersMarkdown(accept) {
   return mdQ >= htmlQ
 }
 
+function hasDefault(value) {
+  return value !== null && value !== undefined && value !== false && value !== ''
+    && !(Array.isArray(value) && value.length === 0)
+}
+
+function formatDefault(value) {
+  return `; default: \`${typeof value === 'string' ? value : JSON.stringify(value)}\``
+}
+
 function parsePath(pathname) {
   const clean = pathname.replace(/\/+$/, '') || '/'
   if (clean === '/') return { route: 'index' }
 
-  const parts = clean.split('/').filter(Boolean)
+  const isMarkdownPath = clean.endsWith('.md')
+  const routePath = isMarkdownPath ? clean.slice(0, -3) : clean
+
+  const parts = routePath.split('/').filter(Boolean)
   if (parts.length === 1 && /^\d+\.x$/.test(parts[0])) {
-    return { route: 'version', version: parts[0] }
+    return { route: 'version', version: parts[0], isMarkdownPath }
   }
   if (parts.length === 2 && /^\d+\.x$/.test(parts[0]) && /^[\w-]+$/.test(parts[1])) {
-    return { route: 'command', version: parts[0], command: parts[1] }
+    return { route: 'command', version: parts[0], command: parts[1], isMarkdownPath }
   }
   return null
 }
@@ -70,7 +82,7 @@ function renderHome() {
   return lines.join('\n')
 }
 
-function renderVersionIndex(version, commands) {
+function renderVersionIndex(version, commands, isMarkdownPath) {
   const lines = []
   lines.push(`# Laravel ${version} Artisan commands`)
   lines.push('')
@@ -83,14 +95,15 @@ function renderVersionIndex(version, commands) {
   for (const cmd of commands) {
     const slug = cmd.name.replace(':', '')
     const desc = cmd.description ? ` — ${cmd.description}` : ''
-    lines.push(`- [\`php artisan ${cmd.name}\`](https://artisan.page/${version}/${slug})${desc}`)
+    const markdownExtension = isMarkdownPath ? '.md' : ''
+    lines.push(`- [\`php artisan ${cmd.name}\`](https://artisan.page/${version}/${slug}${markdownExtension})${desc}`)
   }
   lines.push('')
-  lines.push(`Source: https://artisan.page/${version}`)
+  lines.push(`Source: https://artisan.page/${version}${isMarkdownPath ? '.md' : ''}`)
   return lines.join('\n')
 }
 
-function renderCommand(command, version) {
+function renderCommand(command, version, isMarkdownPath) {
   const lines = []
   lines.push(`# \`php artisan ${command.name}\``)
   lines.push('')
@@ -112,8 +125,9 @@ function renderCommand(command, version) {
     lines.push('')
     for (const arg of command.arguments) {
       const required = arg.required ? ' *(required)*' : ''
+      const defaultValue = hasDefault(arg.default) ? formatDefault(arg.default) : ''
       const description = arg.description ? ` — ${arg.description}` : ''
-      lines.push(`- \`${arg.name}\`${required}${description}`)
+      lines.push(`- \`${arg.name}\`${required}${description}${defaultValue}`)
     }
   }
 
@@ -123,9 +137,10 @@ function renderCommand(command, version) {
     lines.push('')
     const sorted = [...command.options].sort((a, b) => a.name.localeCompare(b.name))
     for (const opt of sorted) {
-      const required = opt.value_required ? ' *(value required)*' : ''
+      const value = opt.value_required ? ' *(value required)*' : opt.value_optional ? ' *(value optional)*' : ''
+      const defaultValue = hasDefault(opt.default) ? formatDefault(opt.default) : ''
       const description = opt.description ? ` — ${opt.description}` : ''
-      lines.push(`- \`--${opt.name}\`${required}${description}`)
+      lines.push(`- \`--${opt.name}\`${value}${description}${defaultValue}`)
     }
   }
 
@@ -140,7 +155,7 @@ function renderCommand(command, version) {
 
   const slug = command.name.replace(':', '')
   lines.push('')
-  lines.push(`Source: https://artisan.page/${version}/${slug}`)
+  lines.push(`Source: https://artisan.page/${version}/${slug}${isMarkdownPath ? '.md' : ''}`)
   return lines.join('\n')
 }
 
@@ -152,10 +167,10 @@ export default defineEventHandler(async (event) => {
   const parsed = parsePath(url.pathname)
   if (!parsed) return
 
-  setHeader(event, 'Vary', 'Accept')
+  if (!parsed.isMarkdownPath) setHeader(event, 'Vary', 'Accept')
 
   const accept = getHeader(event, 'accept')
-  if (!prefersMarkdown(accept)) return
+  if (!parsed.isMarkdownPath && !prefersMarkdown(accept)) return
 
   let body
   if (parsed.route === 'index') {
@@ -163,13 +178,13 @@ export default defineEventHandler(async (event) => {
   } else if (parsed.route === 'version') {
     if (!laravel.includes(parsed.version)) return
     const commands = (await versionMap[parsed.version]()).default
-    body = renderVersionIndex(parsed.version, commands)
+    body = renderVersionIndex(parsed.version, commands, parsed.isMarkdownPath)
   } else if (parsed.route === 'command') {
     if (!laravel.includes(parsed.version)) return
     const commands = (await versionMap[parsed.version]()).default
     const match = commands.find((c) => c.name.replace(':', '') === parsed.command)
     if (!match) return
-    body = renderCommand(match, parsed.version)
+    body = renderCommand(match, parsed.version, parsed.isMarkdownPath)
   }
 
   if (!body) return
