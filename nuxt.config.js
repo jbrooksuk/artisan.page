@@ -25,7 +25,17 @@ export default defineNuxtConfig({
   ssr: true,
 
   routeRules: {
-    '/': { prerender: true },
+    '/': {
+      prerender: true,
+      headers: {
+        Link: '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="service-doc"; type="text/plain"',
+      },
+    },
+    '/.well-known/api-catalog': {
+      headers: {
+        'Content-Type': 'application/linkset+json',
+      },
+    },
     '/**': { prerender: true },
     '/api/**': { prerender: false },
   },
