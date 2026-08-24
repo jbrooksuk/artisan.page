@@ -13,15 +13,17 @@ Artisan.page is a complete reference for every `php artisan` command shipped wit
 - Home: `https://artisan.page`
 - Version listing: `https://artisan.page/{version}` (e.g. `https://artisan.page/13.x`)
 - Command detail: `https://artisan.page/{version}/{command}` (e.g. `https://artisan.page/13.x/makemigration`)
+- Markdown version index: `https://artisan.page/{version}.md` (e.g. `https://artisan.page/13.x.md`)
+- Markdown command detail: `https://artisan.page/{version}/{command}.md` (e.g. `https://artisan.page/13.x/makemigration.md`)
 
 Colons in command names are stripped from the URL path: `make:migration` becomes `makemigration`, `cache:clear` becomes `cacheclear`.
 
 ## Fetching content as an agent
 
-All HTML pages support content negotiation. Send `Accept: text/markdown` and the response body will be a clean markdown representation of the page, with `Content-Type: text/markdown; charset=utf-8` and an `x-markdown-tokens` header estimating the markdown token count. Without that header the default response is HTML.
+Use a `.md` URL for a Markdown response without content negotiation. Canonical HTML pages also support `Accept: text/markdown`; those responses include `Content-Type: text/markdown; charset=utf-8` and an `x-markdown-tokens` header estimating the Markdown token count. Without the extension or header, the default response is HTML.
 
 ```bash
-curl -H "Accept: text/markdown" https://artisan.page/13.x/makemigration
+curl https://artisan.page/13.x/makemigration.md
 ```
 
 ## JSON API
