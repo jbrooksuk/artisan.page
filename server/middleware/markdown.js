@@ -71,7 +71,7 @@ function renderHome() {
   lines.push('## Versions')
   lines.push('')
   for (const v of laravel) {
-    lines.push(`- [Laravel ${v}](https://artisan.page/${v}.md)`)
+    lines.push(`- [Laravel ${v}](https://artisan.page/${v})`)
   }
   lines.push('')
   lines.push('## Resources')
@@ -82,7 +82,7 @@ function renderHome() {
   return lines.join('\n')
 }
 
-function renderVersionIndex(version, commands) {
+function renderVersionIndex(version, commands, isMarkdownPath) {
   const lines = []
   lines.push(`# Laravel ${version} Artisan commands`)
   lines.push('')
@@ -95,14 +95,15 @@ function renderVersionIndex(version, commands) {
   for (const cmd of commands) {
     const slug = cmd.name.replace(':', '')
     const desc = cmd.description ? ` — ${cmd.description}` : ''
-    lines.push(`- [\`php artisan ${cmd.name}\`](https://artisan.page/${version}/${slug}.md)${desc}`)
+    const markdownExtension = isMarkdownPath ? '.md' : ''
+    lines.push(`- [\`php artisan ${cmd.name}\`](https://artisan.page/${version}/${slug}${markdownExtension})${desc}`)
   }
   lines.push('')
-  lines.push(`Source: https://artisan.page/${version}.md`)
+  lines.push(`Source: https://artisan.page/${version}${isMarkdownPath ? '.md' : ''}`)
   return lines.join('\n')
 }
 
-function renderCommand(command, version) {
+function renderCommand(command, version, isMarkdownPath) {
   const lines = []
   lines.push(`# \`php artisan ${command.name}\``)
   lines.push('')
@@ -154,7 +155,7 @@ function renderCommand(command, version) {
 
   const slug = command.name.replace(':', '')
   lines.push('')
-  lines.push(`Source: https://artisan.page/${version}/${slug}.md`)
+  lines.push(`Source: https://artisan.page/${version}/${slug}${isMarkdownPath ? '.md' : ''}`)
   return lines.join('\n')
 }
 
@@ -166,9 +167,10 @@ export default defineEventHandler(async (event) => {
   const parsed = parsePath(url.pathname)
   if (!parsed) return
 
+  if (!parsed.isMarkdownPath) setHeader(event, 'Vary', 'Accept')
+
   const accept = getHeader(event, 'accept')
   if (!parsed.isMarkdownPath && !prefersMarkdown(accept)) return
-  if (!parsed.isMarkdownPath) setHeader(event, 'Vary', 'Accept')
 
   let body
   if (parsed.route === 'index') {
@@ -176,13 +178,13 @@ export default defineEventHandler(async (event) => {
   } else if (parsed.route === 'version') {
     if (!laravel.includes(parsed.version)) return
     const commands = (await versionMap[parsed.version]()).default
-    body = renderVersionIndex(parsed.version, commands)
+    body = renderVersionIndex(parsed.version, commands, parsed.isMarkdownPath)
   } else if (parsed.route === 'command') {
     if (!laravel.includes(parsed.version)) return
     const commands = (await versionMap[parsed.version]()).default
     const match = commands.find((c) => c.name.replace(':', '') === parsed.command)
     if (!match) return
-    body = renderCommand(match, parsed.version)
+    body = renderCommand(match, parsed.version, parsed.isMarkdownPath)
   }
 
   if (!body) return
