@@ -192,11 +192,8 @@ export default {
   },
   created() {
     this.currentVersion = this.version || laravel[0]
+    this.filter = this.queryFilter(this.$route.query.q)
     this.loadData(this.currentVersion)
-  },
-  mounted() {
-    const { query } = this.$route
-    this.filter = query.search || ''
   },
   beforeUnmount() {
     if (this._observer) {
@@ -204,6 +201,13 @@ export default {
     }
   },
   watch: {
+    '$route.query.q'(value) {
+      const filter = this.queryFilter(value)
+
+      if (filter !== this.filter) {
+        this.filter = filter
+      }
+    },
     commandData() {
       window.location.hash &&
         this.$nextTick(() => {
@@ -263,7 +267,29 @@ export default {
       this.$refs.mainContent?.scroll({ top: 0, behavior: 'smooth' })
     },
     filterResults(value) {
-      this.filter = value.trim()
+      const filter = value.trim()
+      this.filter = filter
+
+      if (this.queryFilter(this.$route.query.q) === filter) {
+        return
+      }
+
+      const query = { ...this.$route.query }
+
+      if (filter) {
+        query.q = filter
+      } else {
+        delete query.q
+      }
+
+      this.$router.replace({ query, hash: this.$route.hash })
+    },
+    queryFilter(value) {
+      if (Array.isArray(value)) {
+        return value[0] || ''
+      }
+
+      return value || ''
     },
     setupScrollObserver() {
       if (this._observer) {
