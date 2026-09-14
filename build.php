@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Console\Kernel;
 
 require __DIR__.'/vendor/autoload.php';
+require __DIR__.'/scripts/signature-description.php';
 
 $app = require __DIR__.'/bootstrap/app.php';
 
@@ -19,18 +20,18 @@ echo collect($commands)->unique(function ($command) {
     'synopsis' => $command->getSynopsis(),
     'definition' => $command->getDefinition(),
     'aliases' => $command->getAliases(),
-    'arguments' => collect($command->getDefinition()->getArguments())->map(function ($argument) {
+    'arguments' => collect($command->getDefinition()->getArguments())->map(function ($argument) use ($command) {
       return [
         'name' => $argument->getName(),
-        'description' => $argument->getDescription(),
+        'description' => signatureDescription($command, $argument),
         'default' => $argument->getDefault(),
         'required' => $argument->isRequired(),
       ];
     })->values()->all(),
-    'options' => collect($command->getDefinition()->getOptions())->map(function ($option) {
+    'options' => collect($command->getDefinition()->getOptions())->map(function ($option) use ($command) {
       return [
         'name' => $option->getName(),
-        'description' => $option->getDescription(),
+        'description' => signatureDescription($command, $option, true),
         'default' => $option->getDefault(),
         'value_required' => $option->isValueRequired(),
         'value_optional' => $option->isValueOptional(),
