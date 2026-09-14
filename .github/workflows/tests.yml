@@ -32,3 +32,6 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Test command signature descriptions
+        run: php tests/php/signature-description.php

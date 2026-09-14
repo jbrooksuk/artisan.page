@@ -114,6 +114,8 @@ jobs:
         run: |
           cd /tmp/laravel
           cp ${{ github.workspace }}/build.php /tmp/laravel/
+          mkdir -p /tmp/laravel/scripts
+          cp ${{ github.workspace }}/scripts/signature-description.php /tmp/laravel/scripts/
           set -o pipefail
           BUILD_OUTPUT=$(php -f /tmp/laravel/build.php)
           PHP_STATUS=$?
