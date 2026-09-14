@@ -127,8 +127,8 @@
           :version="currentVersion"
         />
 
-        <!-- Carbon ad after the 2nd command -->
-        <div v-if="index === 1" class="border-b border-gray-200 dark:border-gray-800">
+        <!-- Ads after commands 1, 3, 5, then every fifth command. -->
+        <div v-if="index === 0 || index === 2 || (index + 1) % 5 === 0" class="border-b border-gray-200 dark:border-gray-800">
           <div class="px-4 md:px-8 py-6 max-w-3xl mx-auto w-full">
           <Carbon />
           </div>

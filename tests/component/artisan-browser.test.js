@@ -73,3 +73,24 @@ describe('ArtisanBrowser search query', () => {
     expect(wrapper.vm.filter).toBe('route')
   })
 })
+
+it('places ads after displayed commands 1, 3, 5 and every fifth command thereafter', async () => {
+  vi.stubGlobal('IntersectionObserver', IntersectionObserver)
+  const { wrapper } = mountBrowser()
+  await wrapper.setData({
+    commandData: Array.from({ length: 16 }, (_, index) => ({
+      name: `command-${String(index + 1).padStart(2, '0')}`,
+      description: '',
+    })),
+  })
+  const positions = []
+  let commands = 0
+  for (const child of wrapper.get('main').element.children) {
+    if (child.tagName.toLowerCase() === 'command') commands++
+    if (child.querySelector('carbon')) positions.push(commands)
+  }
+  expect(positions).toEqual([1, 3, 5, 10, 15])
+  await wrapper.setData({ commandData: [{ name: 'unique-result', description: '' }], filter: 'unique-result' })
+  expect(wrapper.findAll('carbon')).toHaveLength(1)
+  wrapper.unmount()
+})
