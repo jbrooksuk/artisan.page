@@ -4,6 +4,22 @@ import { describe, expect, it } from 'vitest'
 import ConsoleText from '~/components/ConsoleText.vue'
 
 describe('ConsoleText', () => {
+  it('renders backtick-delimited code with its original case', () => {
+    const wrapper = mount(ConsoleText, { props: { text: 'Defaults to `scout.chunk.searchable`; use `--Force`.' } })
+    expect(wrapper.findAll('code').map(code => code.text())).toEqual(['scout.chunk.searchable', '--Force'])
+    expect(wrapper.text()).toBe('Defaults to scout.chunk.searchable; use --Force.')
+    expect(wrapper.get('code').classes()).toContain('font-mono')
+    expect(wrapper.get('code').classes()).not.toContain('uppercase')
+  })
+
+  it('keeps code literal alongside console formatting and unmatched backticks', () => {
+    const wrapper = mount(ConsoleText, { props: { text: '<info>Use</info> `<info>literal</info>` then `unfinished' } })
+    expect(wrapper.get('code').text()).toBe('<info>literal</info>')
+    expect(wrapper.find('info').exists()).toBe(false)
+    expect(wrapper.get('.text-green-600').text()).toBe('Use')
+    expect(wrapper.text()).toBe('Use <info>literal</info> then `unfinished')
+  })
+
   it('renders plain text without extra markup', () => {
     const wrapper = mount(ConsoleText, { props: { text: 'Run the migrations' } })
     expect(wrapper.text()).toBe('Run the migrations')
