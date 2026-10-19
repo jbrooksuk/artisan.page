@@ -28,7 +28,7 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.11",
     "autoprefixer": "^10.4.16",
-    "happy-dom": "^20.11.0",
+    "happy-dom": "^21.0.3",
     "lodash.groupby": "^4.6.0",
     "mousetrap": "^1.6.5",
     "nuxt": "^4.3.1",
