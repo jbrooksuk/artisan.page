@@ -8,6 +8,7 @@ let wrappers
 beforeEach(() => {
   observers = []
   wrappers = []
+  window.happyDOM.settings.enableIframePageLoading = true
   window.happyDOM.settings.handleDisabledFileLoadingAsSuccess = true
   vi.stubGlobal('IntersectionObserver', class {
     constructor(callback) {
