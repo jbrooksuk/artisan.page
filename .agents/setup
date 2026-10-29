@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+SECONDS=0
+echo 'Preparing Node.js and PHP CLI...'
+node_version="$(tr -d '[:space:]' < .nvmrc)"
+if [[ "$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || true)" != "$node_version" ]]; then
+  if ! command -v n >/dev/null; then
+    sudo npm install --global n --no-audit --no-fund
+  fi
+  sudo n "$node_version"
+  hash -r
+fi
+
+if ! command -v php >/dev/null; then
+  sudo apt-get update
+  sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends php-cli
+fi
+node --version
+npm --version
+php --version
+echo "Toolchains ready (${SECONDS}s)."
+
+SECONDS=0
+echo 'Installing locked npm dependencies...'
+npm ci --include=dev --prefer-offline --no-audit --no-fund
+echo "Dependencies ready (${SECONDS}s)."
+
+SECONDS=0
+echo 'Preparing Nuxt generated configuration...'
+npx --no-install nuxt prepare
+echo "Nuxt ready (${SECONDS}s)."

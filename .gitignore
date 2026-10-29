@@ -16,3 +16,6 @@ dist
 # Local editor
 .vscode/
 *.code-workspace
+
+# Orb portal metadata
+.amp/portals/*
