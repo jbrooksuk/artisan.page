@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -35,3 +35,22 @@ jobs:
 
       - name: Test command signature descriptions
         run: php tests/php/signature-description.php
+
+      - name: Build production server
+        run: npm run build
+
+      - name: Smoke test standalone production server
+        run: |
+          runtime=$(mktemp -d)
+          cp -R .output/. "$runtime/"
+          PORT=3000 HOST=127.0.0.1 node "$runtime/server/index.mjs" > "$runtime/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true; rm -rf "$runtime"' EXIT
+
+          if ! curl --fail --silent --show-error --retry 15 --retry-connrefused --retry-delay 1 \
+            http://127.0.0.1:3000/ -o /dev/null; then
+            cat "$runtime/server.log"
+            exit 1
+          fi
+
+          curl --fail --silent --show-error http://127.0.0.1:3000/api/versions

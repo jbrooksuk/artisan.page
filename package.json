@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
-    "fuse.js": "^7.1.0"
+    "fuse.js": "^7.1.0",
+    "vue": "^3.5.44"
   }
 }
